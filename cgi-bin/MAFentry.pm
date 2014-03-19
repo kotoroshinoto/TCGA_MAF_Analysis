@@ -72,10 +72,10 @@ sub new{
 }
 sub processline{
 	my ($class,@params)= @_;
-	if (Scalar::Util::blessed($class)){croak("used as an object method");}
-	if (scalar(@params) != 1){croak("method takes 1 and only 1 argument");}
+	if (Scalar::Util::blessed($class)){Carp::croak("used as an object method");}
+	if (scalar(@params) != 1){Carp::croak("method takes 1 and only 1 argument");}
 	my @columns=split('\t',$params[0]);
-	if (scalar(@columns) != 37){croak("line does not have correct # of columns (37)");}
+	if (scalar(@columns) != 37){Carp::croak("line does not have correct # of columns (37)");}
 	my $newobj=$class->new();
 	$newobj->{Hugo_Symbol}=$columns[0];
 	$newobj->{Entrez_Gene_Id}=$columns[1];
@@ -116,5 +116,47 @@ sub processline{
 	$newobj->{Line_Number}=$columns[36];
 	return $newobj;
 	
+}
+sub getString(){
+	my $self = shift;
+	my $str="";
+	$str .= $self->{Hugo_Symbol}."\t";
+	$str .= $self->{Entrez_Gene_Id}."\t";
+	$str .= $self->{Center}."\t";
+	$str .= $self->{Ncbi_Build}."\t";
+	$str .= $self->{Chrom}."\t";
+	$str .= $self->{Start_Position}."\t";
+	$str .= $self->{End_Position}."\t";
+	$str .= $self->{Strand}."\t";
+	$str .= $self->{Variant_Classification}."\t";
+	$str .= $self->{Variant_Type}."\t";
+	$str .= $self->{Reference_Allele}."\t";
+	$str .= $self->{Tumor_Seq_Allele1}."\t";
+	$str .= $self->{Tumor_Seq_Allele2}."\t";
+	$str .= $self->{Dbsnp_Rs}."\t";
+	$str .= $self->{Dbsnp_Val_Status}."\t";
+	$str .= $self->{Tumor_Sample_Barcode}."\t";
+	$str .= $self->{Matched_Norm_Sample_Barcode}."\t";
+	$str .= $self->{Match_Norm_Seq_Allele1}."\t";
+	$str .= $self->{Match_Norm_Seq_Allele2}."\t";
+	$str .= $self->{Tumor_Validation_Allele1}."\t";
+	$str .= $self->{Tumor_Validation_Allele2}."\t";
+	$str .= $self->{Match_Norm_Validation_Allele1}."\t";
+	$str .= $self->{Match_Norm_Validation_Allele2}."\t";
+	$str .= $self->{Verification_Status}."\t";
+	$str .= $self->{Validation_Status}."\t";
+	$str .= $self->{Mutation_Status}."\t";
+	$str .= $self->{Sequencing_Phase}."\t";
+	$str .= $self->{Sequence_Source}."\t";
+	$str .= $self->{Validation_Method}."\t";
+	$str .= $self->{Score}."\t";
+	$str .= $self->{Bam_File}."\t";
+	$str .= $self->{Sequencer}."\t";
+	$str .= $self->{Tumor_Sample_UUID}."\t";
+	$str .= $self->{Matched_Norm_Sample_UUID}."\t";
+	$str .= $self->{File_Name}."\t";
+	$str .= $self->{Archive_Name}."\t";
+	$str .= $self->{Line_Number}."\n";
+	return $str;
 }
 1;
