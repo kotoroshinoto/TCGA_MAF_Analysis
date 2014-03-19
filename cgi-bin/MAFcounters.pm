@@ -108,7 +108,7 @@ sub writeFile{
 		$of->write($self->toString());
 		$of->close();
 	}else {
-		croak( "writeFile used on counter with no name";
+		croak( "writeFile used on counter with no name");
 	}
 }
 1;
