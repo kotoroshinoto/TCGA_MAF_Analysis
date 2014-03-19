@@ -1,6 +1,7 @@
 package MAFentry;
 use strict;
 use warnings;
+use Carp qw(cluck);
 our %col2index;
 _initializeVars();
 sub _initializeVars{
@@ -71,10 +72,10 @@ sub new{
 }
 sub processline{
 	my ($class,@params)= @_;
-	if (Scalar::Util::blessed($class)){die "used as an object method";}
-	if (scalar(@params) != 1){die "method takes 1 and only 1 argument";}
+	if (Scalar::Util::blessed($class)){croak("used as an object method");}
+	if (scalar(@params) != 1){croak("method takes 1 and only 1 argument");}
 	my @columns=split('\t',$params[0]);
-	if (scalar(@columns) != 37){die "line does not have correct # of columns (37)"}
+	if (scalar(@columns) != 37){croak("line does not have correct # of columns (37)");}
 	my $newobj=$class->new();
 	$newobj->{Hugo_Symbol}=$columns[0];
 	$newobj->{Entrez_Gene_Id}=$columns[1];

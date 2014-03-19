@@ -2,6 +2,7 @@ package FeatureCounter;
 use strict;
 use warnings;
 use MAFentry;
+use Carp qw(cluck);
 sub new{
 	my $class = shift;
 	my $self = {
@@ -13,7 +14,7 @@ sub new{
 }
 sub determineMutation{
 #	my $class = shift;
-	if (scalar(@_) != 4){die "wrong # of arguments given to determineMutation: got scalar(@_) needed 4"}
+	if (scalar(@_) != 4){croak("wrong # of arguments given to determineMutation: got scalar(@_) needed 4");}
 	my @nrm;
 	push (@nrm,shift);
 	push (@nrm,shift);
@@ -21,7 +22,7 @@ sub determineMutation{
 	push (@tmr,shift);
 	push (@tmr,shift);
 	if(length($tmr[0])>1 or length($tmr[1])>1 or length($nrm[0])>1 or length($nrm[1])>1){
-		die ("Invalid arguments, alleles given to determineMutation must be 1 character long");
+		croak ("Invalid arguments, alleles given to determineMutation must be 1 character long");
 	}
 	my @mutation;
 	if($tmr[0] eq $nrm[0]){	
@@ -63,7 +64,7 @@ sub determineMutation{
 }
 sub __appendcount{
 	my ($self,@params)= @_;
-	if (scalar(@params) != 1){die "method takes 1 and only 1 argument";}
+	if (scalar(@params) != 1){croak( "method takes 1 and only 1 argument");}
 	if(defined($self->{counts}{$params[0]})){
 		$self->{counts}{$params[0]}++;
 	} else {
@@ -72,7 +73,7 @@ sub __appendcount{
 }
 sub __countIf{
 	my ($self,@params)= @_;
-	if (scalar(@params) != 2){die "method takes 2 and only 2 arguments";}
+	if (scalar(@params) != 2){croak( "method takes 2 and only 2 arguments");}
 	if($params[1]){
 		$self->__appendcount($params[0]);
 	}
@@ -107,7 +108,7 @@ sub writeFile{
 		$of->write($self->toString());
 		$of->close();
 	}else {
-		die "writeFile used on counter with no name";
+		croak( "writeFile used on counter with no name";
 	}
 }
 1;
@@ -116,7 +117,7 @@ use parent -norequire, 'FeatureCounter';
 sub count{
 #	print "Gene  mutationcount run\n";
 	my ($self,@params)= @_;
-	if (scalar(@params) != 1){die "method takes 1 and only 1 argument";}
+	if (scalar(@params) != 1){croak( "method takes 1 and only 1 argument");}
 	my $maf=$params[0];
 	$self->__appendcount($maf->{Hugo_Symbol});
 }
@@ -126,7 +127,7 @@ use parent -norequire, 'FeatureCounter';
 sub count{
 #	print "Sample mutation count run\n";
 	my ($self,@params)= @_;
-	if (scalar(@params) != 1){die "method takes 1 and only 1 argument";}
+	if (scalar(@params) != 1){croak( "method takes 1 and only 1 argument");}
 	my $maf=$params[0];
 	$self->__appendcount($maf->{Tumor_Sample_Barcode});
 }
@@ -136,7 +137,7 @@ use parent -norequire, 'FeatureCounter';
 sub count{
 #	print "Mutation type count run\n";
 	my ($self,@params)= @_;
-	if (scalar(@params) != 1){die "method takes 1 and only 1 argument";}
+	if (scalar(@params) != 1){croak( "method takes 1 and only 1 argument");}
 	my $maf=$params[0];
 #TODO count mutations by type
 my (@tmr,@nrm);

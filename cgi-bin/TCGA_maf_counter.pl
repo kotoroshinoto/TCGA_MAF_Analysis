@@ -7,6 +7,11 @@ use Getopt::Long qw(:config no_ignore_case bundling);
 use List::MoreUtils qw(uniq);
 use FileHandle;
 use Scalar::Util;
+use vars qw/$dirname/;
+BEGIN {
+	$dirname = dirname(__FILE__);
+}
+use lib $dirname;
 use MAFentry;
 use MAFcounters;
 
