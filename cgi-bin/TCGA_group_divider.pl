@@ -8,11 +8,17 @@ use Getopt::Long qw(:config no_ignore_case bundling);
 use List::MoreUtils qw(uniq);
 use FileHandle;
 use Scalar::Util;
+use vars qw/$dirname/;
+BEGIN {
+	$dirname = dirname(__FILE__);
+}
+use lib $dirname;
 use MAFentry;
+use MAFfile;
 use MAFcounters;
 
+
 #define object types used in this process:
-#TODO split list of samples by count and report key strings into separated lists
 
 package main;
 my $help=0;#indicates usage should be shown and nothing should be done
@@ -51,7 +57,6 @@ if (not($countGene or $countPatient or $countMutType)){
 #create count objects and store as references
 sub CountMafFile{
 	my @counters;
-	my $mafFile=$_[0];
 	if($countGene){
 		my $tmp=GeneMutCounter->new();
 		$tmp->{name}="Genes";
@@ -67,21 +72,17 @@ sub CountMafFile{
 		$tmp->{name}="MutationTypes";
 		push(@counters,$tmp);
 	}
-	my $maf=FileHandle->new($mafFile,'r');
-	unless(defined($maf)){die "Could not open maf file: $mafFile"};
+	my $maf=MAFfile->open($_[0]);
 	#count line-by-line
-	my $linecount=0;
-	foreach my $line (<$maf>){
+	my $entry;	
+	while ($maf->hasMoreEntries()){
+		$entry=$maf->getNextEntry();
 		#skip first line (its the header)
-		if($linecount){
-			my $entry=MAFentry->processline($line);
-			if(isCountable($entry)){
-				foreach my $counter(@counters){
-					$counter->count($entry);
-				}
+		if(isCountable($entry)){
+			foreach my $counter(@counters){
+				$counter->count($entry);
 			}
 		}
-		$linecount++;       
 	}
 	$maf->close();
 	return @counters;

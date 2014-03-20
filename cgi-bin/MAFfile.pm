@@ -30,7 +30,7 @@ sub open{
   		exit 1;
 	}
 	$self->{_fn}=shift;
-	$self->{_fh}=FileHandle->new($self->{_fn},"<");
+	$self->{_fh}=FileHandle->new($self->{_fn},"r");
 	unless(defined($self->{_fh})){Carp::croak ("Could not open maf file: $self->{_fn}")};
 	#load first line
 	$self->{_nextline} = $self->{_fh}->getline();
