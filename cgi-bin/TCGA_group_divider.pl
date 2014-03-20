@@ -87,6 +87,28 @@ sub CountMafFile{
 	$maf->close();
 	return @counters;
 }
+
+sub prepareGroups{
+	my $filename=shift;
+	my @boundaries=MAFSampleCountsList::fixBoundaries(@_);
+	my $countlist=MAFSampleCountsList->new();
+	$countlist->readFile($filename);
+	my @splitList=@{$countlist->split(@boundaries)};
+	my $lastval=0;
+	for (my $i=0;$i < scalar(@boundaries+1);$i++){
+		my $value=$boundaries[$i];
+		if($i == scalar(@boundaries)){
+			print ("\n$lastval <= count\n");
+		} else {
+			print ("\n$lastval <= count < $value\n");
+		}
+		foreach my $item(@{$splitList[$i]->{_keys}}){
+			print("$item\t".$splitList[$i]->getCount($item)."\n");
+		}
+		$lastval=$boundaries[$i];
+	}
+}
+
 sub isCountable{
 	my $maf=$_[0];
 	#TODO logic on whether to keep entry in count
