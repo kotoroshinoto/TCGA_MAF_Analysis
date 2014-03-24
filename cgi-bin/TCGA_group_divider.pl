@@ -23,18 +23,7 @@ use MAFSampleCountsList;
 #define object types used in this process:
 
 package main;
-my $help=0;#indicates usage should be shown and nothing should be done
-my ($MAF_File,$CountFile,$opts);
-#our ($countGene,$countPatient,$countMutType)= (0) x 3;
 
-$opts = GetOptions (
-						"MAF_file|m=s" => \$MAF_File,	# path to illumina data
-						"Count_File|c=s"   => \$CountFile,	# path to solid data
-#						"countGene|G" => \$countGene, #list of steps to assume were already run, assume order as well (acts like pipeline)
-#						"countPatient|P" => \$countPatient,
-#						"countMutType|M" => \$countMutType,
-						"help|h" =>\$help);
-#print "$joinSOLO, $joinSTEPS, $splitCROSS\n";
 sub ShowUsage {
 	my $errmsg=shift;
 	my $scriptname=basename($0);
@@ -47,13 +36,81 @@ sub ShowUsage {
 	print STDERR "$errmsg$usage\n";
 	exit(1);
 }
-if($help){
-	ShowUsage();
-	exit (0);#being asked to show help isn't an error
+our(@boundaries,$MAF_File,$CountFile);
+our(@MAFList,@MAF_FHs);
+sub main{
+	my $help=0;#indicates usage should be shown and nothing should be done
+	my ($opts);
+	my ($boundaryarg);
+	#our ($countGene,$countPatient,$countMutType)= (0) x 3;
+	
+	$opts = GetOptions (
+							"MAF_file|m=s" => \$MAF_File,	# path to illumina data
+							"Count_File|c=s"   => \$CountFile,	# path to solid data
+	#						"countGene|G" => \$countGene, #list of steps to assume were already run, assume order as well (acts like pipeline)
+	#						"countPatient|P" => \$countPatient,
+	#						"countMutType|M" => \$countMutType,
+							"boundary|b=s" => \$boundaryarg,
+							"help|h" =>\$help);
+	#print "$joinSOLO, $joinSTEPS, $splitCROSS\n";
+	if($help){
+		ShowUsage();
+		exit (0);#being asked to show help isn't an error
+	}
+	if(! (defined($boundaryarg) and length($boundaryarg) > 0)){
+		ShowUsage("must provide at least one boundary\n");
+	}
+	if(! (defined($MAF_File) and length($MAF_File) > 0)){
+		ShowUsage("must provide path to MAF file\n");
+	}
+	if(! (defined($CountFile) and length($CountFile) > 0)){
+		ShowUsage("must provide path to counts file\n");
+	}
+	my @splitarg=split(",",$boundaryarg);
+	@boundaries=MAFSampleCountsList::fixBoundaries(@splitarg);
+	@MAFList=prepareGroups();
+	@MAF_FHs=createFilesForGroups();
+	SplitMafFile();
+#	foreach my $Illuminalist(@MAFList){
+#	#	print ($Illuminacounter->toString());
+#	}
 }
-if(((not defined($MAF_File)) and (not defined($CountFile))) or (length($MAF_File) == 0 and length($CountFile) == 0)){
-	ShowUsage("must provide at least one of the MAF files");
+
+sub prepareGroups{
+	my $filename=$CountFile;
+	my $countlist=MAFSampleCountsList->new();
+	$countlist->readFile($filename);
+	my @splitList=@{$countlist->split(@boundaries)};
+	my $lastval=0;
+	for (my $i=0;$i < scalar(@boundaries+1);$i++){
+		my $value=$boundaries[$i];
+		if($i == scalar(@boundaries)){
+			print ("\n$lastval <= count\n");
+		} else {
+			print ("\n$lastval <= count < $value\n");
+		}
+		foreach my $item(@{$splitList[$i]->{_keys}}){
+			print("$item\t".$splitList[$i]->getCount($item)."\n");
+		}
+		$lastval=$boundaries[$i];
+	}
+	return @splitList;
 }
+
+sub createFilesForGroups{
+	my @filehandles;
+	my ($lcount,$rcount)=(0,0);
+	my $filename_base=basename($MAF_File);
+	for (my $i=0;$i<scalar(@boundaries);$i++){
+		$rcount=$boundaries[$i];
+		push(@filehandles,FileHandle->new($filename_base.".counts.".$lcount."-".($rcount-1),'w'));
+		$lcount=$rcount;
+	}
+	push(@filehandles,FileHandle->new($filename_base.".counts.".$lcount."-above",'w'));
+	return @filehandles;
+}
+
+
 #create count objects and store as references
 sub SplitMafFile{
 #	my @counters;
@@ -92,49 +149,4 @@ sub getGroupIndex{
 	
 }
 
-sub prepareGroups{
-	my $filename=shift;
-	my @boundaries=MAFSampleCountsList::fixBoundaries(@_);
-	my $countlist=MAFSampleCountsList->new();
-	$countlist->readFile($filename);
-	my @splitList=@{$countlist->split(@boundaries)};
-	my $lastval=0;
-	for (my $i=0;$i < scalar(@boundaries+1);$i++){
-		my $value=$boundaries[$i];
-		if($i == scalar(@boundaries)){
-			print ("\n$lastval <= count\n");
-		} else {
-			print ("\n$lastval <= count < $value\n");
-		}
-		foreach my $item(@{$splitList[$i]->{_keys}}){
-			print("$item\t".$splitList[$i]->getCount($item)."\n");
-		}
-		$lastval=$boundaries[$i];
-	}
-	return $countlist;
-}
-
-sub main{
-	my @IlluminaList;
-	if(defined($MAF_File) and length($MAF_File) > 0){
-		@IlluminaList=@{prepareGroups($MAF_File)};
-	} else {
-		
-	}
-	
-	my @SOLiDList;
-	if(defined($CountFile) and length($CountFile) > 0){
-		@SOLiDList=@{prepareGroups($CountFile)};
-	} else {
-		
-	}
-	
-	foreach my $Illuminalist(@IlluminaList){
-	#	print ($Illuminacounter->toString());
-	}
-	
-	foreach my $SOLiDCounter(@SOLiDList){
-	#	print ($SOLiDCounter->toString());
-	}
-}
 main();

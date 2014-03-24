@@ -81,7 +81,7 @@ sub __countIf{
 sub toString{
 #	print "toString run\n";
 	my $self=shift;
-	my @keys=sort(keys($self->{counts}));
+	my @keys=sort(keys(%{$self->{counts}}));
 	my $retval='';
 	foreach my $key(@keys){
 		$retval.="$key\t$self->{counts}{$key}\n";

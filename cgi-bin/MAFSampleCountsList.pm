@@ -42,7 +42,7 @@ package MAFSampleCountsList;
 		my $item=shift or Carp::croak("setCount not given any arguments, needs name and count");
 		my $count=shift or Carp::croak("setCount not given a count argument");
 		if(!defined($self->{counts}{$item})){
-			push($self->{_keys},$item);
+			push(@{$self->{_keys}},$item);
 		}
 		$self->{counts}{$item}=$count;
 	}
