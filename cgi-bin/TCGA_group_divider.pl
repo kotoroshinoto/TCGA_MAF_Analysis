@@ -110,6 +110,16 @@ sub createFilesForGroups{
 	return @filehandles;
 }
 
+sub getGroupIndex{
+	my $name=shift;
+	my $groupindex;
+	for($groupindex=0;$groupindex<scalar(@MAFList);++$groupindex){
+		if(defined($MAFList[$groupindex]->getCount($name))){
+			return $groupindex;
+		}
+	}
+	return undef;
+}
 
 #create count objects and store as references
 sub SplitMafFile{
@@ -143,10 +153,6 @@ sub SplitMafFile{
 #	}
 #	$maf->close();
 #	return @counters;
-}
-
-sub getGroupIndex{
-	
 }
 
 main();
