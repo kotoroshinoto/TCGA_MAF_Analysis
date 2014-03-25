@@ -99,7 +99,7 @@ sub writeFile{
 	if (defined($self->{name}) and length($self->{name}) > 0){
 		my $ofname;
 		if(defined($prefix) and length($prefix) > 1){
-			$ofname=$path.'/'.$prefix.'_'.$self->{name}.".txt";			
+			$ofname=$path.'/'.$prefix.'.'.$self->{name}.".txt";			
 		} else {
 			$ofname=$path.'/'.$self->{name}.".txt";
 		}

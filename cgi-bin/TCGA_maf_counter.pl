@@ -21,16 +21,6 @@ use MAFcounters;
 #define object types used in this process:
 
 package main;
-my $help=0;#indicates usage should be shown and nothing should be done
-my ($illuminaFile,$solidFile,$opts);
-our ($countGene,$countPatient,$countMutType)= (0) x 3;
-
-$opts = GetOptions ("Illumina|f=s" => \$illuminaFile,	# path to illumina data
-						"Solid|F=s"   => \$solidFile,	# path to solid data
-						"countGene|G" => \$countGene, #list of steps to assume were already run, assume order as well (acts like pipeline)
-						"countPatient|P" => \$countPatient,
-						"countMutType|M" => \$countMutType,
-						"help|h" =>\$help);
 #print "$joinSOLO, $joinSTEPS, $splitCROSS\n";
 sub ShowUsage {
 	my $errmsg=shift;
@@ -44,15 +34,53 @@ sub ShowUsage {
 	print STDERR "$errmsg$usage\n";
 	exit(1);
 }
-if($help){
+
+our ($countGene,$countPatient,$countMutType)= (0) x 3;
+our (%counters,%outnames);
+sub main{
+	my $help=0;#indicates usage should be shown and nothing should be done
+	my ($opts);
+	
+	$opts = GetOptions (
+#						"Input MAF file|f =s " => \@maf_File,	# path to illumina data
+						"countGene|G" => \$countGene, #list of steps to assume were already run, assume order as well (acts like pipeline)
+						"countPatient|P" => \$countPatient,
+						"countMutType|M" => \$countMutType,
+						"help|h" =>\$help);
+	
+	if($help){
 	ShowUsage();
 	exit (0);#being asked to show help isn't an error
+	}
+	if (not($countGene or $countPatient or $countMutType)){
+		ShowUsage("must choose at least one of the count options");
+	}
+	
+	
+	ProcessInputFileArg(@ARGV);
+	foreach my $item (keys(%outnames)){
+		$counters{$item}=CountMafFile($item);
+		foreach my $counter(@{$counters{$item}}){
+#			print ($counter->toString());
+			$counter->writeFile($outnames{$item});
+		} 
+	}
 }
-if(((not defined($illuminaFile)) and (not defined($solidFile))) or (length($illuminaFile) == 0 and length($solidFile) == 0)){
-	ShowUsage("must provide at least one of the MAF files");
-}
-if (not($countGene or $countPatient or $countMutType)){
-	ShowUsage("must choose at least one of the count options");
+
+sub ProcessInputFileArg{
+	foreach my $item(@_){
+		#TODO check
+		if(scalar(@_) < 1 or !defined($_[0]) or length($_[0]) == 0){
+			Carp::carp("No arguments given to ProcessInputFileArg");
+		}
+		my @splitarg=split(',',$item);
+		if(scalar(@splitarg) == 1 or !defined($splitarg[1]) or length($splitarg[1]) == 0){
+			$outnames{$splitarg[0]}=File::basename($splitarg[0]).".counts";	
+		} else {
+			$outnames{$splitarg[0]}=$splitarg[1].".counts";
+		}
+#		print "linking $splitarg[0] path to name $outnames{$splitarg[0]}\n";
+	}
 }
 #create count objects and store as references
 sub CountMafFile{
@@ -85,30 +113,13 @@ sub CountMafFile{
 		}
 	}
 	$maf->close();
-	return @counters;
+	return \@counters;
 }
+
 sub isCountable{
 	my $maf=$_[0];
 	#TODO logic on whether to keep entry in count
 	return 1;
 }
 
-my @IlluminaCounters;
-if(defined($illuminaFile) and length($illuminaFile) > 0){
-	@IlluminaCounters=CountMafFile($illuminaFile);
-}
-
-my @SOLiDCounters;
-if(defined($solidFile) and length($solidFile) > 0){
-	@SOLiDCounters=CountMafFile($solidFile);
-}
-
-foreach my $Illuminacounter(@IlluminaCounters){
-#	print ($Illuminacounter->toString());
-	$Illuminacounter->writeFile("Illumina","");
-}
-
-foreach my $SOLiDCounter(@SOLiDCounters){
-#	print ($SOLiDCounter->toString());
-	$SOLiDCounter->writeFile("SOLiD");
-}
+main();
