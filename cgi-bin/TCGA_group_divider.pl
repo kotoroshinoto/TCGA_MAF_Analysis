@@ -115,9 +115,13 @@ sub getGroupIndex{
 	my $groupindex;
 	for($groupindex=0;$groupindex<scalar(@MAFList);++$groupindex){
 		if(defined($MAFList[$groupindex]->getCount($name))){
+#			print "found $name in $groupindex\n";
+#			exit(0);
 			return $groupindex;
 		}
 	}
+#	print "didn't find $name\n";
+#	exit(0);
 	return undef;
 }
 
@@ -145,7 +149,7 @@ sub SplitMafFile{
 	while ($maf->hasMoreEntries()){
 		$entry=$maf->getNextEntry();
 		#skip first line (its the header)
-		print ($MAF_FHs[getGroupIndex($entry->{Tumor_Sample_UUID})],$entry->getString(),"\n");
+		$MAF_FHs[getGroupIndex($entry->{Tumor_Sample_Barcode})]->print(($entry->getString(),"\n"));
 	}
 	$maf->close();
 #	return @counters;
