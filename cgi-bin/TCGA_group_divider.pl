@@ -119,7 +119,7 @@ sub SplitMafFile{
 	while ($maf->hasMoreEntries()){
 		$entry=$maf->getNextEntry();
 		#skip first line (its the header)
-		$MAF_FHs[getGroupIndex($entry->{Tumor_Sample_Barcode})]->print(($entry->getString(),"\n"));
+		$MAF_FHs[getGroupIndex($entry->{Tumor_Sample_Barcode})]->print(($entry->getString()));
 	}
 	$maf->close();
 }
