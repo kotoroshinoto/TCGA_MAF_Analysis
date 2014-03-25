@@ -139,19 +139,15 @@ sub SplitMafFile{
 #		$tmp->{name}="MutationTypes";
 #		push(@counters,$tmp);
 #	}
-#	my $maf=MAFfile->open($_[0]);
-#	#count line-by-line
-#	my $entry;	
-#	while ($maf->hasMoreEntries()){
-#		$entry=$maf->getNextEntry();
-#		#skip first line (its the header)
-#		if(isCountable($entry)){
-#			foreach my $counter(@counters){
-#				$counter->count($entry);
-#			}
-#		}
-#	}
-#	$maf->close();
+	my $maf=MAFfile->open($MAF_File);
+	#count line-by-line
+	my $entry;	
+	while ($maf->hasMoreEntries()){
+		$entry=$maf->getNextEntry();
+		#skip first line (its the header)
+		print ($MAF_FHs[getGroupIndex($entry->{Tumor_Sample_UUID})],$entry->getString(),"\n");
+	}
+	$maf->close();
 #	return @counters;
 }
 
