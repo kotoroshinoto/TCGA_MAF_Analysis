@@ -10,9 +10,7 @@ use FileHandle;
 use Scalar::Util;
 use vars qw/$dirname/;
 BEGIN {
-#	print "loading perl library: ".__FILE__,"\n";
 	$dirname = dirname(__FILE__);
-#	print "loading perl library: $dirname\n";
 }
 use lib $dirname;
 use MAFentry;
@@ -42,17 +40,12 @@ sub main{
 	my $help=0;#indicates usage should be shown and nothing should be done
 	my ($opts);
 	my ($boundaryarg);
-	#our ($countGene,$countPatient,$countMutType)= (0) x 3;
 	
 	$opts = GetOptions (
-							"MAF_file|m=s" => \$MAF_File,	# path to illumina data
-							"Count_File|c=s"   => \$CountFile,	# path to solid data
-	#						"countGene|G" => \$countGene, #list of steps to assume were already run, assume order as well (acts like pipeline)
-	#						"countPatient|P" => \$countPatient,
-	#						"countMutType|M" => \$countMutType,
+							"MAF_file|m=s" => \$MAF_File,
+							"Count_File|c=s"   => \$CountFile,	
 							"boundary|b=s" => \$boundaryarg,
 							"help|h" =>\$help);
-	#print "$joinSOLO, $joinSTEPS, $splitCROSS\n";
 	if($help){
 		ShowUsage();
 		exit (0);#being asked to show help isn't an error
@@ -71,9 +64,6 @@ sub main{
 	@MAFList=prepareGroups();
 	@MAF_FHs=createFilesForGroups();
 	SplitMafFile();
-#	foreach my $Illuminalist(@MAFList){
-#	#	print ($Illuminacounter->toString());
-#	}
 }
 
 sub prepareGroups{
@@ -115,34 +105,14 @@ sub getGroupIndex{
 	my $groupindex;
 	for($groupindex=0;$groupindex<scalar(@MAFList);++$groupindex){
 		if(defined($MAFList[$groupindex]->getCount($name))){
-#			print "found $name in $groupindex\n";
-#			exit(0);
 			return $groupindex;
 		}
 	}
-#	print "didn't find $name\n";
-#	exit(0);
 	return undef;
 }
 
 #create count objects and store as references
 sub SplitMafFile{
-#	my @counters;
-#	if($countGene){
-#		my $tmp=GeneMutCounter->new();
-#		$tmp->{name}="Genes";
-#		push(@counters,$tmp);
-#	}
-#	if($countPatient){
-#		my $tmp=SampMutCounter->new();
-#		$tmp->{name}="Samples";
-#		push(@counters,$tmp);
-#	}
-#	if($countMutType){
-#		my $tmp=MutTypeCounter->new();
-#		$tmp->{name}="MutationTypes";
-#		push(@counters,$tmp);
-#	}
 	my $maf=MAFfile->open($MAF_File);
 	#count line-by-line
 	my $entry;	
@@ -152,7 +122,6 @@ sub SplitMafFile{
 		$MAF_FHs[getGroupIndex($entry->{Tumor_Sample_Barcode})]->print(($entry->getString(),"\n"));
 	}
 	$maf->close();
-#	return @counters;
 }
 
 main();
