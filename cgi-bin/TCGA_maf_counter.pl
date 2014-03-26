@@ -37,6 +37,7 @@ sub ShowUsage {
 
 our ($countGene,$countPatient,$countMutType)= (0) x 3;
 our (%counters,%outnames);
+our($outpath);
 sub main{
 	my $help=0;#indicates usage should be shown and nothing should be done
 	my ($opts);
@@ -46,12 +47,20 @@ sub main{
 						"countGene|G" => \$countGene, #list of steps to assume were already run, assume order as well (acts like pipeline)
 						"countPatient|P" => \$countPatient,
 						"countMutType|M" => \$countMutType,
+						"outname|o=s" => \$outpath,
 						"help|h" =>\$help);
 	
 	if($help){
 	ShowUsage();
 	exit (0);#being asked to show help isn't an error
 	}
+	if(-f $outpath){
+		$outpath=dirname($outpath);
+	}
+	if(!(-e $outpath)){
+		mkdir($outpath) or die "could not create path $outpath\n";
+	}
+	
 	if (not($countGene or $countPatient or $countMutType)){
 		ShowUsage("must choose at least one of the count options");
 	}
@@ -75,7 +84,7 @@ sub ProcessInputFileArg{
 		}
 		my @splitarg=split(',',$item);
 		if(scalar(@splitarg) == 1 or !defined($splitarg[1]) or length($splitarg[1]) == 0){
-			$outnames{$splitarg[0]}=File::basename($splitarg[0]).".counts";	
+			$outnames{$splitarg[0]}=basename($splitarg[0]).".counts";	
 		} else {
 			$outnames{$splitarg[0]}=$splitarg[1].".counts";
 		}

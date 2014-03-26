@@ -36,6 +36,7 @@ sub ShowUsage {
 }
 our(@boundaries,$MAF_File,$CountFile);
 our(@MAFList,@MAF_FHs);
+our($outname);
 sub main{
 	my $help=0;#indicates usage should be shown and nothing should be done
 	my ($opts);
@@ -45,6 +46,7 @@ sub main{
 							"MAF_file|m=s" => \$MAF_File,
 							"Count_File|c=s"   => \$CountFile,	
 							"boundary|b=s" => \$boundaryarg,
+							"output|o=s" => \$outname,
 							"help|h" =>\$help);
 	if($help){
 		ShowUsage();
@@ -91,6 +93,9 @@ sub createFilesForGroups{
 	my @filehandles;
 	my ($lcount,$rcount)=(0,0);
 	my $filename_base=basename($MAF_File);
+	if(defined($outname)){
+		$filename_base=$outname;
+	}
 	for (my $i=0;$i<scalar(@boundaries);$i++){
 		$rcount=$boundaries[$i];
 		push(@filehandles,FileHandle->new($filename_base.".counts.".$lcount."-".($rcount-1),'w'));

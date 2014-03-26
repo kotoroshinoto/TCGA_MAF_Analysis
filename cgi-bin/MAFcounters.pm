@@ -99,7 +99,7 @@ sub writeFile{
 	if (defined($self->{name}) and length($self->{name}) > 0){
 		my $ofname;
 		if(defined($prefix) and length($prefix) > 1){
-			$ofname=$path.'/'.$prefix.'.'.$self->{name}.".txt";			
+			$ofname=$path.'/'.$prefix.'_'.$self->{name}.".txt";			
 		} else {
 			$ofname=$path.'/'.$self->{name}.".txt";
 		}
@@ -114,12 +114,32 @@ sub writeFile{
 1;
 package GeneMutCounter;
 use parent -norequire, 'FeatureCounter';
+sub new {
+	my $class=shift;
+	my $self=$class->SUPER::new();
+	$self->{hugoIDs}={};
+	bless $self,$class;
+	return $self;
+}
 sub count{
 #	print "Gene  mutationcount run\n";
 	my ($self,@params)= @_;
 	if (scalar(@params) != 1){Carp::croak( "method takes 1 and only 1 argument");}
 	my $maf=$params[0];
-	$self->__appendcount($maf->{Hugo_Symbol});
+	$self->__appendcount($maf->{Entrez_Gene_Id});
+	if(! defined(${$self->{hugoIDs}}{$maf->{Entrez_Gene_Id}})){
+		${$self->{hugoIDs}}{$maf->{Entrez_Gene_Id}}=$maf->{Hugo_Symbol};
+	}
+}
+sub toString{
+#	print "toString run\n";
+	my $self=shift;
+	my @keys=sort(keys(%{$self->{counts}}));
+	my $retval='';
+	foreach my $key(@keys){
+		$retval.="$key\t".${$self->{hugoIDs}}{$key}."\t$self->{counts}{$key}\t\n";
+	}
+	return $retval;
 }
 1;
 package SampMutCounter;
