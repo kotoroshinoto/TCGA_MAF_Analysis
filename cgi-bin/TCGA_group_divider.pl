@@ -98,7 +98,7 @@ sub prepareGroups{
 	return @splitList;
 }
 
-ssub createFilesForGroups{
+sub createFilesForGroups{
  	my @filehandles;
  	my ($lcount,$rcount)=(0,0);
  	my $filename_base=basename($MAF_File);
