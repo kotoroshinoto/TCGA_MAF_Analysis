@@ -10,7 +10,7 @@ use List::MoreUtils qw(uniq);
 use FileHandle;
 use Scalar::Util;
 use vars qw/$dirname/;
-use Config;
+use File::Util;
 BEGIN {
 	$dirname = dirname(__FILE__);
 }
@@ -102,7 +102,7 @@ sub main{
 		$counters{$item}=CountMafFile($item);
 		foreach my $counter(@{$counters{$item}}){
 #			print ($counter->toString());
-			$counter->writeFile($outpath.$Config{path_sep}.$outnames{$item});
+			$counter->writeFile($outpath.SL.$outnames{$item});
 		} 
 	}
 }
