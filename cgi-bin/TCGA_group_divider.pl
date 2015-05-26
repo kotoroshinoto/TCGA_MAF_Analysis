@@ -98,25 +98,26 @@ sub prepareGroups{
 	return @splitList;
 }
 
-sub createFilesForGroups{
-	my @filehandles;
-	my ($lcount,$rcount)=(0,0);
-	my $filename_base=basename($MAF_File);
-	if(defined($outname)){
-		$filename_base=$outname;
-	}
-	for (my $i=0;$i<scalar(@boundaries);$i++){
-		$rcount=$boundaries[$i];
-		my $tmp_fh=FileHandle->new($filename_base.".counts.".$lcount."-".($rcount-1),'w');
-		if(!defined( $tmp_fh)){
-		    die ("could not open file ".$filename_base.".counts.".$lcount."-".($rcount-1),'w'."\n");
-		}
-		push(@filehandles,);
-		$lcount=$rcount;
-	}
-	push(@filehandles,FileHandle->new($filename_base.".counts.".$lcount."-above",'w'));
-	return @filehandles;
-}
+ssub createFilesForGroups{
+ 	my @filehandles;
+ 	my ($lcount,$rcount)=(0,0);
+ 	my $filename_base=basename($MAF_File);
+ 	my $fname_tmp;
+ 	if(defined($outname)){
+ 		$filename_base=$outname;
+ 	}
+ 	for (my $i=0;$i<scalar(@boundaries);$i++){
+ 		$rcount=$boundaries[$i];
+ 		$fname_tmp=$filename_base.".counts.".$lcount."-".($rcount-1);
+ 		print "creating file: ".$fname_tmp."\n";
+ 		push(@filehandles,FileHandle->new($fname_tmp,'w'));
+ 		$lcount=$rcount;
+ 	}
+ 	$fname_tmp=$filename_base.".counts.".$lcount."-above";
+ 	print "creating file: ".$fname_tmp."\n";
+ 	push(@filehandles,FileHandle->new($fname_tmp,'w'));
+ 	return @filehandles;
+ }
 
 sub printGroups{
 
