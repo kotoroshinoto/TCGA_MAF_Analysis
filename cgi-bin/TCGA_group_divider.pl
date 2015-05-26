@@ -132,17 +132,21 @@ sub getGroupIndex{
 #create count objects and store as references
 sub SplitMafFile{
 	my $maf=MAFfile->open($MAF_File);
+	my $filehandle_index;
 	#count line-by-line
 	my $entry;	
 	while ($maf->hasMoreEntries()){
 		$entry=$maf->getNextEntry();
 		#skip first line (its the header)
-		my $filehandle_index=getGroupIndex($entry->{Tumor_Sample_Barcode});
-		if( ! defined($filehandle_index) ){
-		    print STDERR "filehandle index not defined\n";
+		$filehandle_index=getGroupIndex($entry->{Tumor_Sample_Barcode});
+
+		if( ! defined($filehandle_index) )
+		{
+		    print(STDERR "filehandle index not defined\n");
 		}
-		elseif (! defined ($MAF_FHs[$filehandle_index]) ){
-		    print STDERR "filehandle for group # $filehandle_index is undefined\n";
+		elsif ( ! defined( $MAF_FHs[$filehandle_index] ) )
+		{
+		    print(STDERR "filehandle for group # ".$filehandle_index." is undefined\n");
 		}
 		$MAF_FHs[$filehandle_index]->print(($entry->getString()));
 	}
