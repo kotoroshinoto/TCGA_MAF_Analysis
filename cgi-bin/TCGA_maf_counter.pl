@@ -102,7 +102,7 @@ sub main{
 		$counters{$item}=CountMafFile($item);
 		foreach my $counter(@{$counters{$item}}){
 #			print ($counter->toString());
-			$counter->writeFile($outpath.SL.$outnames{$item});
+			$counter->writeFile($outpath.$File::Util::SL.$outnames{$item});
 		} 
 	}
 }
