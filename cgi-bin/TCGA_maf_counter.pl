@@ -4,7 +4,7 @@ use warnings;
 use Cwd;
 use Cwd 'abs_path';
 use File::Basename;
-use Getopt::Long qw(:config no_ignore_case bundling);
+#use Getopt::Long qw(:config no_ignore_case bundling);
 use Getopt::ArgParse;
 use List::MoreUtils qw(uniq);
 use FileHandle;
