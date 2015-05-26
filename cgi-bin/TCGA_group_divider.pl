@@ -138,8 +138,11 @@ sub SplitMafFile{
 		$entry=$maf->getNextEntry();
 		#skip first line (its the header)
 		my $filehandle_index=getGroupIndex($entry->{Tumor_Sample_Barcode});
-		if(! defined ($MAF_FHs[$filehandle_index])){
-		    print "attempting to read from group # $filehandle_index\n";
+		if( ! defined($filehandle_index) ){
+		    print STDERR "filehandle index not defined\n";
+		}
+		elseif (! defined ($MAF_FHs[$filehandle_index] ){
+		    print STDERR "filehandle for group # $filehandle_index is undefined\n"
 		}
 		$MAF_FHs[$filehandle_index]->print(($entry->getString()));
 	}
