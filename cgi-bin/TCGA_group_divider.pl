@@ -141,8 +141,8 @@ sub SplitMafFile{
 		if( ! defined($filehandle_index) ){
 		    print STDERR "filehandle index not defined\n";
 		}
-		elseif (! defined ($MAF_FHs[$filehandle_index] ){
-		    print STDERR "filehandle for group # $filehandle_index is undefined\n"
+		elseif (! defined ($MAF_FHs[$filehandle_index]) ){
+		    print STDERR "filehandle for group # $filehandle_index is undefined\n";
 		}
 		$MAF_FHs[$filehandle_index]->print(($entry->getString()));
 	}
