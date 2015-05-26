@@ -5,6 +5,7 @@ use Cwd;
 use Cwd 'abs_path';
 use File::Basename;
 use Getopt::Long qw(:config no_ignore_case bundling);
+use Getopt::ArgParse;
 use List::MoreUtils qw(uniq);
 use FileHandle;
 use Scalar::Util;
@@ -38,42 +39,44 @@ sub ShowUsage {
 our ($countGene,$countPatient,$countMutType)= (0) x 3;
 our (%counters,%outnames);
 our($outpath);
-sub main{
-	my $help=0;#indicates usage should be shown and nothing should be done
-	my ($opts);
-	
-	$opts = GetOptions (
-#						"Input MAF file|f =s " => \@maf_File,	# path to illumina data
-						"countGene|G" => \$countGene, #list of steps to assume were already run, assume order as well (acts like pipeline)
-						"countPatient|P" => \$countPatient,
-						"countMutType|M" => \$countMutType,
-						"outname|o=s" => \$outpath,
-						"help|h" =>\$help);
-	
-	if($help){
-	ShowUsage();
-	exit (0);#being asked to show help isn't an error
-	}
+
+sub parse_arguments {
+    my $ap = Getopt::ArgParse->new_parser(
+        description => 'This script counts elements that apear in MAF files',
+        help => 'maf element counter',
+        epilog      => '--end of help --',
+    );
+    $ap->add_arguments(
+#    ['--inputFile',     '-f',type=>'Scalar',required => 1,nargs => '+'],
+    ['--countGene',     '-G',type=>'Bool'],
+    ['--countPatient',  '-P',type=>'Bool'],
+    ['--countMutType',  '-M',type=>'Bool'],
+    ['--outname',       '-o',type=>'Scalar',required => 1]
+    );
+    if (scalar(@ARGV) == 0){
+        $ap->print_usage();
+        exit(1);
+    }
+    my $parser_namespace = $ap->parse_args(@ARGV);
+    $countGene = $parser_namespace->countGene;
+    $countPatient = $parser_namespace->countPatient;
+    $countMutType = $parser_namespace->countMutType;
+    $outpath = $parser_namespace->outname;
 	if(-f $outpath){
 		$outpath=dirname($outpath);
 	}
 	if(!(-e $outpath)){
 		mkdir($outpath) or die "could not create path $outpath\n";
 	}
-	
-	if (not($countGene or $countPatient or $countMutType)){
-		ShowUsage("must choose at least one of the count options");
-	}
-	
-	
-	ProcessInputFileArg(@ARGV);
-	foreach my $item (keys(%outnames)){
-		$counters{$item}=CountMafFile($item);
-		foreach my $counter(@{$counters{$item}}){
-#			print ($counter->toString());
-			$counter->writeFile($outnames{$item});
-		} 
-	}
+
+    if (not($countGene or $countPatient or $countMutType)){
+        print(STDERR "must choose at least one of the count options\n");
+        $ap->print_usage();
+        exit(1);
+    }
+
+    #my @argv = ; # called after parse_args
+    ProcessInputFileArg($ap->argv);
 }
 
 sub ProcessInputFileArg{
@@ -84,13 +87,25 @@ sub ProcessInputFileArg{
 		}
 		my @splitarg=split(',',$item);
 		if(scalar(@splitarg) == 1 or !defined($splitarg[1]) or length($splitarg[1]) == 0){
-			$outnames{$splitarg[0]}=basename($splitarg[0]).".counts";	
+			$outnames{$splitarg[0]}=basename($splitarg[0]).".counts";
 		} else {
 			$outnames{$splitarg[0]}=$splitarg[1].".counts";
 		}
-#		print "linking $splitarg[0] path to name $outnames{$splitarg[0]}\n";
+		print "output from $splitarg[0] will be routed to file: $outnames{$splitarg[0]}\n";
 	}
 }
+
+sub main{
+    parse_arguments();
+	foreach my $item (keys(%outnames)){
+		$counters{$item}=CountMafFile($item);
+		foreach my $counter(@{$counters{$item}}){
+#			print ($counter->toString());
+			$counter->writeFile($outnames{$item});
+		} 
+	}
+}
+
 #create count objects and store as references
 sub CountMafFile{
 	my @counters;
