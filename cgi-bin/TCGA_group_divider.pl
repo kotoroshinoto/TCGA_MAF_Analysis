@@ -125,6 +125,7 @@ sub getGroupIndex{
 			return $groupindex;
 		}
 	}
+	print STDERR "could not locate a group index for $name\n";
 	return undef;
 }
 
