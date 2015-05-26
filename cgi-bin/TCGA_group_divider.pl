@@ -4,7 +4,8 @@ use warnings;
 use Cwd;
 use Cwd 'abs_path';
 use File::Basename;
-use Getopt::Long qw(:config no_ignore_case bundling);
+#use Getopt::Long qw(:config no_ignore_case bundling);
+use Getopt::ArgParse;
 use List::MoreUtils qw(uniq);
 use FileHandle;
 use Scalar::Util;
@@ -37,32 +38,37 @@ sub ShowUsage {
 our(@boundaries,$MAF_File,$CountFile);
 our(@MAFList,@MAF_FHs);
 our($outname);
+
+sub parse_arguments {
+
+    my $ap = Getopt::ArgParse->new_parser(
+        description => 'This script splits elements in MAF files into separate output files based on counts',
+        help => 'maf splitter by count',
+        epilog      => '--end of help --',
+    );
+    $ap->add_arguments(
+    ['--MAF_File',      '-m',type=>'Scalar',required => 1],
+    ['--Count_File',    '-c',type=>'Scalar',required => 1],
+    ['--boundary',      '-b',type=>'Scalar',required => 1],
+    ['--output',        '-o',type=>'Scalar',required => 1]
+    );
+    if (scalar(@ARGV) == 0){
+        $ap->print_usage();
+        exit(1);
+    }
+    my $parser_namespace = $ap->parse_args(@ARGV);
+
+    if (scalar($ap->argv) != 0){
+        $ap->print_usage();
+        exit(1);
+    }
+	my @splitboundaryarg=split(",",$parser_namespace->boundary);
+	@boundaries=MAFSampleCountsList::fixBoundaries(@splitboundaryarg);
+    exit(0);
+}
+
 sub main{
-	my $help=0;#indicates usage should be shown and nothing should be done
-	my ($opts);
-	my ($boundaryarg);
-	
-	$opts = GetOptions (
-							"MAF_file|m=s" => \$MAF_File,
-							"Count_File|c=s"   => \$CountFile,	
-							"boundary|b=s" => \$boundaryarg,
-							"output|o=s" => \$outname,
-							"help|h" =>\$help);
-	if($help){
-		ShowUsage();
-		exit (0);#being asked to show help isn't an error
-	}
-	if(! (defined($boundaryarg) and length($boundaryarg) > 0)){
-		ShowUsage("must provide at least one boundary\n");
-	}
-	if(! (defined($MAF_File) and length($MAF_File) > 0)){
-		ShowUsage("must provide path to MAF file\n");
-	}
-	if(! (defined($CountFile) and length($CountFile) > 0)){
-		ShowUsage("must provide path to counts file\n");
-	}
-	my @splitarg=split(",",$boundaryarg);
-	@boundaries=MAFSampleCountsList::fixBoundaries(@splitarg);
+    parse_arguments();
 	@MAFList=prepareGroups();
 	@MAF_FHs=createFilesForGroups();
 	SplitMafFile();
