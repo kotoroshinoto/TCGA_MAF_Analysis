@@ -72,7 +72,7 @@ sub parse_arguments {
 sub main{
     parse_arguments();
 	@MAFList=prepareGroups();
-	exit(0);
+	printGroups();
 	@MAF_FHs=createFilesForGroups();
 	SplitMafFile();
 }
