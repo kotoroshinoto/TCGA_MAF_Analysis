@@ -64,7 +64,6 @@ sub parse_arguments {
     }
 	my @splitboundaryarg=split(",",$parser_namespace->boundary);
 	@boundaries=MAFSampleCountsList::fixBoundaries(@splitboundaryarg);
-    exit(0);
 }
 
 sub main{
