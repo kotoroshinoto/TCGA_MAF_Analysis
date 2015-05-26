@@ -107,7 +107,7 @@ sub createFilesForGroups{
 	for (my $i=0;$i<scalar(@boundaries);$i++){
 		$rcount=$boundaries[$i];
 		my $tmp_fh=FileHandle->new($filename_base.".counts.".$lcount."-".($rcount-1),'w');
-		if(undef $tmp_fh){
+		if(!defined( $tmp_fh)){
 		    die ("could not open file ".$filename_base.".counts.".$lcount."-".($rcount-1),'w'."\n");
 		}
 		push(@filehandles,);
@@ -136,7 +136,11 @@ sub SplitMafFile{
 	while ($maf->hasMoreEntries()){
 		$entry=$maf->getNextEntry();
 		#skip first line (its the header)
-		$MAF_FHs[getGroupIndex($entry->{Tumor_Sample_Barcode})]->print(($entry->getString()));
+		my $filehandle_index=getGroupIndex($entry->{Tumor_Sample_Barcode});
+		if(! defined ($MAF_FHs[$filehandle_index])){
+		    print "attempting to read from group # $filehandle_index\n";
+		}
+		$MAF_FHs[$filehandle_index]->print(($entry->getString()));
 	}
 	$maf->close();
 }
