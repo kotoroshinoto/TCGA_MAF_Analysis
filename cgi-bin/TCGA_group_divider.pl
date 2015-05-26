@@ -106,7 +106,11 @@ sub createFilesForGroups{
 	}
 	for (my $i=0;$i<scalar(@boundaries);$i++){
 		$rcount=$boundaries[$i];
-		push(@filehandles,FileHandle->new($filename_base.".counts.".$lcount."-".($rcount-1),'w'));
+		my $tmp_fh=FileHandle->new($filename_base.".counts.".$lcount."-".($rcount-1),'w');
+		if(undef $tmp_fh){
+		    die ("could not open file ".$filename_base.".counts.".$lcount."-".($rcount-1),'w'."\n");
+		}
+		push(@filehandles,);
 		$lcount=$rcount;
 	}
 	push(@filehandles,FileHandle->new($filename_base.".counts.".$lcount."-above",'w'));
