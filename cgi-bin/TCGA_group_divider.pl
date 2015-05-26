@@ -72,6 +72,7 @@ sub parse_arguments {
 sub main{
     parse_arguments();
 	@MAFList=prepareGroups();
+	exit(0);
 	@MAF_FHs=createFilesForGroups();
 	SplitMafFile();
 }
@@ -117,6 +118,10 @@ sub createFilesForGroups{
 	return @filehandles;
 }
 
+sub printGroups{
+
+}
+
 sub getGroupIndex{
 	my $name=shift;
 	my $groupindex;
@@ -148,7 +153,9 @@ sub SplitMafFile{
 		{
 		    print(STDERR "filehandle for group # ".$filehandle_index." is undefined\n");
 		}
-		$MAF_FHs[$filehandle_index]->print(($entry->getString()));
+		if(defined($filehandle_index) ){
+		    $MAF_FHs[$filehandle_index]->print(($entry->getString()));
+		}
 	}
 	$maf->close();
 }
