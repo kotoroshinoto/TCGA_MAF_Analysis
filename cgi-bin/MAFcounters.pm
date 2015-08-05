@@ -159,8 +159,8 @@ sub count{
 	my ($self,@params)= @_;
 	if (scalar(@params) != 1){Carp::croak( "method takes 1 and only 1 argument");}
 	my $maf=$params[0];
-#TODO count mutations by type
-my (@tmr,@nrm);
+	#TODO count mutations by type
+	my (@tmr,@nrm);
 	push(@tmr,uc($maf->{Tumor_Seq_Allele1}));
 	push(@tmr,uc($maf->{Tumor_Seq_Allele2}));
 	push(@nrm,uc($maf->{Match_Norm_Seq_Allele1}));
