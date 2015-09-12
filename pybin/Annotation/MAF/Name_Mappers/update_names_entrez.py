@@ -5,10 +5,13 @@ import re
 import sys
 parser = argparse.ArgumentParser(description="Compute exonic sizes of genes and relate them to HUGO IDs")
 parser.add_argument('--mafnames', type=argparse.FileType('r'), required=True, help="file of names to be translated")
-parser.add_argument('--names', type=argparse.FileType('r'), required=True, help="file of names from annotation lists")
-parser.add_argument('--size', type=argparse.FileType('r'), required=False, help="file of sizes that has names")
-parser.add_argument('--column', type=int, required=True, help="column where desired name is found")
-parser.add_argument('--symbolcheck', type=argparse.FileType('r'), required=True, help="TSV output from http://www.genenames.org/cgi-bin/symbol_checker")
+parser.add_argument('--name_to_entrez', type=argparse.FileType('r'), required=True, help="output from MAF_collect_unique_entrez_ids.py")
+parser.add_argument('--entrez', type=argparse.FileType('r'), required=True, help="file containing symbols and entrez ids")
+parser.add_argument('--col-entrez', type=int, required=True, help="column that has entrez ids")
+parser.add_argument('--col-symbol', type=int, required=True, help="column that has symbols")
+
+parser.add_argument('--out', type=argparse.FileType('w'), required=True, help="file to use for output")
+
 args = parser.parse_args()
 toCol = int(args.column) - 1
 mafnames_fh = args.mafnames
