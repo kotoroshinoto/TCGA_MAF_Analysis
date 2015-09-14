@@ -15,8 +15,9 @@ MAF_names = dict()
 
 #pull MAF names from file
 for line in args.mafnames:
-	line = line.rstrip()
 	if len(line) > 0:
+		split_line = line.split("\t")
+		symbol = split_line[0].rstrip()
 		MAF_names[line.upper()] = line
 args.mafnames.close()
 
@@ -35,9 +36,9 @@ args.genelength.close()
 for name in MAF_names:
 	if name in Length_File_Name_List:
 		print("original name OK for: %s" % MAF_names[name], file=sys.stderr)
-		print(MAF_names[name], file=args.matched)
+		print("%s\t%s" % (MAF_names[name], MAF_names[name]), file=args.matched)
 	else:
 		print("original name BAD for: %s" % MAF_names[name], file=sys.stderr)
-		print(MAF_names[name], file=args.unmatched)
+		print("%s\t" % MAF_names[name], file=args.unmatched)
 args.matched.close()
 args.unmatched.close()
