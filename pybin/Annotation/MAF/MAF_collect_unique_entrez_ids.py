@@ -10,8 +10,11 @@ parser.add_argument('--outNoEntrez', type=argparse.FileType('w'), help="file to 
 args = parser.parse_args()
 Names = list()
 #Entrez_IDs = list()
-
+first_line_skipped = False
 for line in args.maf:
+	if not first_line_skipped:
+		first_line_skipped = True
+		continue
 	line = line.rstrip()
 	if len(line) <= 0:
 		continue
