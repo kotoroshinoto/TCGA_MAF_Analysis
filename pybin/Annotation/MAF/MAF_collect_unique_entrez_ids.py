@@ -4,7 +4,8 @@ import argparse
 import sys
 parser = argparse.ArgumentParser(description="Collect Unique entries from first two columns of MAF file")
 parser.add_argument('--maf', type=argparse.FileType('r'), required=True, help="file to collect names from")
-parser.add_argument('--out', type=argparse.FileType('w'), default=sys.stdout, help="file to use for output")
+parser.add_argument('--out', type=argparse.FileType('w'), required=True, help="file to use for output")
+parser.add_argument('--outNoEntrez', type=argparse.FileType('w'), help="file to use for output names lacking entrez IDs")
 
 args = parser.parse_args()
 Names = list()
@@ -19,8 +20,12 @@ for line in args.maf:
 		continue
 	symbol = line_split[0].rstrip()
 	entrez_id = line_split[1].rstrip()
-	if entrez_id != "0" and symbol not in Names:
+#write symbols with no entrez ID to a different file if wanted
+	if symbol not in Names:
 		Names.append(symbol)
 		#Entrez_IDs.append(line_split[1])
-		print("%s\t%s" % (line_split[0], line_split[1]))
-#TODO write symbols with no entrez ID to a different file
+		if entrez_id != "0":
+			print("%s\t%s" % (line_split[0], line_split[1]), file=args.out)
+		else:
+			if args.outNoEntrez is not None:
+				print("%s\t" % line_split[0], file=args.outNoEntrez)
