@@ -15,7 +15,12 @@ for line in args.maf:
 	if len(line) <= 0:
 		continue
 	line_split = line.split("\t")
-	if line_split[0] not in Names:
-		Names.append(line_split[0])
+	if len(line_split) < 2:
+		continue
+	symbol = line_split[0].rstrip()
+	entrez_id = line_split[1].rstrip()
+	if entrez_id != "0" and symbol not in Names:
+		Names.append(symbol)
 		#Entrez_IDs.append(line_split[1])
 		print("%s\t%s" % (line_split[0], line_split[1]))
+#TODO write symbols with no entrez ID to a different file
