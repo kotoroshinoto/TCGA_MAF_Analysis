@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93cd2a26-0973-445f-bada-db8d4c112c18" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/pybin/Annotation/MAF/Name_Mappers/maf_name_updater.py" afterPath="$PROJECT_DIR$/pybin/Annotation/MAF/Name_Mappers/parse_symbolcheck_output.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pybin/Annotation/MAF/BioPythonExperimenting.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/Annotation/MAF/Name_Mappers/check_against_lengths_file.py" afterPath="$PROJECT_DIR$/pybin/Annotation/MAF/Name_Mappers/check_against_lengths_file.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/Annotation/MAF/Name_Mappers/update_names_entrez.py" afterPath="$PROJECT_DIR$/pybin/Annotation/MAF/Name_Mappers/update_names_entrez.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/Annotation/MAF/Name_Mappers/parse_symbolcheck_output.py" afterPath="$PROJECT_DIR$/pybin/Annotation/MAF/Name_Mappers/parse_symbolcheck_output.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TCGA_MAF_Analysis.iws" />
@@ -27,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="parse_symbolcheck_output.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="parse_symbolcheck_output.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pybin/Annotation/MAF/Name_Mappers/parse_symbolcheck_output.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.80144405">
-              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="52" column="87" selection-start-line="52" selection-start-column="87" selection-end-line="52" selection-end-column="87" />
               <folding>
                 <element signature="e#45#60#0" expanded="true" />
               </folding>
@@ -39,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="exon_sizer.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pybin/Annotation/BED/exon_sizer.py">
+      <file leaf-file-name="check_against_lengths_file.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pybin/Annotation/MAF/Name_Mappers/check_against_lengths_file.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="49" column="19" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.0866426">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -59,24 +59,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MAF_collect_unique_entrez_ids.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pybin/Annotation/MAF/MAF_collect_unique_entrez_ids.py">
+      <file leaf-file-name="BioPythonExperimenting.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pybin/Annotation/MAF/BioPythonExperimenting.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+              <caret line="5" column="79" selection-start-line="5" selection-start-column="79" selection-end-line="5" selection-end-column="79" />
               <folding>
-                <element signature="e#45#60#0" expanded="true" />
+                <element signature="e#45#55#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="check_against_lengths_file.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pybin/Annotation/MAF/Name_Mappers/check_against_lengths_file.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -112,9 +102,10 @@
         <option value="$PROJECT_DIR$/pybin/MAF/Name_Mappers/check_against_lengths_file.py" />
         <option value="$PROJECT_DIR$/pybin/Annotation/MAF/MAF_collect_unique_entrez_ids.py" />
         <option value="$PROJECT_DIR$/pybin/Annotation/MAF/Name_Mappers/maf_name_updater.py" />
-        <option value="$PROJECT_DIR$/pybin/Annotation/MAF/Name_Mappers/check_against_lengths_file.py" />
         <option value="$PROJECT_DIR$/pybin/Annotation/MAF/Name_Mappers/update_names_entrez.py" />
+        <option value="$PROJECT_DIR$/pybin/Annotation/MAF/BioPythonExperimenting.py" />
         <option value="$PROJECT_DIR$/pybin/Annotation/MAF/Name_Mappers/parse_symbolcheck_output.py" />
+        <option value="$PROJECT_DIR$/pybin/Annotation/MAF/Name_Mappers/check_against_lengths_file.py" />
       </list>
     </option>
   </component>
@@ -688,7 +679,13 @@
       <option name="project" value="LOCAL" />
       <updated>1442263192909</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="bugfixes with whitespace handling, Changed function and name of one script.">
+      <created>1442331336636</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1442331336636</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -698,7 +695,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2484375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983682" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -734,7 +731,8 @@
     <MESSAGE value="added script to pull down biomart ensembl entries" />
     <MESSAGE value="organization changes" />
     <MESSAGE value="fixes and new script" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixes and new script" />
+    <MESSAGE value="bugfixes with whitespace handling, Changed function and name of one script." />
+    <option name="LAST_COMMIT_MESSAGE" value="bugfixes with whitespace handling, Changed function and name of one script." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -893,14 +891,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybin/Annotation/BED/exon_sizer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="19" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pybin/Annotation/MAF/MAF_collect_unique_entrez_ids.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -911,11 +901,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybin/Annotation/MAF/Name_Mappers/check_against_lengths_file.py">
+    <entry file="file://$PROJECT_DIR$/pybin/Annotation/BED/exon_sizer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39350182">
+          <caret line="49" column="19" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybin/Annotation/MAF/BioPythonExperimenting.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
-          <folding />
+          <caret line="5" column="79" selection-start-line="5" selection-start-column="79" selection-end-line="5" selection-end-column="79" />
+          <folding>
+            <element signature="e#45#55#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -929,11 +929,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pybin/Annotation/MAF/Name_Mappers/parse_symbolcheck_output.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.80144405">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="87" selection-start-line="52" selection-start-column="87" selection-end-line="52" selection-end-column="87" />
           <folding>
             <element signature="e#45#60#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybin/Annotation/MAF/Name_Mappers/check_against_lengths_file.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0866426">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
