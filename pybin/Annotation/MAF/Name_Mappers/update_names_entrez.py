@@ -23,7 +23,7 @@ for line in args.mafnames:
 	if len(line) > 0:
 		split_line = line.split("\t")
 		symbol = split_line[0].rstrip()
-		MAF_names[line.upper()] = line
+		MAF_names[symbol.upper()] = symbol
 args.mafnames.close()
 
 Name2EntrezID = dict()

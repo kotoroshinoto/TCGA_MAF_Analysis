@@ -18,7 +18,8 @@ for line in args.mafnames:
 	if len(line) > 0:
 		split_line = line.split("\t")
 		symbol = split_line[0].rstrip()
-		MAF_names[symbol.upper()] = line
+		if len(symbol) > 0:
+			MAF_names[symbol.upper()] = symbol
 args.mafnames.close()
 
 #build list of names from size file if one was given
@@ -28,8 +29,8 @@ for line in args.genelength:
 	if len(line) > 0:
 		split_line = line.split("\t")
 		name = split_line[0].rstrip()
-		Length_File_Name_List[name.upper()] = name
-		#print("added name: %s" % name)
+		if len(name) > 0:
+			Length_File_Name_List[name.upper()] = name
 args.genelength.close()
 
 for name in MAF_names:
