@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 __author__ = 'mgooch'
 import argparse
+import sys
+
 
 def next_bed(line):
 	line = line.rstrip()
@@ -32,40 +34,106 @@ def next_name(line, col_from, col_to):
 	return [name_from, name_to]
 
 
-parser = argparse.ArgumentParser(description="Compute exonic sizes of genes and relate them to HUGO IDs")
-parser.add_argument('--bed', type=argparse.FileType('r'), required=True, help="path to a bed file containing genes & exons")
-parser.add_argument('--names', type=argparse.FileType('r'), required=True, help="path to a file relating BED file names to desired names")
-parser.add_argument('--columns', type=str, required=True, help="CSV pair of values, first column's names match those from the BED file, second names match those to use in the output")
-args = parser.parse_args()
-splitValues = args.columns.split(',')
+def read_bed_and_map_names(bed_handle, name_map):
+	bed_exon_length_map = dict()
+	for bedline in bed_handle:
+		bedtuple = next_bed(bedline)
+		gene_name = name_map[bedtuple[0]]
+		length = bedtuple[1]
+		if gene_name not in bed_exon_length_map:
+			bed_exon_length_map[gene_name] = list()
+		bed_exon_length_map[gene_name].append(length)
+	return bed_exon_length_map
 
-fromCol = int(splitValues[0]) - 1
-toCol = int(splitValues[1]) - 1
-names_fh = args.names
 
-bed_fh = args.bed
+def read_namefile(name_handle, col_list):
+	from_col = col_list[0]
+	to_col = col_list[1]
+	name_map = dict()
+	#build map of names
+	for name in name_handle:
+		nametuple = next_name(name, from_col, to_col)
+		if nametuple is not None:
+			name_map[nametuple[0]] = nametuple[1]
+	return name_map
 
-Name_Map = dict()
 
-#build map of names
-for name in names_fh:
-	nametuple = next_name(name, fromCol, toCol)
-	if nametuple is not None:
-		Name_Map[nametuple[0]] = nametuple[1]
+def merge_and_write_bed_dicts(primary, secondary, outfilehandle):
+	#warning, the names from both dicts should be mapped prior to doing this
+	#primary names will take priority, taking entries from secondary only if they don't already exist within the dict
+	merged = dict()
+	def do_output_for_dict(current_dict, merged_dict):
+		for entry in current_dict:
+			if entry in merged_dict:
+				continue
+			else:
+				merged_dict[entry] = True
+			value_list = current_dict[entry]
+			average = sum(value_list) / len(value_list)
+			print("%s\t%d" % (entry, average), file=outfilehandle)
+	if primary is not None:
+		do_output_for_dict(primary, merged)
+	if secondary is not None:
+		do_output_for_dict(secondary, merged)
+	return
 
-Value_Map = dict()
-for bedline in bed_fh:
-	bedtuple = next_bed(bedline)
-	gene_name = Name_Map[bedtuple[0]]
-	length = bedtuple[1]
-	if gene_name not in Value_Map:
-		Value_Map[gene_name] = list()
-	Value_Map[gene_name].append(length)
 
-Lengths = dict()
+def read_files_and_map_names(handlelist, col_list):
+	name_map = read_namefile(handlelist[1], col_list)
+	return read_bed_and_map_names(handlelist[0], name_map)
 
-for gene_name in Value_Map:
-	value_list = Value_Map[gene_name]
-	average = sum(value_list)/len(value_list)
-	print("%s\t%d" % (gene_name, average))
+
+def do_both(args):
+	if args.ucsc is not None and args.ucsc_col is not None:
+		ucsc_bed = read_files_and_map_names(args.ucsc, args.ucsc_col)
+	else:
+		ucsc_bed = None
+	if args.refseq is not None and args.refseq_col is not None:
+		refseq_bed = read_files_and_map_names(args.refseq, args.refseq_col)
+	else:
+		refseq_bed = None
+	return merge_and_write_bed_dicts(ucsc_bed, refseq_bed, args.out)
+
+
+def argcheck(parser):
+	args = parser.parse_args()
+	ucsc_files = args.ucsc is not None
+	ucsc_col = args.ucsc_col is not None
+	refseq_files = args.refseq is not None
+	refseq_col =args.refseq_col is not None
+	ucsc_both_missing = (not ucsc_files) and (not ucsc_col)
+	refseq_both_missing = (not refseq_files) and (not refseq_col)
+
+	ucsc_missing_cols = ucsc_files and (not ucsc_col)
+	ucsc_missing_files = (not ucsc_files) and ucsc_col
+
+	refseq_missing_cols = refseq_files and (not refseq_col)
+	refseq_missing_files = (not refseq_files) and refseq_col
+
+	err_msg = ""
+	if ucsc_both_missing and refseq_both_missing:
+		err_msg += "\nMust provide at least one set of files and column entries"
+	if ucsc_missing_cols:
+		err_msg += "\nmissing --ucsc_col argument, must provide both column argument and files argument or neither"
+	if refseq_missing_cols:
+		err_msg += "\nmissing --refseq_col argument, must provide both column argument and files argument or neither"
+	if ucsc_missing_files:
+		err_msg += "\nmissing --ucsc argument, must provide both column argument and files argument or neither"
+	if refseq_missing_files:
+		err_msg += "\nmissing --refseq argument, must provide both column argument and files argument or neither"
+	if err_msg != "":
+		parser.error(err_msg)
+	return args
+
+
+argument_parser = argparse.ArgumentParser(description="Compute exonic sizes of genes and relate them to HUGO IDs")
+argument_parser.add_argument('--ucsc', nargs=2, type=argparse.FileType('r'), help="first path is to a bed file containing genes & exons from UCSC, 2nd path is to path to a file relating BED file names to desired names")
+argument_parser.add_argument('--refseq', nargs=2, type=argparse.FileType('r'), help="first path is to a bed file containing genes & exons from REFSEQ, 2nd path is to path to a file relating BED file names to desired names")
+argument_parser.add_argument('--ucsc_col', type=int, nargs=2, help="pair of 0-based index values for parsing the names file, first column's names match those from the BED file, second names match those to use in the output")
+argument_parser.add_argument('--refseq_col', type=int, nargs=2, help="pair of 0-based index values for parsing the names file, first column's names match those from the BED file, second names match those to use in the output")
+argument_parser.add_argument('--out', type=argparse.FileType('w'), default=sys.stdout, help="output file")
+
+arguments = argcheck(argument_parser)
+
+do_both(arguments)
 
