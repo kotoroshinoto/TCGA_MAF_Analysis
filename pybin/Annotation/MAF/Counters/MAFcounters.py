@@ -1,47 +1,67 @@
 __author__ = 'mgooch'
 
 import Annotation.MAF.File_Handlers.MAFreader as MAFreader
+import os
+import sys
+
 
 class FeatureCounter:
 	def __init__(self):
 		self.counts = dict()
 		self.name = None
 
-	def count(self):
+	def count(self, entry:MAFreader.MAFEntry):
 		return 0
 
-	def __appendcount(self, keystring):
+	def __appendcount__(self, keystring):
+		if keystring is None:
+			return
 		if keystring in self.counts:
 			self.counts[keystring] += 1
 		else:
 			self.counts[keystring] = 1
 
-	def __countif(self, keystring, condition):
+	def __countif__(self, keystring, condition):
 		if condition:
-			self.__appendcount(keystring)
+			self.__appendcount__(keystring)
 
 	def __str__(self):
-		return ""
+		str_val = ""
+		for key in sorted(self.counts.keys()):
+			str_val += "%s\t%s\n" % (key, self.counts[key])
+		return str_val
 
-	def writeFile(self, prefix, path):
-		return
+	def write_file(self, path, prefix=None):
+		realpath = os.path.realpath(os.path.relpath(prefix, start=path))
+		if self.name is not None and len(self.name) > 0:
+			out_file_name = ""
+			if prefix is not None and len(prefix) > 0:
+				out_file_name = os.path.realpath(os.path.relpath("%s_%s.txt" % (prefix, self.name), start=path))
+				#$ofname=$path.'/'.$prefix.'_'.$self->{name}.".txt";
+			else:
+				out_file_name = os.path.realpath(os.path.relpath("%s.txt" % self.name, start=path))
+				#$ofname=$path.'/'.$self->{name}.".txt";
+	#		print "$ofname\n";
+			out_file_handler = open(out_file_name, mode='w')
+			out_file_handler.write("%s" % self)
+			out_file_handler.close()
+		else:
+			print("writeFile used on counter with no name", file=sys.stderr)
+			sys.exit(-1)
 
 
 class GeneMutCounter(FeatureCounter):
-	def __init__(self):
-		self.hugoIDs = dict()
-
-	def count(self):
-		return
-	def __str__(self):
-		return ""
+	def count(self, entry:MAFreader.MAFEntry):
+		self.__appendcount__(entry.Hugo_Symbol)
 
 
 class SampMutCounter(FeatureCounter):
-	def count(self):
-		return
+	def count(self, entry:MAFreader.MAFEntry):
+		self.__appendcount__(entry.Tumor_Sample_Barcode)
 
 
 class MutTypeCounter(FeatureCounter):
-	def count(self):
-		return
+	def count(self, entry:MAFreader.MAFEntry):
+		mut_type_list = entry.determine_mutation()
+		for mut_type in mut_type_list:
+			self.__appendcount__(mut_type)

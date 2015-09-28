@@ -3,68 +3,68 @@ import os
 import sys
 
 
-class MAF_entry:
+class MAFEntry:
 	column2index = dict()
 	index2column = dict()
 
 	@staticmethod
 	def get_index(heading):
-		if heading in MAF_entry.column2index:
-			return MAF_entry.column2index[heading]
+		if heading in MAFEntry.column2index:
+			return MAFEntry.column2index[heading]
 		else:
 			return None
 
 	@staticmethod
 	def get_heading(index):
-		if index in MAF_entry.index2column:
-			return MAF_entry.index2column[index]
+		if index in MAFEntry.index2column:
+			return MAFEntry.index2column[index]
 		else:
 			return None
 
 	@staticmethod
 	def __register_column__(heading, index):
-		MAF_entry.column2index[heading] = index
-		MAF_entry.index2column[index] = heading
+		MAFEntry.column2index[heading] = index
+		MAFEntry.index2column[index] = heading
 
 	@staticmethod
 	def __initialize_class__():
-		MAF_entry.__register_column__('Hugo_Symbol', 0)
-		MAF_entry.__register_column__('hEntrez_Gene_Id', 1)
-		MAF_entry.__register_column__('Center', 2)
-		MAF_entry.__register_column__('Ncbi_Build', 3)
-		MAF_entry.__register_column__('Chrom', 4)
-		MAF_entry.__register_column__('Start_Position', 5)
-		MAF_entry.__register_column__('End_Position', 6)
-		MAF_entry.__register_column__('Strand', 7)
-		MAF_entry.__register_column__('Variant_Classification', 8)
-		MAF_entry.__register_column__('Variant_Type', 9)
-		MAF_entry.__register_column__('Reference_Allele', 10)
-		MAF_entry.__register_column__('Tumor_Seq_Allele1', 11)
-		MAF_entry.__register_column__('Tumor_Seq_Allele2', 12)
-		MAF_entry.__register_column__('Dbsnp_Rs', 13)
-		MAF_entry.__register_column__('Dbsnp_Val_Status', 14)
-		MAF_entry.__register_column__('Tumor_Sample_Barcode', 15)
-		MAF_entry.__register_column__('Matched_Norm_Sample_Barcode', 16)
-		MAF_entry.__register_column__('Match_Norm_Seq_Allele1', 17)
-		MAF_entry.__register_column__('Match_Norm_Seq_Allele2', 18)
-		MAF_entry.__register_column__('Tumor_Validation_Allele1', 19)
-		MAF_entry.__register_column__('Tumor_Validation_Allele2', 20)
-		MAF_entry.__register_column__('Match_Norm_Validation_Allele1', 21)
-		MAF_entry.__register_column__('Match_Norm_Validation_Allele2', 22)
-		MAF_entry.__register_column__('Verification_Status', 23)
-		MAF_entry.__register_column__('Validation_Status', 24)
-		MAF_entry.__register_column__('Mutation_Status', 25)
-		MAF_entry.__register_column__('Sequencing_Phase', 26)
-		MAF_entry.__register_column__('Sequence_Source', 27)
-		MAF_entry.__register_column__('Validation_Method', 28)
-		MAF_entry.__register_column__('Score', 29)
-		MAF_entry.__register_column__('Bam_File', 30)
-		MAF_entry.__register_column__('Sequencer', 31)
-		MAF_entry.__register_column__('Tumor_Sample_UUID', 32)
-		MAF_entry.__register_column__('Matched_Norm_Sample_UUID', 33)
-		MAF_entry.__register_column__('File_Name', 34)
-		MAF_entry.__register_column__('Archive_Name', 35)
-		MAF_entry.__register_column__('Line_Number', 36)
+		MAFEntry.__register_column__('Hugo_Symbol', 0)
+		MAFEntry.__register_column__('hEntrez_Gene_Id', 1)
+		MAFEntry.__register_column__('Center', 2)
+		MAFEntry.__register_column__('Ncbi_Build', 3)
+		MAFEntry.__register_column__('Chrom', 4)
+		MAFEntry.__register_column__('Start_Position', 5)
+		MAFEntry.__register_column__('End_Position', 6)
+		MAFEntry.__register_column__('Strand', 7)
+		MAFEntry.__register_column__('Variant_Classification', 8)
+		MAFEntry.__register_column__('Variant_Type', 9)
+		MAFEntry.__register_column__('Reference_Allele', 10)
+		MAFEntry.__register_column__('Tumor_Seq_Allele1', 11)
+		MAFEntry.__register_column__('Tumor_Seq_Allele2', 12)
+		MAFEntry.__register_column__('Dbsnp_Rs', 13)
+		MAFEntry.__register_column__('Dbsnp_Val_Status', 14)
+		MAFEntry.__register_column__('Tumor_Sample_Barcode', 15)
+		MAFEntry.__register_column__('Matched_Norm_Sample_Barcode', 16)
+		MAFEntry.__register_column__('Match_Norm_Seq_Allele1', 17)
+		MAFEntry.__register_column__('Match_Norm_Seq_Allele2', 18)
+		MAFEntry.__register_column__('Tumor_Validation_Allele1', 19)
+		MAFEntry.__register_column__('Tumor_Validation_Allele2', 20)
+		MAFEntry.__register_column__('Match_Norm_Validation_Allele1', 21)
+		MAFEntry.__register_column__('Match_Norm_Validation_Allele2', 22)
+		MAFEntry.__register_column__('Verification_Status', 23)
+		MAFEntry.__register_column__('Validation_Status', 24)
+		MAFEntry.__register_column__('Mutation_Status', 25)
+		MAFEntry.__register_column__('Sequencing_Phase', 26)
+		MAFEntry.__register_column__('Sequence_Source', 27)
+		MAFEntry.__register_column__('Validation_Method', 28)
+		MAFEntry.__register_column__('Score', 29)
+		MAFEntry.__register_column__('Bam_File', 30)
+		MAFEntry.__register_column__('Sequencer', 31)
+		MAFEntry.__register_column__('Tumor_Sample_UUID', 32)
+		MAFEntry.__register_column__('Matched_Norm_Sample_UUID', 33)
+		MAFEntry.__register_column__('File_Name', 34)
+		MAFEntry.__register_column__('Archive_Name', 35)
+		MAFEntry.__register_column__('Line_Number', 36)
 		return
 
 	def __init__(self):
@@ -123,7 +123,7 @@ class MAF_entry:
 			print("line does not have correct # of columns (37)", file=sys.stderr)
 			print("processing line: '%s'" % line, file=sys.stderr)
 			sys.exit(-1)
-		entry = MAF_entry()
+		entry = MAFEntry()
 		entry.Hugo_Symbol = columns[0]
 		entry.Entrez_Gene_Id = columns[1]
 		entry.Center = columns[2]
@@ -266,10 +266,10 @@ class MAF_entry:
 				return ["NO_MUTATION"]
 			#signal unrecognized condition via a None in a list should not be logically possible
 			return [None]
-MAF_entry.__initialize_class__()
+MAFEntry.__initialize_class__()
 
 
-class MAF_file:
+class MAFFile:
 	@staticmethod
 	def __get_all_entries_from_lines__(lines):
 		entries = list()
@@ -277,7 +277,7 @@ class MAF_file:
 			line = line.rstrip()
 			if line == "":
 				continue
-			entry = MAF_entry.process_line(line)
+			entry = MAFEntry.process_line(line)
 			if entry is not None:
 				entries.append(entry)
 		return entries
@@ -285,12 +285,12 @@ class MAF_file:
 	@staticmethod
 	def get_all_entries_from_path(path):
 		filehandle = open(path, mode='r')
-		return MAF_file.get_all_entries_from_filehandle(filehandle)
+		return MAFFile.get_all_entries_from_filehandle(filehandle)
 
 	@staticmethod
 	def get_all_entries_from_filehandle(filehandle):
 		lines = filehandle.readlines()
-		return MAF_file.__get_all_entries_from_lines__(lines)
+		return MAFFile.__get_all_entries_from_lines__(lines)
 
 	def __init__(self):
 		self.allow_close_handle = False
@@ -346,7 +346,7 @@ class MAF_file:
 
 	def get_next_entry(self):
 		if self.next_line is not None:
-			entry = MAF_entry.process_line(self.next_line)
+			entry = MAFEntry.process_line(self.next_line)
 		else:
 			return None
 		self.__read_next_line_from_filehandle__()
