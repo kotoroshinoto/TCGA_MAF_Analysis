@@ -1,5 +1,6 @@
 __author__ = 'mgooch'
 
+import Annotation.MAF.File_Handlers.MAFreader as MAFreader
 
 class FeatureCounter:
 	def __init__(self):
@@ -8,9 +9,6 @@ class FeatureCounter:
 
 	def count(self):
 		return 0
-
-	def determineMutation(self, norm1, norm2, tumor1, tumor2):
-		return None
 
 	def __appendcount(self, keystring):
 		if keystring in self.counts:
