@@ -22,7 +22,7 @@ def main():
 
 
 	#method 2
-	entries = MAFreader.MAFfile.get_all_entries_from_filehandle(args.maf)
+	entries = MAFreader.MAF_file.get_all_entries_from_filehandle(args.maf)
 	for entry in entries:
 		mutlist = entry.determine_mutation()
 		print("%s\t%s\t%s" % (entry.Hugo_Symbol, entry.Entrez_Gene_Id, "\t".join(mutlist)))
