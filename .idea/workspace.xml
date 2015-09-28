@@ -37,7 +37,7 @@
       <file leaf-file-name="MAFreader.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pybin/Annotation/MAF/File_Handlers/MAFreader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.5776174">
+            <state vertical-scroll-proportion="-0.3032491">
               <caret line="118" column="12" selection-start-line="118" selection-start-column="12" selection-end-line="118" selection-end-column="12" />
               <folding>
                 <element signature="e#22#31#0" expanded="true" />
@@ -651,7 +651,13 @@
       <option name="project" value="LOCAL" />
       <updated>1443476638433</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="working on porting code again">
+      <created>1443476647090</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1443476647090</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -948,7 +954,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pybin/Annotation/MAF/File_Handlers/MAFreader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.5776174">
+        <state vertical-scroll-proportion="-0.3032491">
           <caret line="118" column="12" selection-start-line="118" selection-start-column="12" selection-end-line="118" selection-end-column="12" />
           <folding>
             <element signature="e#22#31#0" expanded="true" />
