@@ -4,7 +4,7 @@ import argparse
 import sys
 import os
 import Annotation.MAF.File_Handlers.MAFreader as MAFreader
-
+import Annotation.MAF.Counters.MAFcounters as MAFcounters
 
 def main():
 	parser = argparse.ArgumentParser(description="Count # of entries per gene in MAF file")
@@ -23,9 +23,16 @@ def main():
 
 	#method 2
 	entries = MAFreader.MAFFile.get_all_entries_from_filehandle(args.maf)
+	mut_type_counter = MAFcounters.MutTypeCounter()
+	samp_counter = MAFcounters.SampMutCounter()
+	gene_counter = MAFcounters.GeneMutCounter()
 	for entry in entries:
-		mutlist = entry.determine_mutation()
-		print("%s\t%s\t%s" % (entry.Hugo_Symbol, entry.Entrez_Gene_Id, "\t".join(mutlist)))
+		mut_type_counter.count(entry)
+		samp_counter.count(entry)
+		gene_counter.count(entry)
+	sys.stdout.write("%s" % mut_type_counter)
+	sys.stdout.write("%s" % samp_counter)
+	sys.stdout.write("%s" % gene_counter)
 
 if __name__ == "__main__":
 	main()

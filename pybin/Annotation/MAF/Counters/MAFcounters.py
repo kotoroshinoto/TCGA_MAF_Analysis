@@ -1,5 +1,4 @@
 __author__ = 'mgooch'
-
 import Annotation.MAF.File_Handlers.MAFreader as MAFreader
 import os
 import sys

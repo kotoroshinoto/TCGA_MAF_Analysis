@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="93cd2a26-0973-445f-bada-db8d4c112c18" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/Annotation/MAF/Counters/MAFcounters.py" afterPath="$PROJECT_DIR$/pybin/Annotation/MAF/Counters/MAFcounters.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/Annotation/MAF/File_Handlers/MAFreader.py" afterPath="$PROJECT_DIR$/pybin/Annotation/MAF/File_Handlers/MAFreader.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/tester.py" afterPath="$PROJECT_DIR$/pybin/tester.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -37,13 +36,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MAFcounters.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MAFcounters.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pybin/Annotation/MAF/Counters/MAFcounters.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.2129964">
-              <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding>
-                <element signature="e#23#81#0" expanded="true" />
+                <element signature="e#22#80#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -61,12 +60,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tester.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="tester.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pybin/tester.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="10" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
-              <folding />
+            <state vertical-scroll-proportion="0.7364621">
+              <caret line="34" column="40" selection-start-line="34" selection-start-column="40" selection-end-line="34" selection-end-column="40" />
+              <folding>
+                <element signature="e#45#60#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -107,9 +108,9 @@
         <option value="$PROJECT_DIR$/pybin/Annotation/MAF/Name_Mappers/parse_symbolcheck_output.py" />
         <option value="$PROJECT_DIR$/pybin/Annotation/MAF/Name_Mappers/check_against_lengths_file.py" />
         <option value="$PROJECT_DIR$/pybin/Annotation/BED/exon_sizer.py" />
-        <option value="$PROJECT_DIR$/pybin/tester.py" />
         <option value="$PROJECT_DIR$/pybin/Annotation/MAF/File_Handlers/MAFreader.py" />
         <option value="$PROJECT_DIR$/pybin/Annotation/MAF/Counters/MAFcounters.py" />
+        <option value="$PROJECT_DIR$/pybin/tester.py" />
       </list>
     </option>
   </component>
@@ -674,7 +675,13 @@
       <option name="project" value="LOCAL" />
       <updated>1443476790588</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="counters probably work, but need testing">
+      <created>1443480873319</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1443480873319</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -735,7 +742,8 @@
     <MESSAGE value="working on porting code again" />
     <MESSAGE value="MAFreader (MAFfile and MAFentry) mostly working" />
     <MESSAGE value="renamed classes slightly" />
-    <option name="LAST_COMMIT_MESSAGE" value="renamed classes slightly" />
+    <MESSAGE value="counters probably work, but need testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="counters probably work, but need testing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -947,14 +955,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybin/tester.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="10" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pybin/Annotation/MAF/File_Handlers/MAFreader.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -975,10 +975,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pybin/Annotation/MAF/Counters/MAFcounters.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.2129964">
-          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding>
-            <element signature="e#23#81#0" expanded="true" />
+            <element signature="e#22#80#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybin/tester.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7364621">
+          <caret line="34" column="40" selection-start-line="34" selection-start-column="40" selection-end-line="34" selection-end-column="40" />
+          <folding>
+            <element signature="e#45#60#0" expanded="true" />
           </folding>
         </state>
       </provider>
