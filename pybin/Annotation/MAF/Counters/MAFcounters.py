@@ -57,6 +57,7 @@ class GeneMutCounter(FeatureCounter):
 class SampMutCounter(FeatureCounter):
 	def count(self, entry:MAFreader.MAFEntry):
 		self.__appendcount__(entry.Tumor_Sample_Barcode)
+		# self.__appendcount__(entry.Tumor_Sample_UUID)
 
 
 class MutTypeCounter(FeatureCounter):

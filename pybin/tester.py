@@ -8,7 +8,8 @@ import Annotation.MAF.Counters.MAFcounters as MAFcounters
 
 def main():
 	parser = argparse.ArgumentParser(description="Count # of entries per gene in MAF file")
-	parser.add_argument('--maf', type=argparse.FileType('r'), required=True, help="file containing MAF entries")
+	parser.add_argument('--counts', type=argparse.FileType('r'), required=True, help="file containing sample counts")
+	parser.add_argument('--boundaries', type=int, nargs='+', required=True, help="list of boundaries for splitting")
 	args = parser.parse_args()
 
 	#method 1
@@ -30,9 +31,10 @@ def main():
 		mut_type_counter.count(entry)
 		samp_counter.count(entry)
 		gene_counter.count(entry)
-	sys.stdout.write("%s" % mut_type_counter)
+	# sys.stdout.write("%s" % mut_type_counter)
+	print("# of samples: %d" % len(samp_counter.counts.keys()))
 	sys.stdout.write("%s" % samp_counter)
-	sys.stdout.write("%s" % gene_counter)
+	# sys.stdout.write("%s" % gene_counter)
 
 if __name__ == "__main__":
 	main()
