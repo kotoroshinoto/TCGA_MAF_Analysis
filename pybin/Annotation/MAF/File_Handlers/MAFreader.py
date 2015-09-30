@@ -7,64 +7,64 @@ class MAFEntry:
 	column2index = dict()
 	index2column = dict()
 
-	@staticmethod
-	def get_index(heading):
-		if heading in MAFEntry.column2index:
-			return MAFEntry.column2index[heading]
+	@classmethod
+	def get_index(cls, heading: 'str') -> 'int':
+		if heading in cls.column2index:
+			return cls.column2index[heading]
 		else:
 			return None
 
-	@staticmethod
-	def get_heading(index):
-		if index in MAFEntry.index2column:
-			return MAFEntry.index2column[index]
+	@classmethod
+	def get_heading(cls, index: 'int') -> 'str':
+		if index in cls.index2column:
+			return cls.index2column[index]
 		else:
 			return None
 
-	@staticmethod
-	def __register_column__(heading, index):
-		MAFEntry.column2index[heading] = index
-		MAFEntry.index2column[index] = heading
+	@classmethod
+	def __register_column__(cls, heading: 'str', index: 'int'):
+		cls.column2index[heading] = index
+		cls.index2column[index] = heading
 
-	@staticmethod
-	def __initialize_class__():
-		MAFEntry.__register_column__('Hugo_Symbol', 0)
-		MAFEntry.__register_column__('hEntrez_Gene_Id', 1)
-		MAFEntry.__register_column__('Center', 2)
-		MAFEntry.__register_column__('Ncbi_Build', 3)
-		MAFEntry.__register_column__('Chrom', 4)
-		MAFEntry.__register_column__('Start_Position', 5)
-		MAFEntry.__register_column__('End_Position', 6)
-		MAFEntry.__register_column__('Strand', 7)
-		MAFEntry.__register_column__('Variant_Classification', 8)
-		MAFEntry.__register_column__('Variant_Type', 9)
-		MAFEntry.__register_column__('Reference_Allele', 10)
-		MAFEntry.__register_column__('Tumor_Seq_Allele1', 11)
-		MAFEntry.__register_column__('Tumor_Seq_Allele2', 12)
-		MAFEntry.__register_column__('Dbsnp_Rs', 13)
-		MAFEntry.__register_column__('Dbsnp_Val_Status', 14)
-		MAFEntry.__register_column__('Tumor_Sample_Barcode', 15)
-		MAFEntry.__register_column__('Matched_Norm_Sample_Barcode', 16)
-		MAFEntry.__register_column__('Match_Norm_Seq_Allele1', 17)
-		MAFEntry.__register_column__('Match_Norm_Seq_Allele2', 18)
-		MAFEntry.__register_column__('Tumor_Validation_Allele1', 19)
-		MAFEntry.__register_column__('Tumor_Validation_Allele2', 20)
-		MAFEntry.__register_column__('Match_Norm_Validation_Allele1', 21)
-		MAFEntry.__register_column__('Match_Norm_Validation_Allele2', 22)
-		MAFEntry.__register_column__('Verification_Status', 23)
-		MAFEntry.__register_column__('Validation_Status', 24)
-		MAFEntry.__register_column__('Mutation_Status', 25)
-		MAFEntry.__register_column__('Sequencing_Phase', 26)
-		MAFEntry.__register_column__('Sequence_Source', 27)
-		MAFEntry.__register_column__('Validation_Method', 28)
-		MAFEntry.__register_column__('Score', 29)
-		MAFEntry.__register_column__('Bam_File', 30)
-		MAFEntry.__register_column__('Sequencer', 31)
-		MAFEntry.__register_column__('Tumor_Sample_UUID', 32)
-		MAFEntry.__register_column__('Matched_Norm_Sample_UUID', 33)
-		MAFEntry.__register_column__('File_Name', 34)
-		MAFEntry.__register_column__('Archive_Name', 35)
-		MAFEntry.__register_column__('Line_Number', 36)
+	@classmethod
+	def __initialize_class__(cls):
+		cls.__register_column__('Hugo_Symbol', 0)
+		cls.__register_column__('hEntrez_Gene_Id', 1)
+		cls.__register_column__('Center', 2)
+		cls.__register_column__('Ncbi_Build', 3)
+		cls.__register_column__('Chrom', 4)
+		cls.__register_column__('Start_Position', 5)
+		cls.__register_column__('End_Position', 6)
+		cls.__register_column__('Strand', 7)
+		cls.__register_column__('Variant_Classification', 8)
+		cls.__register_column__('Variant_Type', 9)
+		cls.__register_column__('Reference_Allele', 10)
+		cls.__register_column__('Tumor_Seq_Allele1', 11)
+		cls.__register_column__('Tumor_Seq_Allele2', 12)
+		cls.__register_column__('Dbsnp_Rs', 13)
+		cls.__register_column__('Dbsnp_Val_Status', 14)
+		cls.__register_column__('Tumor_Sample_Barcode', 15)
+		cls.__register_column__('Matched_Norm_Sample_Barcode', 16)
+		cls.__register_column__('Match_Norm_Seq_Allele1', 17)
+		cls.__register_column__('Match_Norm_Seq_Allele2', 18)
+		cls.__register_column__('Tumor_Validation_Allele1', 19)
+		cls.__register_column__('Tumor_Validation_Allele2', 20)
+		cls.__register_column__('Match_Norm_Validation_Allele1', 21)
+		cls.__register_column__('Match_Norm_Validation_Allele2', 22)
+		cls.__register_column__('Verification_Status', 23)
+		cls.__register_column__('Validation_Status', 24)
+		cls.__register_column__('Mutation_Status', 25)
+		cls.__register_column__('Sequencing_Phase', 26)
+		cls.__register_column__('Sequence_Source', 27)
+		cls.__register_column__('Validation_Method', 28)
+		cls.__register_column__('Score', 29)
+		cls.__register_column__('Bam_File', 30)
+		cls.__register_column__('Sequencer', 31)
+		cls.__register_column__('Tumor_Sample_UUID', 32)
+		cls.__register_column__('Matched_Norm_Sample_UUID', 33)
+		cls.__register_column__('File_Name', 34)
+		cls.__register_column__('Archive_Name', 35)
+		cls.__register_column__('Line_Number', 36)
 		return
 
 	def __init__(self):
@@ -107,8 +107,8 @@ class MAFEntry:
 		self.Line_Number = ""
 		return
 
-	@staticmethod
-	def process_line(line):
+	@classmethod
+	def process_line(cls, line):
 		if line is None or line == "" or line == "Hugo_Symbol	Entrez_Gene_Id	Center	Ncbi_Build	Chrom	" \
 			"Start_Position	End_Position	Strand	Variant_Classification	Variant_Type	Reference_Allele	" \
 			"Tumor_Seq_Allele1	Tumor_Seq_Allele2	Dbsnp_Rs	Dbsnp_Val_Status	Tumor_Sample_Barcode	" \
@@ -123,7 +123,7 @@ class MAFEntry:
 			print("line does not have correct # of columns (37)", file=sys.stderr)
 			print("processing line: '%s'" % line, file=sys.stderr)
 			sys.exit(-1)
-		entry = MAFEntry()
+		entry = cls()
 		entry.Hugo_Symbol = columns[0]
 		entry.Entrez_Gene_Id = columns[1]
 		entry.Center = columns[2]
