@@ -103,6 +103,7 @@ def main():
 	out_handles = handle_outpath_arg(args, parser)
 
 	entries = MAFreader.MAFFile.get_all_entries_from_filehandle(args.maf)
+	args.maf.close()
 
 	for entry in entries:
 		for counter in counters:

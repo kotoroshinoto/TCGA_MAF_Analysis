@@ -12,9 +12,12 @@ class MAFSampleCountsList:
 	def __init__(self):
 		self.counts = dict()
 
+	def __contains__(self, item):
+		return item in self.counts
+
 	@contract(sample_key='str', returns='int, >0')
 	def get_count(self, sample_key: 'str') -> 'int':
-		if sample_key in  self.counts:
+		if sample_key in self.counts:
 			return self.counts[sample_key]
 		return None
 
@@ -52,10 +55,10 @@ class MAFSampleCountsList:
 		if len(bound_list) < 1:
 			print()
 		bounds_fixed = self.__class__.fix_boundaries(bound_list)
-		print("splitting on boundaries: %s" % (", ".join(str(x) for x in bounds_fixed)))
+		print("splitting on boundaries: %s" % (", ".join(str(x) for x in bounds_fixed)), file=sys.stderr)
 		remaining_list = self
 		for boundary in bounds_fixed:
-			print("splitting on boundary: %d" % boundary)
+			# print("splitting on boundary: %d" % boundary)
 			tmp_list = remaining_list.__split_single__(boundary)
 			result_lists.append(tmp_list[0])
 			remaining_list = tmp_list[1]
@@ -65,7 +68,7 @@ class MAFSampleCountsList:
 	@contract(boundary='int, >0', returns='list[2]')
 	def __split_single__(self, boundary: 'int') -> 'list[MAFSampleCountsList]':
 		#TODO finish porting internal splitter
-		print("[__split_single__] boundary: %d" % boundary)
+		# print("[__split_single__] boundary: %d" % boundary)
 		splitlists = list()
 		""":type : list[MAFSampleCountsList]"""
 

@@ -68,55 +68,22 @@ class MAFEntry:
 		return
 
 	def __init__(self):
-		self.Hugo_Symbol = ""
-		self.Entrez_Gene_Id = ""
-		self.Center = ""
-		self.Ncbi_Build = ""
-		self.Chrom = ""
-		self.Start_Position = ""
-		self.End_Position = ""
-		self.Strand = ""
-		self.Variant_Classification = ""
-		self.Variant_Type = ""
-		self.Reference_Allele = ""
-		self.Tumor_Seq_Allele1 = ""
-		self.Tumor_Seq_Allele2 = ""
-		self.Dbsnp_Rs = ""
-		self.Dbsnp_Val_Status = ""
-		self.Tumor_Sample_Barcode = ""
-		self.Matched_Norm_Sample_Barcode = ""
-		self.Match_Norm_Seq_Allele1 = ""
-		self.Match_Norm_Seq_Allele2 = ""
-		self.Tumor_Validation_Allele1 = ""
-		self.Tumor_Validation_Allele2 = ""
-		self.Match_Norm_Validation_Allele1 = ""
-		self.Match_Norm_Validation_Allele2 = ""
-		self.Verification_Status = ""
-		self.Validation_Status = ""
-		self.Mutation_Status = ""
-		self.Sequencing_Phase = ""
-		self.Sequence_Source = ""
-		self.Validation_Method = ""
-		self.Score = ""
-		self.Bam_File = ""
-		self.Sequencer = ""
-		self.Tumor_Sample_UUID = ""
-		self.Matched_Norm_Sample_UUID = ""
-		self.File_Name = ""
-		self.Archive_Name = ""
-		self.Line_Number = ""
-		return
+		self.data = dict()
 
 	@classmethod
-	def process_line(cls, line):
-		if line is None or line == "" or line == "Hugo_Symbol	Entrez_Gene_Id	Center	Ncbi_Build	Chrom	" \
+	def get_header_line(cls):
+		return "Hugo_Symbol	Entrez_Gene_Id	Center	Ncbi_Build	Chrom	" \
 			"Start_Position	End_Position	Strand	Variant_Classification	Variant_Type	Reference_Allele	" \
 			"Tumor_Seq_Allele1	Tumor_Seq_Allele2	Dbsnp_Rs	Dbsnp_Val_Status	Tumor_Sample_Barcode	" \
 			"Matched_Norm_Sample_Barcode	Match_Norm_Seq_Allele1	Match_Norm_Seq_Allele2	" \
 			"Tumor_Validation_Allele1	Tumor_Validation_Allele2	Match_Norm_Validation_Allele1	" \
 			"Match_Norm_Validation_Allele2	Verification_Status	Validation_Status	Mutation_Status	Sequencing_Phase" \
 			"	Sequence_Source	Validation_Method	Score	Bam_File	Sequencer	Tumor_Sample_UUID	" \
-			"Matched_Norm_Sample_UUID	File_Name	Archive_Name	Line_Number":
+			"Matched_Norm_Sample_UUID	File_Name	Archive_Name	Line_Number"
+
+	@classmethod
+	def process_line(cls, line):
+		if line is None or line == "" or line == cls.get_header_line():
 			return None
 		columns = line.split("\t")
 		if len(columns) != 37:
@@ -124,52 +91,17 @@ class MAFEntry:
 			print("processing line: '%s'" % line, file=sys.stderr)
 			sys.exit(-1)
 		entry = cls()
-		entry.Hugo_Symbol = columns[0]
-		entry.Entrez_Gene_Id = columns[1]
-		entry.Center = columns[2]
-		entry.Ncbi_Build = columns[3]
-		entry.Chrom = columns[4]
-		entry.Start_Position = columns[5]
-		entry.End_Position = columns[6]
-		entry.Strand = columns[7]
-		entry.Variant_Classification = columns[8]
-		entry.Variant_Type = columns[9]
-		entry.Reference_Allele = columns[10]
-		entry.Tumor_Seq_Allele1 = columns[11]
-		entry.Tumor_Seq_Allele2 = columns[12]
-		entry.Dbsnp_Rs = columns[13]
-		entry.Dbsnp_Val_Status = columns[14]
-		entry.Tumor_Sample_Barcode = columns[15]
-		entry.Matched_Norm_Sample_Barcode = columns[16]
-		entry.Match_Norm_Seq_Allele1 = columns[17]
-		entry.Match_Norm_Seq_Allele2 = columns[18]
-		entry.Tumor_Validation_Allele1 = columns[19]
-		entry.Tumor_Validation_Allele2 = columns[20]
-		entry.Match_Norm_Validation_Allele1 = columns[21]
-		entry.Match_Norm_Validation_Allele2 = columns[22]
-		entry.Verification_Status = columns[23]
-		entry.Validation_Status = columns[24]
-		entry.Mutation_Status = columns[25]
-		entry.Sequencing_Phase = columns[26]
-		entry.Sequence_Source = columns[27]
-		entry.Validation_Method = columns[28]
-		entry.Score = columns[29]
-		entry.Bam_File = columns[30]
-		entry.Sequencer = columns[31]
-		entry.Tumor_Sample_UUID = columns[32]
-		entry.Matched_Norm_Sample_UUID = columns[33]
-		entry.File_Name = columns[34]
-		entry.Archive_Name = columns[35]
-		entry.Line_Number = columns[36]
+		for i in range(0,len(columns)):
+			entry.data[cls.get_heading(i)] = columns[i]
 		return entry
 
 	def determine_mutation(self):
 		tmr = list()
 		nrm = list()
-		nrm.append(self.Match_Norm_Seq_Allele1)
-		nrm.append(self.Match_Norm_Seq_Allele2)
-		tmr.append(self.Tumor_Seq_Allele1)
-		tmr.append(self.Tumor_Seq_Allele2)
+		nrm.append(self.data['Match_Norm_Seq_Allele1'])
+		nrm.append(self.data['Match_Norm_Seq_Allele2'])
+		tmr.append(self.data['Tumor_Seq_Allele1'])
+		tmr.append(self.data['Tumor_Seq_Allele2'])
 
 		if len(nrm[0]) > 1 or len(nrm[1]) > 1 or len(tmr[0]) > 1 or len(tmr[1]) > 1:
 			return ['MNC']
@@ -266,6 +198,13 @@ class MAFEntry:
 				return ["NO_MUTATION"]
 			#signal unrecognized condition via a None in a list should not be logically possible
 			return [None]
+
+	def __str__(self):
+		cols = list()
+		for i in range(0,37):
+			cols.append(self.data[self.__class__.get_heading(i)])
+		return "\t".join(cols)
+
 MAFEntry.__initialize_class__()
 
 
@@ -377,3 +316,4 @@ class MAFFile:
 
 	def get_line_count(self):
 		return self.line_count
+
