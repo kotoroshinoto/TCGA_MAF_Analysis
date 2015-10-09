@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 import argparse
-import sys
 import os
-import Annotation.MAF.File_Handlers.MAFreader as MAFreader
-from Annotation.CUSTOM.MAFSampleCountsList import MAFSampleCountsList
+
+import MAFreader as MAFreader
+from MAFSampleCountsList import MAFSampleCountsList
+
 __author__ = 'mgooch'
 
 
@@ -59,12 +60,14 @@ def main():
 		for i in range(0, len(split_list)):
 			if entry.data[MAFreader.MAFEntry.get_heading(args.key)] in split_list[i]:
 				if target_list != -1:
-					parser.exit(-1, "MAF entry: %s, is in multiple lists\n" % entry.data[MAFreader.MAFEntry.get_heading(args.key)])
+					parser.exit(-1, "MAF entry: %s, is in multiple lists\n" % entry.data[
+						MAFreader.MAFEntry.get_heading(args.key)])
 				target_list = i
 				# print("key %s belongs in list # %d" % (entry.data[MAFreader.MAFEntry.get_heading(args.key)], i))
 				print("%s" % entry, file=handles[i])
 		if target_list == -1:
-			parser.exit(-1, "MAF key: %s, doesn't exist in any of the lists\n" % entry.data[MAFreader.MAFEntry.get_heading(args.key)])
+			parser.exit(-1, "MAF key: %s, doesn't exist in any of the lists\n" % entry.data[
+				MAFreader.MAFEntry.get_heading(args.key)])
 	# for i in range(0, len(split_list)):
 	# 	print("list # %d" % i)
 	# 	print("%s" % split_list[i])

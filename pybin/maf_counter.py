@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 import argparse
-import sys
 import os
-import inspect
-import Annotation.MAF.File_Handlers.MAFreader as MAFreader
-import Annotation.MAF.Counters.MAFcounters as MAFcounters
+import sys
+
+import MAFcounters as MAFcounters
+import MAFreader as MAFreader
 
 __author__ = 'mgooch'
 
