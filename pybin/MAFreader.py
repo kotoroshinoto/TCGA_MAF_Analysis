@@ -201,7 +201,7 @@ class MAFEntry:
 
 	def __str__(self):
 		cols = list()
-		for i in range(0,37):
+		for i in range(0, 37):
 			cols.append(self.data[self.__class__.get_heading(i)])
 		return "\t".join(cols)
 

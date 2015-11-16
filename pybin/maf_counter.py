@@ -89,7 +89,8 @@ def handle_action_args(args, parser):
 		counters["GENE"] = MAFcounters.GeneMutCounter()
 	return counters
 
-def main():
+
+def get_parser() -> argparse.ArgumentParser:
 	parser = argparse.ArgumentParser(description="Count # of entries per gene in MAF file")
 	parser.add_argument('--maf', type=argparse.FileType('r'), required=True, help="file containing MAF entries")
 	parser.add_argument('--out', type=str, required=False, default="", help='path to use for output files')
@@ -97,6 +98,11 @@ def main():
 	parser.add_argument('--muttype', action='store_true', default=False, required=False, help="activate counting according to mutation types")
 	parser.add_argument('--sample', action='store_true', default=False, required=False, help="activate counting according to sample ID")
 	parser.add_argument('--gene', action='store_true', default=False, required=False, help="activate counting according to gene symbol")
+	return parser
+
+
+def main():
+	parser = get_parser()
 	args = parser.parse_args()
 
 	counters = handle_action_args(args, parser)

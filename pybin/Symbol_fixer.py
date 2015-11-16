@@ -47,8 +47,17 @@ class MappingInputFile:
 # TODO make name fixer scripts work on either actual MAF files or custom files with numbered columns
 
 
-def main():
+def get_parser() -> argparse.ArgumentParser:
 	parser = argparse.ArgumentParser(description="Fix names in TCGA MAF file to match names in newer annotations")
+	#TODO subcommands for MAF filetype and TSV with selected columns
+	#TODO flag values for specific fixing steps
+	#TODO input for manually curated names
+	#TODO option for logging as when done manually
+	return parser
+
+
+def main():
+	parser = get_parser()
 	args = parser.parse_args()
 	return
 
