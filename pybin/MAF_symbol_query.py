@@ -10,8 +10,9 @@ def get_parser() -> argparse.ArgumentParser:
 	parser.add_argument('--out', type=argparse.FileType('w'), required=False, default=sys.stdout, help='path to file for output')
 	query_mutex_group = parser.add_mutually_exclusive_group(required=True)
 	query_mutex_group.add_argument('--query_list', type=str, nargs='+', help="list of gene symbols to use in query")
-	query_mutex_group.add_argument('--query_file', type=argparse.FileType('r'), help="path to file containing list of gene symbols to use in query")
-	parser.add_argument("--query_file_column", type=int, help="if query_file is TSV, select a column with this argument")
+	query_file_column_group = query_mutex_group.add_argument_group()
+	query_file_column_group.add_argument('--query_file', type=argparse.FileType('r'), help="path to file containing list of gene symbols to use in query")
+	query_file_column_group.add_argument("--query_file_column", type=int, help="if query_file is TSV, select a column with this argument")
 	return parser
 
 

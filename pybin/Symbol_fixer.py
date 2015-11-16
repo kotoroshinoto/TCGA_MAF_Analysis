@@ -59,6 +59,37 @@ def get_parser() -> argparse.ArgumentParser:
 def main():
 	parser = get_parser()
 	args = parser.parse_args()
+	#keep a list of the names that have been corrected or were already fine in a dict
+	#the dict value should tell us which category they fell into
+	#use classes with standard API for handling MAF vs more generic TSV input
+	#output only corrected or already-correct entries into main output file, have a separate file for non-fixed entries
+
+	#prep steps
+	#read in all lists, many will need columns to be specified
+	#symbolcheck file
+	#^produced by giving output from MAF_collect_unique_symbols.py to http://www.genenames.org/cgi-bin/symbol_checker
+	#entrez ID -> hugo symbol file
+	#lengths file (produced by exon_sizer.py)
+	#manual curation file
+
+
+
+
+	#name fix steps:
+	#check against lengths file -- pre-screen names that already match
+
+	#attempt fix using entrez IDs
+	#check against lengths file  -- mark as corrected using entrez
+	#REMINDER: ignore zeroes
+
+	#attempt fix using symbolchecker output
+	#check against lengths file -- mark as corrected using symbolcheck
+
+	#attempt fix using manual curation file
+	#check against lengths file -- mark as corrected using manual curation
+
+	#print to output files and logs
+
 	return
 
 

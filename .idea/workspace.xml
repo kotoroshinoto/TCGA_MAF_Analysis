@@ -2,21 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93cd2a26-0973-445f-bada-db8d4c112c18" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pybin/MAF_symbol_query.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/pybin/maf_counter.py" afterPath="$PROJECT_DIR$/pybin/MAF_counter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/MAFSampleCountsList.py" afterPath="$PROJECT_DIR$/pybin/MAFSampleCountsList.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/MAF_collect_unique_entrez_ids.py" afterPath="$PROJECT_DIR$/pybin/MAF_collect_unique_entrez_ids.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/MAF_collect_unique_symbols.py" afterPath="$PROJECT_DIR$/pybin/MAF_collect_unique_symbols.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/MAFcounters.py" afterPath="$PROJECT_DIR$/pybin/MAFcounters.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/MAFreader.py" afterPath="$PROJECT_DIR$/pybin/MAFreader.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/MAF_symbol_query.py" afterPath="$PROJECT_DIR$/pybin/MAF_symbol_query.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/Symbol_fixer.py" afterPath="$PROJECT_DIR$/pybin/Symbol_fixer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/check_against_lengths_file.py" afterPath="$PROJECT_DIR$/pybin/check_against_lengths_file.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/exon_sizer.py" afterPath="$PROJECT_DIR$/pybin/exon_sizer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/maf_counter.py" afterPath="$PROJECT_DIR$/pybin/maf_counter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/parse_symbolcheck_output.py" afterPath="$PROJECT_DIR$/pybin/parse_symbolcheck_output.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/split_maf_with_counts.py" afterPath="$PROJECT_DIR$/pybin/split_maf_with_counts.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/update_names_entrez.py" afterPath="$PROJECT_DIR$/pybin/update_names_entrez.py" />
     </list>
     <ignored path="TCGA_MAF_Analysis.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,9 +30,21 @@
       <file leaf-file-name="MAF_symbol_query.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pybin/MAF_symbol_query.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.20293123">
+              <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="54" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Symbol_fixer.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pybin/Symbol_fixer.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+              <folding>
+                <element signature="e#23#33#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -94,6 +95,7 @@
         <option value="$PROJECT_DIR$/pybin/split_maf_with_counts.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/pybin/Symbol_fixer.py" />
+        <option value="$PROJECT_DIR$/pybin/MAF_symbol_query.py" />
       </list>
     </option>
   </component>
@@ -103,10 +105,9 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1296" />
-    <option name="height" value="959" />
+    <option name="y" value="31" />
+    <option name="width" value="1920" />
+    <option name="height" value="1018" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -133,8 +134,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -183,6 +182,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -584,10 +585,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="959" extended-state="6" />
-    <editor active="false" />
+    <frame x="0" y="31" width="1920" height="1018" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.246875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24686192" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962963" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32983682" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -680,11 +681,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="24" column="16" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybin/maf_counter.py">
+    <entry file="file://$PROJECT_DIR$/pybin/MAF_counter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="38" column="10" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
@@ -712,7 +712,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybin/maf_counter.py">
+    <entry file="file://$PROJECT_DIR$/pybin/MAF_counter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="38" column="10" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
@@ -754,7 +754,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybin/maf_counter.py">
+    <entry file="file://$PROJECT_DIR$/pybin/MAF_counter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="38" column="10" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
@@ -782,7 +782,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybin/maf_counter.py">
+    <entry file="file://$PROJECT_DIR$/pybin/MAF_counter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="38" column="10" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
@@ -915,7 +915,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybin/maf_counter.py">
+    <entry file="file://$PROJECT_DIR$/pybin/MAF_counter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.2771084">
           <caret line="105" column="20" selection-start-line="105" selection-start-column="20" selection-end-line="105" selection-end-column="20" />
@@ -976,7 +976,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="24" column="16" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -984,7 +983,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1000,14 +998,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.76613885">
           <caret line="41" column="4" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pybin/Symbol_fixer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.929471">
-          <caret line="51" column="30" selection-start-line="51" selection-start-column="30" selection-end-line="51" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
           <folding>
             <element signature="e#23#33#0" expanded="true" />
           </folding>
@@ -1016,8 +1013,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pybin/MAF_symbol_query.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.20293123">
+          <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="54" />
           <folding />
         </state>
       </provider>
