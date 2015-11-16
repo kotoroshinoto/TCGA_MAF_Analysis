@@ -100,8 +100,10 @@ def cli():
 @click.option('--lengths', type=(click.File('r'), int), help="path to lengths file, name column")
 @click.option('--symbolcheck', type=(click.File('r'), int, int, int), help="path to symbolcheck file, input column, match type column, approved symbol column")
 @click.option('--entrez', type=(click.File('r'), int, int), help="path to entrez file, hugo symbol column, entrez id column")
+@click.option('--manual', (click.File('r'), int, int), help="path to file containing manually curated names, oldname column, newname column")
 @click.option('--name_to_entrez', type=click.File('r'), help="output from MAF_collect_unique_entrez_ids.py")
-def tsv_input():
+def tsv_command():
+	#TODO validate option validity
 	return
 
 @click.command()
@@ -109,7 +111,9 @@ def tsv_input():
 @click.option('--lengths', type=(click.File('r'), int), help="path to lengths file, name column")
 @click.option('--symbolcheck', type=(click.File('r'), int, int, int), help="path to symbolcheck file, input column, match type column, approved symbol column")
 @click.option('--entrez', type=(click.File('r'), int, int), help="path to entrez file, hugo symbol column, entrez id column")
-def tsv_with_entrez_input():
+@click.option('--manual', (click.File('r'), int, int), help="path to file containing manually curated names, oldname column, newname column")
+def tsv_with_entrez_command():
+	#TODO validate option validity
 	return
 
 @click.command()
@@ -117,11 +121,13 @@ def tsv_with_entrez_input():
 @click.option('--lengths', type=(click.File('r'), int), help="path to lengths file, name column")
 @click.option('--symbolcheck', type=(click.File('r'), int, int, int), help="path to symbolcheck file, input column, match type column, approved symbol column")
 @click.option('--entrez', type=(click.File('r'), int, int), help="path to entrez file, hugo symbol column, entrez id column")
-def maf_input():
+@click.option('--manual', (click.File('r'), int, int), help="path to file containing manually curated names, oldname column, newname column")
+def maf_command():
+	#TODO validate option validity
 	return
 
-cli.add_command(maf_input, name="MAF")
-cli.add_command(tsv_input, name="TSV")
-cli.add_command(tsv_with_entrez_input, name="TSV-ENTREZ")
+cli.add_command(maf_command, name="MAF")
+cli.add_command(tsv_command, name="TSV")
+cli.add_command(tsv_with_entrez_command, name="TSV-ENTREZ")
 if __name__ == "__main__":
 	cli()
