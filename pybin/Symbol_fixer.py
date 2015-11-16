@@ -100,12 +100,12 @@ def cli():
 @click.option('--lengths', type=(click.File('r'), int), help="path to lengths file, name column")
 @click.option('--symbolcheck', type=(click.File('r'), int, int, int), help="path to symbolcheck file, input column, match type column, approved symbol column")
 @click.option('--entrez', type=(click.File('r'), int, int), help="path to entrez file, hugo symbol column, entrez id column")
-@click.option('--name_to_entrez', type=click.File('r'), required=True, help="output from MAF_collect_unique_entrez_ids.py")
+@click.option('--name_to_entrez', type=click.File('r'), help="output from MAF_collect_unique_entrez_ids.py")
 def tsv_input():
 	return
 
 @click.command()
-@click.option('--input', type=(click.File('r'), int, int), required=True, help="path to file containing names, symbol column, entrez column")
+@click.option('--input', type=(click.File('r'), int, int), required=True, help="path to file containing names and entrez ids, symbol column, entrez column")
 @click.option('--lengths', type=(click.File('r'), int), help="path to lengths file, name column")
 @click.option('--symbolcheck', type=(click.File('r'), int, int, int), help="path to symbolcheck file, input column, match type column, approved symbol column")
 @click.option('--entrez', type=(click.File('r'), int, int), help="path to entrez file, hugo symbol column, entrez id column")
