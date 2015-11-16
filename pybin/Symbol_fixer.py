@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import sys
 import os
-import argparse
+import click
 
 
 class GeneSymbolMapper:
@@ -47,23 +47,7 @@ class MappingInputFile:
 # TODO make name fixer scripts work on either actual MAF files or custom files with numbered columns
 
 
-def get_parser() -> argparse.ArgumentParser:
-	parser = argparse.ArgumentParser(description="Fix names in TCGA MAF file to match names in newer annotations")
-	#TODO subcommands for MAF filetype and TSV with selected columns
-	#TODO flag values for specific fixing steps
-	#TODO input for manually curated names
-	#TODO option for logging as when done manually
-	return parser
-
-
-def main():
-	parser = get_parser()
-	args = parser.parse_args()
-	#keep a list of the names that have been corrected or were already fine in a dict
-	#the dict value should tell us which category they fell into
-	#use classes with standard API for handling MAF vs more generic TSV input
-	#output only corrected or already-correct entries into main output file, have a separate file for non-fixed entries
-
+def prep_steps():
 	#prep steps
 	#read in all lists, many will need columns to be specified
 	#symbolcheck file
@@ -71,9 +55,15 @@ def main():
 	#entrez ID -> hugo symbol file
 	#lengths file (produced by exon_sizer.py)
 	#manual curation file
+	return
 
 
+def fix_names():
 
+	#keep a list of the names that have been corrected or were already fine in a dict
+	#the dict value should tell us which category they fell into
+	#use classes with standard API for handling MAF vs more generic TSV input
+	#output only corrected or already-correct entries into main output file, have a separate file for non-fixed entries
 
 	#name fix steps:
 	#check against lengths file -- pre-screen names that already match
@@ -89,9 +79,49 @@ def main():
 	#check against lengths file -- mark as corrected using manual curation
 
 	#print to output files and logs
-
 	return
 
 
+# def get_parser() -> argparse.ArgumentParser:
+# 	parser = argparse.ArgumentParser(description="Fix names in TCGA MAF file to match names in newer annotations")
+# 	#TODO subcommands for MAF filetype and TSV with selected columns
+# 	#TODO flag values for specific fixing steps
+# 	#TODO input for manually curated names
+# 	#TODO option for logging as when done manually
+# 	return parser
+
+@click.group()
+def cli():
+	pass
+
+
+@click.command()
+@click.option('--input', type=(click.File('r'), int), required=True, help="path to file containing names, and the column to read")
+@click.option('--lengths', type=(click.File('r'), int), help="path to lengths file, name column")
+@click.option('--symbolcheck', type=(click.File('r'), int, int, int), help="path to symbolcheck file, input column, match type column, approved symbol column")
+@click.option('--entrez', type=(click.File('r'), int, int), help="path to entrez file, hugo symbol column, entrez id column")
+@click.option('--name_to_entrez', type=click.File('r'), required=True, help="output from MAF_collect_unique_entrez_ids.py")
+def tsv_input():
+	return
+
+@click.command()
+@click.option('--input', type=(click.File('r'), int, int), required=True, help="path to file containing names, symbol column, entrez column")
+@click.option('--lengths', type=(click.File('r'), int), help="path to lengths file, name column")
+@click.option('--symbolcheck', type=(click.File('r'), int, int, int), help="path to symbolcheck file, input column, match type column, approved symbol column")
+@click.option('--entrez', type=(click.File('r'), int, int), help="path to entrez file, hugo symbol column, entrez id column")
+def tsv_with_entrez_input():
+	return
+
+@click.command()
+@click.option('--input', type=click.File('r'), required=True, help="path to maf file")
+@click.option('--lengths', type=(click.File('r'), int), help="path to lengths file, name column")
+@click.option('--symbolcheck', type=(click.File('r'), int, int, int), help="path to symbolcheck file, input column, match type column, approved symbol column")
+@click.option('--entrez', type=(click.File('r'), int, int), help="path to entrez file, hugo symbol column, entrez id column")
+def maf_input():
+	return
+
+cli.add_command(maf_input, name="MAF")
+cli.add_command(tsv_input, name="TSV")
+cli.add_command(tsv_with_entrez_input, name="TSV-ENTREZ")
 if __name__ == "__main__":
-	main()
+	cli()
