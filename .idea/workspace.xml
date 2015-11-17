@@ -38,8 +38,8 @@
       <file leaf-file-name="Symbol_fixer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pybin/Symbol_fixer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3709091">
-              <caret line="56" column="31" selection-start-line="56" selection-start-column="31" selection-end-line="56" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.5890909">
+              <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
               <folding>
                 <element signature="e#23#33#0" expanded="true" />
               </folding>
@@ -598,7 +598,13 @@
       <option name="project" value="LOCAL" />
       <updated>1447717539423</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="abstract base classes">
+      <created>1447719301226</created>
+      <option name="number" value="00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1447719301226</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -669,7 +675,8 @@
     <MESSAGE value="learning how to use click" />
     <MESSAGE value="minor oops" />
     <MESSAGE value="renamed functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="renamed functions" />
+    <MESSAGE value="abstract base classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="abstract base classes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1039,8 +1046,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pybin/Symbol_fixer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3709091">
-          <caret line="56" column="31" selection-start-line="56" selection-start-column="31" selection-end-line="56" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.5890909">
+          <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
           <folding>
             <element signature="e#23#33#0" expanded="true" />
           </folding>

@@ -69,7 +69,7 @@ class SymbolFixContextMAF(AbstractSymbolFixContext):
 		super(SymbolFixContextMAF, self).__init__()
 		return
 
-def prep_steps():
+def prep_steps(context: AbstractSymbolFixContext):
 	#prep steps
 	#read in all lists, many will need columns to be specified
 	#symbolcheck file
@@ -80,7 +80,19 @@ def prep_steps():
 	return
 
 
-def fix_names():
+def prep_tsv_with_entrez(context: AbstractSymbolFixContext):
+	return
+
+
+def prep_maf(context: AbstractSymbolFixContext):
+	return
+
+
+def prep_tsv(context: AbstractSymbolFixContext):
+	return
+
+
+def fix_names(context: AbstractSymbolFixContext):
 
 	#keep a list of the names that have been corrected or were already fine in a dict
 	#the dict value should tell us which category they fell into
