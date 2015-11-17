@@ -2,7 +2,7 @@
 import sys
 import os
 import click
-
+import abc
 
 class GeneSymbolMapper:
 	def __init__(self):
@@ -46,6 +46,28 @@ class MappingInputFile:
 # TODO merge functionality of all the name fixer scripts into one file for ease of use
 # TODO make name fixer scripts work on either actual MAF files or custom files with numbered columns
 
+
+class AbstractSymbolFixContext:
+	__metaclass__ = abc.ABCMeta
+
+	def __init__(self):
+		return
+
+	@abc.abstractmethod
+	def getSymbol(self, index):
+		return
+
+
+class SymbolFixContextTSV(AbstractSymbolFixContext):
+	def __init__(self):
+		super(SymbolFixContextTSV, self).__init__()
+		return
+
+
+class SymbolFixContextMAF(AbstractSymbolFixContext):
+	def __init__(self):
+		super(SymbolFixContextMAF, self).__init__()
+		return
 
 def prep_steps():
 	#prep steps
