@@ -11,7 +11,6 @@ setup(
 	packages=find_packages(),
 	include_package_data=True,
 	install_requires=['Click>=5.1'],
-	setup_requires=['Click>=5.1'],
 	description="tools for working with TSV and MAF files",
 	long_description="""\
 	Several scripts for working with MAF files and TSV files. Fixing symbol names, querying large TSV files, etc.
