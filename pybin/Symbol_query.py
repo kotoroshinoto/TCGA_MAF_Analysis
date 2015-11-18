@@ -24,7 +24,7 @@ def log_unmatched_symbols():
 
 
 @click.group(no_args_is_help=True)
-@click.option('--out', type=click.File('w'), required=False, default=sys.stdout, help='path to file for output')
+@click.option('--out', type=click.File('w'), required=False, default=sys.stdout, help='path to file for query output, defaults to <stdout>')
 @click.option('--unmatched', type=click.File('w'), required=False, default=None, help='if defined, write unmatched symbols to file')
 def cli(out, unmatched):
 	"""Query MAF file for entries that have desired gene symbols"""
