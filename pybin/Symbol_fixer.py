@@ -4,6 +4,7 @@ import os
 import click
 import abc
 
+
 class GeneSymbolMapper:
 	def __init__(self):
 		self.__symbols = dict()
@@ -48,26 +49,26 @@ class MappingInputFile:
 
 
 class AbstractSymbolFixContext:
-	__metaclass__ = abc.ABCMeta
+	# __metaclass__ = abc.ABCMeta
 
 	def __init__(self):
 		return
 
-	@abc.abstractmethod
+	# @abc.abstractmethod
 	def getSymbol(self, index):
 		return
 
 
-class SymbolFixContextTSV(AbstractSymbolFixContext):
-	def __init__(self):
-		super(SymbolFixContextTSV, self).__init__()
-		return
-
-
-class SymbolFixContextMAF(AbstractSymbolFixContext):
-	def __init__(self):
-		super(SymbolFixContextMAF, self).__init__()
-		return
+# class SymbolFixContextTSV(AbstractSymbolFixContext):
+# 	def __init__(self):
+# 		super(SymbolFixContextTSV, self).__init__()
+# 		return
+#
+#
+# class SymbolFixContextMAF(AbstractSymbolFixContext):
+# 	def __init__(self):
+# 		super(SymbolFixContextMAF, self).__init__()
+# 		return
 
 def prep_steps(context: AbstractSymbolFixContext):
 	#prep steps
