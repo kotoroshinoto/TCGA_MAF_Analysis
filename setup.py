@@ -12,10 +12,6 @@ setup(
 	include_package_data=True,
 	install_requires=['Click>=5.1'],
 	setup_requires=['Click>=5.1'],
-	entry_points='''
-		[console_scripts]
-		symbolquery=gooch_annotation_tools.pybin.Symbol_query:cli
-		''',
 	description="tools for working with TSV and MAF files",
 	long_description="""\
 	Several scripts for working with MAF files and TSV files. Fixing symbol names, querying large TSV files, etc.
@@ -26,5 +22,8 @@ setup(
 	classifiers=[
 		"Programming Language :: Python :: 3 :: Only",
 	],
-
+	entry_points='''
+		[console_scripts]
+		symbolquery=gooch_annotation_tools.pybin.Symbol_query:cli
+		''',
 )
