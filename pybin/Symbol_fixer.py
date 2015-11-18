@@ -164,5 +164,6 @@ def maf_command():
 cli.add_command(maf_command, name="MAF")
 cli.add_command(tsv_command, name="TSV")
 cli.add_command(tsv_with_entrez_command, name="TSV-ENTREZ")
+
 if __name__ == "__main__":
 	cli()
