@@ -4,7 +4,6 @@
     <list default="true" id="93cd2a26-0973-445f-bada-db8d4c112c18" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/Symbol_query.py" afterPath="$PROJECT_DIR$/pybin/Symbol_query.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/cosmic_name_clipper.py" afterPath="$PROJECT_DIR$/pybin/cosmic_name_clipper.py" />
     </list>
     <ignored path="TCGA_MAF_Analysis.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,25 +25,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Symbol_query.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Symbol_query.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pybin/Symbol_query.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="42" column="50" selection-start-line="42" selection-start-column="50" selection-end-line="42" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.30545455">
+              <caret line="44" column="35" selection-start-line="44" selection-start-column="35" selection-end-line="44" selection-end-column="35" />
               <folding>
                 <element signature="e#23#33#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cosmic_name_clipper.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pybin/cosmic_name_clipper.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.34545454">
-              <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
-              <folding>
-                <element signature="e#23#32#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -133,8 +120,8 @@
         <option value="$PROJECT_DIR$/__init__.py" />
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/pybin/Symbol_fixer.py" />
-        <option value="$PROJECT_DIR$/pybin/Symbol_query.py" />
         <option value="$PROJECT_DIR$/pybin/cosmic_name_clipper.py" />
+        <option value="$PROJECT_DIR$/pybin/Symbol_query.py" />
       </list>
     </option>
   </component>
@@ -683,7 +670,13 @@
       <option name="project" value="LOCAL" />
       <updated>1447884129109</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="name clipper works">
+      <created>1447888688167</created>
+      <option name="number" value="00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1447888688167</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -733,7 +726,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added script to pull down biomart ensembl entries" />
     <MESSAGE value="organization changes" />
     <MESSAGE value="fixes and new script" />
     <MESSAGE value="bugfixes with whitespace handling, Changed function and name of one script." />
@@ -758,7 +750,8 @@
     <MESSAGE value="some setuptools stuff, we don't actually need to install it" />
     <MESSAGE value="minor rearrangement" />
     <MESSAGE value="created file skeleton for cosmic name fixer" />
-    <option name="LAST_COMMIT_MESSAGE" value="created file skeleton for cosmic name fixer" />
+    <MESSAGE value="name clipper works" />
+    <option name="LAST_COMMIT_MESSAGE" value="name clipper works" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1135,22 +1128,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybin/Symbol_query.py">
+    <entry file="file://$PROJECT_DIR$/pybin/cosmic_name_clipper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="50" selection-start-line="42" selection-start-column="50" selection-end-line="42" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.93454546">
+          <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
           <folding>
-            <element signature="e#23#33#0" expanded="true" />
+            <element signature="e#23#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybin/cosmic_name_clipper.py">
+    <entry file="file://$PROJECT_DIR$/pybin/Symbol_query.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34545454">
-          <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.30545455">
+          <caret line="44" column="35" selection-start-line="44" selection-start-column="35" selection-end-line="44" selection-end-column="35" />
           <folding>
-            <element signature="e#23#32#0" expanded="true" />
+            <element signature="e#23#33#0" expanded="true" />
           </folding>
         </state>
       </provider>

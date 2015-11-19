@@ -40,13 +40,13 @@ def cli(out, unmatched):
 
 @click.group(no_args_is_help=True)
 @click.argument('query', type=click.File('r'), required=True)
-@click.argument('column', type=int, required=False)
+@click.option('--column', type=int, required=False, help='if file is a TSV, provide this argument to select symbol column')
 def input_file(query, column):
 	"""query using data from a file
 
 	\b
 	QUERY\tpath to file to use for query
-	COLUMN\tif file is a TSV, provide this argument to select symbol column"""
+	"""
 	# click.echo("query from file %s" % query.name, file=sys.stderr)
 	if column is not None:
 		# click.echo("file is TSV, using column %d" % column, err=True)
