@@ -24,6 +24,6 @@ split_maf_with_counts.py<br>
 This is a work in progress. Hope to eventually combine these diverse functions into a single command-driven script.<br>
 
 #Current Tasks:
-*Complete unified name-fixing script
-*Unify all scripts into a single command-driven script
-*switch from argparse module to Click module
+- Complete unified name-fixing script
+- Unify all scripts into a single command-driven script
+- switch from argparse module to Click module
