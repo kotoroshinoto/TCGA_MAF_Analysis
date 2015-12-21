@@ -2,7 +2,7 @@
 __author__ = 'mgooch'
 import argparse
 import sys
-parser = argparse.ArgumentParser(description="Collect Unique entries from first two columns of MAF file")
+parser = argparse.ArgumentParser(description="Collect Unique entries from first two columns of TCGA file")
 parser.add_argument('--maf', type=argparse.FileType('r'), required=True, help="file to collect names from")
 parser.add_argument('--out', type=argparse.FileType('w'), required=True, help="file to use for output")
 parser.add_argument('--outNoEntrez', type=argparse.FileType('w'), help="file to use for output names lacking entrez IDs")

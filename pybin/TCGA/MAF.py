@@ -3,7 +3,7 @@ import os
 import sys
 
 
-class MAFEntry:
+class Entry:
 	column2index = dict()
 	index2column = dict()
 
@@ -127,7 +127,7 @@ class MAFEntry:
 		if nrm_same and tmr_same:
 			if nrm[0] == tmr[0]:
 				#no mutation
-				#1,1 -> 1,1 Don't expect this to be triggered, it shouldn't be in the MAF file at all
+				#1,1 -> 1,1 Don't expect this to be triggered, it shouldn't be in the TCGA file at all
 				return ["NO_MUTATION"]
 			else:
 				#mutation either of both chromosomes or paired with LOH
@@ -205,10 +205,10 @@ class MAFEntry:
 			cols.append(self.data[self.__class__.get_heading(i)])
 		return "\t".join(cols)
 
-MAFEntry.__initialize_class__()
+Entry.__initialize_class__()
 
 
-class MAFFile:
+class File:
 	@staticmethod
 	def __get_all_entries_from_lines__(lines):
 		entries = list()
@@ -216,7 +216,7 @@ class MAFFile:
 			line = line.rstrip()
 			if line == "":
 				continue
-			entry = MAFEntry.process_line(line)
+			entry = Entry.process_line(line)
 			if entry is not None:
 				entries.append(entry)
 		return entries
@@ -224,12 +224,12 @@ class MAFFile:
 	@staticmethod
 	def get_all_entries_from_path(path):
 		filehandle = open(path, mode='r')
-		return MAFFile.get_all_entries_from_filehandle(filehandle)
+		return File.get_all_entries_from_filehandle(filehandle)
 
 	@staticmethod
 	def get_all_entries_from_filehandle(filehandle):
 		lines = filehandle.readlines()
-		return MAFFile.__get_all_entries_from_lines__(lines)
+		return File.__get_all_entries_from_lines__(lines)
 
 	def __init__(self):
 		self.allow_close_handle = False
@@ -285,7 +285,7 @@ class MAFFile:
 
 	def get_next_entry(self):
 		if self.next_line is not None:
-			entry = MAFEntry.process_line(self.next_line)
+			entry = Entry.process_line(self.next_line)
 		else:
 			return None
 		self.__read_next_line_from_filehandle__()
@@ -316,4 +316,3 @@ class MAFFile:
 
 	def get_line_count(self):
 		return self.line_count
-

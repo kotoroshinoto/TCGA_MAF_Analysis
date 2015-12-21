@@ -1,9 +1,11 @@
 TCGA_MAF_Analysis
 =================
 #object-files:
-MAFcounters.py <br>
-MAFreader.py <br>
-MAFSampleCountsList.py<br>
+pybin/Cosmic/TSV.py <br>
+pybin/Cosmic/VCF.py <br>
+pybin/TCGA/MAFcounters.py <br>
+pybin/TCGA/MAF.py <br>
+pybin/TCGA/MAFSampleCountsList.py<br>
 
 #functional script files:
 
@@ -18,3 +20,10 @@ update_names_entrez.py <br>
 ##used for counting and grouping (splitting file by size boundaries): 
 maf_counter.py <br>
 split_maf_with_counts.py<br>
+
+This is a work in progress. Hope to eventually combine these diverse functions into a single command-driven script.<br>
+
+#Current Tasks:
+[ ]Complete unified name-fixing script
+[ ]Unify all scripts into a single command-driven script
+[ ]switch from argparse module to Click module

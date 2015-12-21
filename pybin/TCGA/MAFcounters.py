@@ -1,8 +1,7 @@
 __author__ = 'mgooch'
 import os
 import sys
-
-import MAFreader as MAFreader
+from . import MAF
 
 
 class FeatureCounter:
@@ -10,7 +9,7 @@ class FeatureCounter:
 		self.counts = dict()
 		self.name = None
 
-	def count(self, entry: MAFreader.MAFEntry):
+	def count(self, entry: MAF.MAFEntry):
 		return 0
 
 	def __appendcount__(self, keystring):
@@ -51,18 +50,18 @@ class FeatureCounter:
 
 
 class GeneMutCounter(FeatureCounter):
-	def count(self, entry: MAFreader.MAFEntry):
+	def count(self, entry: MAF.MAFEntry):
 		self.__appendcount__(entry.data['Hugo_Symbol'])
 
 
 class SampMutCounter(FeatureCounter):
-	def count(self, entry: MAFreader.MAFEntry):
+	def count(self, entry: MAF.MAFEntry):
 		self.__appendcount__(entry.data['Tumor_Sample_Barcode'])
 		# self.__appendcount__(entry.Tumor_Sample_UUID)
 
 
 class MutTypeCounter(FeatureCounter):
-	def count(self, entry: MAFreader.MAFEntry):
+	def count(self, entry: MAF.MAFEntry):
 		mut_type_list = entry.determine_mutation()
 		for mut_type in mut_type_list:
 			self.__appendcount__(mut_type)

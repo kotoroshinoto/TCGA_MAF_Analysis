@@ -4,7 +4,8 @@ import argparse
 import re
 import sys
 import os
-parser = argparse.ArgumentParser(description="Check MAF names against names in Gene Length files")
+
+parser = argparse.ArgumentParser(description="Check TCGA names against names in Gene Length files")
 parser.add_argument('--mafnames', type=argparse.FileType('r'), required=True, help="file of names to be translated")
 parser.add_argument('--checkcolumn', type=int, help="check this column instead of oldcolumn")
 parser.add_argument('--oldcolumn', type=int, default=0, help="this column is the original name")
@@ -25,7 +26,7 @@ checkcolumn = oldcolumn
 if args.checkcolumn is not None:
 	checkcolumn = args.checkcolumn
 
-#pull MAF names from file
+#pull TCGA names from file
 for line in args.mafnames:
 	if len(line) > 0:
 		split_line = line.split("\t")

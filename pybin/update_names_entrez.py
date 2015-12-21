@@ -18,7 +18,7 @@ args = parser.parse_args()
 
 MAF_names = dict()
 
-#pull MAF names from file
+#pull TCGA names from file
 for line in args.mafnames:
 	if len(line) > 0:
 		split_line = line.split("\t")

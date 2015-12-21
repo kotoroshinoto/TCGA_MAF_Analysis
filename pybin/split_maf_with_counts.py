@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 import argparse
 import os
-
-import MAFreader as MAFreader
-from MAFSampleCountsList import MAFSampleCountsList
+import TCGA.MAF
+import TCGA.MAFSampleCountsList
 
 __author__ = 'mgooch'
 
@@ -33,7 +32,7 @@ def generate_file_handles(args, parser, bounds, prefix=None):
 
 
 def main():
-	parser = argparse.ArgumentParser(description="Count # of entries per gene in MAF file")
+	parser = argparse.ArgumentParser(description="Count # of entries per gene in TCGA file")
 	parser.add_argument('--counts', type=argparse.FileType('r'), required=True, help="file containing sample counts")
 	parser.add_argument('--boundaries', type=int, nargs='+', required=True, help="list of boundaries for splitting")
 	parser.add_argument('--maf', type=argparse.FileType('r'), required=True, help="maf file to split")
@@ -41,8 +40,8 @@ def main():
 	parser.add_argument('--out_prefix', type=str, required=False, help="output path prefix")
 	args = parser.parse_args()
 
-	scl = MAFSampleCountsList()
-	fixed_list = MAFSampleCountsList.fix_boundaries(args.boundaries)
+	scl = TCGA.MAFSampleCountsList()
+	fixed_list = TCGA.MAFSampleCountsList.fix_boundaries(args.boundaries)
 	if args.out_prefix:
 		handles = generate_file_handles(args, parser, fixed_list, args.out_prefix)
 		""":type : list[io.TextIOBase]"""
@@ -52,22 +51,22 @@ def main():
 	scl.read_file_handle(args.counts)
 	split_list = scl.split(fixed_list)
 
-	entries = MAFreader.MAFFile.get_all_entries_from_filehandle(args.maf)
+	entries = TCGA.MAF.File.get_all_entries_from_filehandle(args.maf)
 	args.maf.close()
 
 	for entry in entries:
 		target_list = -1
 		for i in range(0, len(split_list)):
-			if entry.data[MAFreader.MAFEntry.get_heading(args.key)] in split_list[i]:
+			if entry.data[TCGA.MAF.Entry.get_heading(args.key)] in split_list[i]:
 				if target_list != -1:
-					parser.exit(-1, "MAF entry: %s, is in multiple lists\n" % entry.data[
-						MAFreader.MAFEntry.get_heading(args.key)])
+					parser.exit(-1, "TCGA entry: %s, is in multiple lists\n" % entry.data[
+						TCGA.MAF.Entry.get_heading(args.key)])
 				target_list = i
 				# print("key %s belongs in list # %d" % (entry.data[MAFreader.MAFEntry.get_heading(args.key)], i))
 				print("%s" % entry, file=handles[i])
 		if target_list == -1:
-			parser.exit(-1, "MAF key: %s, doesn't exist in any of the lists\n" % entry.data[
-				MAFreader.MAFEntry.get_heading(args.key)])
+			parser.exit(-1, "TCGA key: %s, doesn't exist in any of the lists\n" % entry.data[
+				TCGA.MAF.Entry.get_heading(args.key)])
 	# for i in range(0, len(split_list)):
 	# 	print("list # %d" % i)
 	# 	print("%s" % split_list[i])
