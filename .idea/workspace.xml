@@ -2,29 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93cd2a26-0973-445f-bada-db8d4c112c18" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pybin/Cosmic/TSV.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pybin/Cosmic/VCF.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pybin/Cosmic/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pybin/TCGA/MAF.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pybin/TCGA/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pybin/_Cosmic.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pybin/MAFreader.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/pybin/MAFSampleCountsList.py" afterPath="$PROJECT_DIR$/pybin/TCGA/MAFSampleCountsList.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/pybin/MAFcounters.py" afterPath="$PROJECT_DIR$/pybin/TCGA/MAFcounters.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/TCGA_MAF_Analysis.iml" afterPath="$PROJECT_DIR$/.idea/TCGA_MAF_Analysis.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/MAF_collect_unique_entrez_ids.py" afterPath="$PROJECT_DIR$/pybin/MAF_collect_unique_entrez_ids.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/MAF_collect_unique_symbols.py" afterPath="$PROJECT_DIR$/pybin/MAF_collect_unique_symbols.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/MAF_counter.py" afterPath="$PROJECT_DIR$/pybin/MAF_counter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/Symbol_fixer.py" afterPath="$PROJECT_DIR$/pybin/Symbol_fixer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/Symbol_query.py" afterPath="$PROJECT_DIR$/pybin/Symbol_query.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/check_against_lengths_file.py" afterPath="$PROJECT_DIR$/pybin/check_against_lengths_file.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/get_COSMIC_status.py" afterPath="$PROJECT_DIR$/pybin/get_COSMIC_status.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/split_maf_with_counts.py" afterPath="$PROJECT_DIR$/pybin/split_maf_with_counts.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/update_names_entrez.py" afterPath="$PROJECT_DIR$/pybin/update_names_entrez.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup.py" afterPath="$PROJECT_DIR$/setup.py" />
     </list>
     <ignored path="TCGA_MAF_Analysis.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -789,7 +768,13 @@
       <option name="project" value="LOCAL" />
       <updated>1447891824457</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="some code reorganization">
+      <created>1450732423192</created>
+      <option name="number" value="00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1450732423192</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -808,6 +793,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24528302" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286385" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32983682" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3266979" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -817,7 +803,6 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -839,7 +824,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixes and new script" />
     <MESSAGE value="bugfixes with whitespace handling, Changed function and name of one script." />
     <MESSAGE value="fairly major oopsie. Checking NEW names in 2 column file against length file is now possible" />
     <MESSAGE value="exon sizer now can generate a merged lengths file and same results produced as using both lengths files" />
@@ -864,7 +848,8 @@
     <MESSAGE value="created file skeleton for cosmic name fixer" />
     <MESSAGE value="name clipper works" />
     <MESSAGE value="derp" />
-    <option name="LAST_COMMIT_MESSAGE" value="derp" />
+    <MESSAGE value="some code reorganization" />
+    <option name="LAST_COMMIT_MESSAGE" value="some code reorganization" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
