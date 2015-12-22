@@ -1,7 +1,7 @@
-__author__ = 'mgooch'
 import os
 import sys
 
+__author__ = 'mgooch'
 
 class Entry:
 	column2index = dict()
@@ -127,7 +127,7 @@ class Entry:
 		if nrm_same and tmr_same:
 			if nrm[0] == tmr[0]:
 				#no mutation
-				#1,1 -> 1,1 Don't expect this to be triggered, it shouldn't be in the TCGA file at all
+				#1,1 -> 1,1 Don't expect this to be triggered, it shouldn't be in the Util file at all
 				return ["NO_MUTATION"]
 			else:
 				#mutation either of both chromosomes or paired with LOH

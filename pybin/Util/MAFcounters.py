@@ -1,7 +1,8 @@
 __author__ = 'mgooch'
 import os
 import sys
-from . import MAF
+
+from GenericFormats import MAF
 
 
 class FeatureCounter:

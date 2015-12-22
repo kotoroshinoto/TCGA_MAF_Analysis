@@ -8,7 +8,7 @@ import Cosmic
 @click.command(help="check cosmic prediction for mutation effects")
 @click.option("--vcf", type=click.File('r'), required=True, help="cosmic VCF file")
 @click.option("--cosmic", type=click.File('r'), required=True, help="cosmic TSV file")
-@click.option("--maf", type=click.File('r'), required=True, help="TCGA file to be checked")
+@click.option("--maf", type=click.File('r'), required=True, help="Util file to be checked")
 def cli(vcf, cosmic, maf):
 	pass
 

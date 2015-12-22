@@ -2,8 +2,9 @@
 import argparse
 import os
 import sys
-import TCGA.MAF
-import TCGA.MAFcounters
+
+import GenericFormats.MAF
+import Util.MAFcounters
 
 __author__ = 'mgooch'
 
@@ -81,17 +82,17 @@ def handle_action_args(args, parser):
 	if not(args.muttype or args.sample or args.gene):
 		parser.exit(-1, "must activate at least one counting mode: --muttype --sample --gene\n")
 	if args.muttype:
-		counters["MUT_TYPE"] = TCGA.MAFcounters.MutTypeCounter()
+		counters["MUT_TYPE"] = Util.MAFcounters.MutTypeCounter()
 	if args.sample:
-		counters["SAMPLE"] = TCGA.MAFcounters.SampMutCounter()
+		counters["SAMPLE"] = Util.MAFcounters.SampMutCounter()
 	if args.gene:
-		counters["GENE"] = TCGA.MAFcounters.GeneMutCounter()
+		counters["GENE"] = Util.MAFcounters.GeneMutCounter()
 	return counters
 
 
 def get_parser() -> argparse.ArgumentParser:
-	parser = argparse.ArgumentParser(description="Count # of entries per gene in TCGA file")
-	parser.add_argument('--maf', type=argparse.FileType('r'), required=True, help="file containing TCGA entries")
+	parser = argparse.ArgumentParser(description="Count # of entries per gene in Util file")
+	parser.add_argument('--maf', type=argparse.FileType('r'), required=True, help="file containing Util entries")
 	parser.add_argument('--out', type=str, required=False, default="", help='path to use for output files')
 	parser.add_argument('--nameprefix', type=str, required=False, default="", help='use this prefix in output names instead of automatically generating one')
 	parser.add_argument('--muttype', action='store_true', default=False, required=False, help="activate counting according to mutation types")
@@ -107,7 +108,7 @@ def main():
 	counters = handle_action_args(args, parser)
 	out_handles = handle_outpath_arg(args, parser)
 
-	entries = TCGA.MAF.File.get_all_entries_from_filehandle(args.maf)
+	entries = GenericFormats.MAF.File.get_all_entries_from_filehandle(args.maf)
 	args.maf.close()
 
 	for entry in entries:

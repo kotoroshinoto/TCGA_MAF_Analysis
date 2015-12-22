@@ -45,7 +45,7 @@ class MappingInputFile:
 
 
 # TODO merge functionality of all the name fixer scripts into one file for ease of use
-# TODO make name fixer scripts work on either actual TCGA files or custom files with numbered columns
+# TODO make name fixer scripts work on either actual Util files or custom files with numbered columns
 
 
 class AbstractSymbolFixContext:
@@ -97,7 +97,7 @@ def fix_names(context: AbstractSymbolFixContext):
 
 	#keep a list of the names that have been corrected or were already fine in a dict
 	#the dict value should tell us which category they fell into
-	#use classes with standard API for handling TCGA vs more generic TSV input
+	#use classes with standard API for handling Util vs more generic TSV input
 	#output only corrected or already-correct entries into main output file, have a separate file for non-fixed entries
 
 	#name fix steps:
@@ -118,8 +118,8 @@ def fix_names(context: AbstractSymbolFixContext):
 
 
 # def get_parser() -> argparse.ArgumentParser:
-# 	parser = argparse.ArgumentParser(description="Fix names in TCGA TCGA file to match names in newer annotations")
-# 	#TODO subcommands for TCGA filetype and TSV with selected columns
+# 	parser = argparse.ArgumentParser(description="Fix names in Util Util file to match names in newer annotations")
+# 	#TODO subcommands for Util filetype and TSV with selected columns
 # 	#TODO flag values for specific fixing steps
 # 	#TODO input for manually curated names
 # 	#TODO option for logging as when done manually
@@ -161,7 +161,7 @@ def maf_command():
 	#TODO validate option validity
 	return
 
-cli.add_command(maf_command, name="TCGA")
+cli.add_command(maf_command, name="Util")
 cli.add_command(tsv_command, name="TSV")
 cli.add_command(tsv_with_entrez_command, name="TSV-ENTREZ")
 
