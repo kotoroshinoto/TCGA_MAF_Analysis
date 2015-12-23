@@ -17,12 +17,12 @@ def generate_file_handles(args, parser, bounds, prefix=None):
 	low = 1
 	#3 bounds, 4 groups  x < bound1, bound1 <= x < bound2
 	paths = list()
-	for i in range(0, len(bounds) + 1):
-		if i == len(bounds):
+	for i in range(0, len(sorted_bounds) + 1):
+		if i == len(sorted_bounds):
 			paths.append("%s.%s-above.maf" % (prefix, low))
 			print("%s.%s-above.maf" % (prefix, low))
 		else:
-			high = bounds[i]
+			high = sorted_bounds[i]
 			paths.append("%s.%s-%s.maf" % (prefix, low, high - 1))
 			print("%s.%s-%s.maf" % (prefix, low, high - 1))
 		low = high
@@ -62,7 +62,7 @@ def main():
 					parser.exit(-1, "Util entry: %s, is in multiple lists\n" % entry.data[
 						GenericFormats.MAF.Entry.get_heading(args.key)])
 				target_list = i
-				# print("key %s belongs in list # %d" % (entry.data[MAFreader.MAFEntry.get_heading(args.key)], i))
+				# print("key %s belongs in list # %d" % (entry.data[GenericFormats.MAF.Entry.get_heading(args.key)], i))
 				print("%s" % entry, file=handles[i])
 		if target_list == -1:
 			parser.exit(-1, "Util key: %s, doesn't exist in any of the lists\n" % entry.data[
