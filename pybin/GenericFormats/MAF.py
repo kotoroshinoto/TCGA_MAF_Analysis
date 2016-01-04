@@ -91,7 +91,7 @@ class Entry:
 			print("processing line: '%s'" % line, file=sys.stderr)
 			sys.exit(-1)
 		entry = cls()
-		for i in range(0,len(columns)):
+		for i in range(0, len(columns)):
 			entry.data[cls.get_heading(i)] = columns[i]
 		return entry
 
