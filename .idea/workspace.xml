@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93cd2a26-0973-445f-bada-db8d4c112c18" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pybin/Cosmic/TSV.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pybin/Cosmic/VCF.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pybin/Cosmic/__init__.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/GenericFormats/MAF.py" afterPath="$PROJECT_DIR$/pybin/GenericFormats/MAF.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/GenericFormats/TSV.py" afterPath="$PROJECT_DIR$/pybin/GenericFormats/TSV.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/get_COSMIC_status.py" afterPath="$PROJECT_DIR$/pybin/get_COSMIC_status.py" />
     </list>
     <ignored path="TCGA_MAF_Analysis.iws" />
@@ -33,8 +28,8 @@
       <file leaf-file-name="get_COSMIC_status.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pybin/get_COSMIC_status.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.110843375">
-              <caret line="48" column="61" selection-start-line="48" selection-start-column="61" selection-end-line="48" selection-end-column="61" />
+            <state vertical-scroll-proportion="1.4987952">
+              <caret line="109" column="72" selection-start-line="109" selection-start-column="72" selection-end-line="109" selection-end-column="72" />
               <folding>
                 <element signature="e#23#33#0" expanded="true" />
               </folding>
@@ -475,12 +470,6 @@
       <option name="number" value="Default" />
       <updated>1438714076692</updated>
     </task>
-    <task id="LOCAL-00001" summary="Started conversion to python">
-      <created>1438714125414</created>
-      <option name="number" value="00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1438714125414</updated>
-    </task>
     <task id="LOCAL-00002" summary="some fixes">
       <created>1441771941094</created>
       <option name="number" value="00002" />
@@ -769,7 +758,13 @@
       <option name="project" value="LOCAL" />
       <updated>1451332255761</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="these regexes are a mess">
+      <created>1451950435436</created>
+      <option name="number" value="00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1451950435676</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -819,7 +814,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="exon sizer now can generate a merged lengths file and same results produced as using both lengths files" />
     <MESSAGE value="working on porting code again" />
     <MESSAGE value="MAFreader (MAFfile and MAFentry) mostly working" />
     <MESSAGE value="renamed classes slightly" />
@@ -844,7 +838,8 @@
     <MESSAGE value="some code reorganization" />
     <MESSAGE value="testing" />
     <MESSAGE value="some method stubs for format objects" />
-    <option name="LAST_COMMIT_MESSAGE" value="some method stubs for format objects" />
+    <MESSAGE value="these regexes are a mess" />
+    <option name="LAST_COMMIT_MESSAGE" value="these regexes are a mess" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1202,8 +1197,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pybin/get_COSMIC_status.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.110843375">
-          <caret line="48" column="61" selection-start-line="48" selection-start-column="61" selection-end-line="48" selection-end-column="61" />
+        <state vertical-scroll-proportion="1.4987952">
+          <caret line="109" column="72" selection-start-line="109" selection-start-column="72" selection-end-line="109" selection-end-column="72" />
           <folding>
             <element signature="e#23#33#0" expanded="true" />
           </folding>

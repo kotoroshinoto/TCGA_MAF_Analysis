@@ -43,34 +43,20 @@ def check_vcf_cosmic_quirk(vcf):
 	#It appears 3 of the entries are universal, and the rest only get added to coding records,
 	# without regard for duplication
 #@click.option("--vcf", type=click.File('r'), required=True, help="cosmic VCF file")
+one_number_ins_regex = re.compile("^c\\.([0-9?+-]+)ins[ ]*(\S+)$")
+two_number_ins_regex = re.compile("^c\\.([0-9?+-]+)[_+-]([cC][.])*([0-9?+-]+)ins[ ]*(\S+)$")
 
-def cds_matching(cds, record):
+one_number_del_regex = re.compile("^c\\.([0-9?+-]+)del[ ]*(\S+)$")
+two_number_del_regex = re.compile("^c\\.([0-9?+-]+)[_+-]([cC][.])*([0-9?+-]+)del[ ]*(\S+)$")
 
-	stripped_cds = cds.translate(str.maketrans('', '', '()'))
-	regexes= list()
-	# regex_strings.append("c\\.([(]*[0-9+?-]+[)]*[_+-][(]*[0-9+?-]+[)]*|[0-9+?-]+)(ins[ ]*\S+|del[ ]*\S*|\S+>\S+)*")
-	regexes.append(re.compile("^c\\.[?]$"))
-	regexes.append(re.compile("^c\\.([0-9?+-]+)(\S*)>(\S+)$"))
-	regexes.append(re.compile("^c\\.([0-9?+-]+)ins[ ]*(\S+)$"))
-	regexes.append(re.compile("^c\\.([0-9?+-]+)del[ ]*(\S+)$"))
-	regexes.append(re.compile("^c\\.([0-9?+-]+)dup$"))
-	regexes.append(re.compile("^c\\.([0-9?+-]+)[_+-]([cC][.])*([0-9?+-]+)(\S*)>(\S+)$"))
-	regexes.append(re.compile("^c\\.([0-9?+-]+)[_+-]([cC][.])*([0-9?+-]+)ins[ ]*(\S+)$"))
-	regexes.append(re.compile("^c\\.([0-9?+-]+)[_+-]([cC][.])*([0-9?+-]+)del[ ]*(\S*)$"))
-	regexes.append(re.compile("^c\\.([0-9?+-]+)[_+-]([cC][.])*([0-9?+-]+)dup$"))
+one_number_dup_regex = re.compile("^c\\.([0-9?+-]+)dup$")
+two_number_dup_regex = re.compile("^c\\.([0-9?+-]+)[_+-]([cC][.])*([0-9?+-]+)dup$")
 
-	for regex in regexes:
-		matched = None
-		cds_match_obj = regex.match(stripped_cds)
-		if cds_match_obj:
-			matched = cds_match_obj
-			break
-	if not matched:
-		if len(stripped_cds) != 0:
-			print("failed match on cds for %s" % stripped_cds, file=sys.stderr)
-		else:
-			print("no cds for entry: %s" % "\t".join(record), file=sys.stderr)
-		sys.exit(-1)
+qmark_regex = re.compile("^c\\.[?]$")
+
+one_number_regex = re.compile("^c\\.([0-9?+-]+)(\S*)>(\S+)$")
+two_number_regex = re.compile("^c\\.([0-9?+-]+)[_+-]([cC][.])*([0-9?+-]+)(\S*)>(\S+)$")
+
 
 class cds_data:
 	def __init__(self):
@@ -79,6 +65,50 @@ class cds_data:
 		self.end = 0
 		self.old_seq = ""
 		self.new_seq = ""
+
+
+def cds_matching(cds, record):
+
+	stripped_cds = cds.translate(str.maketrans('', '', '()'))
+	if stripped_cds == "c.?":
+		pass
+	elif "ins" in stripped_cds:
+		match_obj = two_number_ins_regex.match(stripped_cds)
+		if match_obj:
+			pass
+		else:
+			match_obj = one_number_ins_regex.match(stripped_cds)
+			if not match_obj:
+				print("failed cds match [ins]: %s\n%s" % (stripped_cds, "\t".join(record)), file=sys.stderr)
+				sys.exit(-1)
+
+	elif "del" in stripped_cds:
+		match_obj = two_number_del_regex.match(stripped_cds)
+		if match_obj:
+			pass
+		else:
+			match_obj = one_number_del_regex.match(stripped_cds)
+			if not match_obj:
+				print("failed cds match [del]: %s\n%s" % (stripped_cds, "\t".join(record)), file=sys.stderr)
+				sys.exit(-1)
+	elif "dup" in stripped_cds:
+		match_obj = two_number_dup_regex.match(stripped_cds)
+		if match_obj:
+			pass
+		else:
+			match_obj = one_number_dup_regex.match(stripped_cds)
+			if not match_obj:
+				print("failed cds match [dup]: %s\n%s" % (stripped_cds, "\t".join(record)), file=sys.stderr)
+				sys.exit(-1)
+	else:
+		match_obj = two_number_regex.match(stripped_cds)
+		if match_obj:
+			pass
+		else:
+			match_obj = one_number_regex.match(stripped_cds)
+			if not match_obj:
+				print("failed cds match [mut]: %s\n%s" % (stripped_cds, "\t".join(record)), file=sys.stderr)
+				sys.exit(-1)
 
 
 @click.command(help="check cosmic prediction for mutation effects")
