@@ -28,8 +28,8 @@
       <file leaf-file-name="get_COSMIC_status.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pybin/get_COSMIC_status.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.15421687">
-              <caret line="47" column="90" selection-start-line="47" selection-start-column="90" selection-end-line="47" selection-end-column="90" />
+            <state vertical-scroll-proportion="1.6072289">
+              <caret line="104" column="60" selection-start-line="104" selection-start-column="60" selection-end-line="104" selection-end-column="60" />
               <folding>
                 <element signature="e#23#33#0" expanded="true" />
               </folding>
@@ -470,12 +470,6 @@
       <option name="number" value="Default" />
       <updated>1438714076692</updated>
     </task>
-    <task id="LOCAL-00003" summary="added script to pull down biomart ensembl entries">
-      <created>1441832977771</created>
-      <option name="number" value="00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1441832977771</updated>
-    </task>
     <task id="LOCAL-00004" summary="organization changes">
       <created>1441986208728</created>
       <option name="number" value="00004" />
@@ -764,7 +758,13 @@
       <option name="project" value="LOCAL" />
       <updated>1451952010678</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="these regexes are a mess">
+      <created>1451953670367</created>
+      <option name="number" value="00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1451953670367</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -1197,8 +1197,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pybin/get_COSMIC_status.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15421687">
-          <caret line="47" column="90" selection-start-line="47" selection-start-column="90" selection-end-line="47" selection-end-column="90" />
+        <state vertical-scroll-proportion="1.6072289">
+          <caret line="104" column="60" selection-start-line="104" selection-start-column="60" selection-end-line="104" selection-end-column="60" />
           <folding>
             <element signature="e#23#33#0" expanded="true" />
           </folding>

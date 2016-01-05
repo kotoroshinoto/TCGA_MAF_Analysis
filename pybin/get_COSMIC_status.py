@@ -56,8 +56,6 @@ two_number_del_regex = re.compile("^c\\.([0-9?+-]+)[_+-]([cC][.])*([0-9?+-]+)del
 one_number_dup_regex = re.compile("^c\\.([0-9?+-]+)dup$")
 two_number_dup_regex = re.compile("^c\\.([0-9?+-]+)[_+-]([cC][.])*([0-9?+-]+)dup$")
 
-qmark_regex = re.compile("^c\\.[?]$")
-
 one_number_regex = re.compile("^c\\.([0-9?+-]+)(\S*)>(\S+)$")
 two_number_regex = re.compile("^c\\.([0-9?+-]+)[_+-]([cC][.])*([0-9?+-]+)(\S*)>(\S+)$")
 
@@ -84,7 +82,7 @@ def cds_matching(cds, record):
 			match_obj = one_number_indel_regex.match(stripped_cds)
 			if not match_obj:
 				print("failed cds match [indel]: %s\n%s" % (stripped_cds, "\t".join(record)), file=sys.stderr)
-				sys.exit(-1)
+				return None
 	elif "ins" in stripped_cds:
 		match_obj = two_number_ins_regex.match(stripped_cds)
 		if match_obj:
@@ -93,7 +91,7 @@ def cds_matching(cds, record):
 			match_obj = one_number_ins_regex.match(stripped_cds)
 			if not match_obj:
 				print("failed cds match [ins]: %s\n%s" % (stripped_cds, "\t".join(record)), file=sys.stderr)
-				sys.exit(-1)
+				return None
 	elif "del" in stripped_cds:
 		match_obj = two_number_del_regex.match(stripped_cds)
 		if match_obj:
@@ -102,7 +100,7 @@ def cds_matching(cds, record):
 			match_obj = one_number_del_regex.match(stripped_cds)
 			if not match_obj:
 				print("failed cds match [del]: %s\n%s" % (stripped_cds, "\t".join(record)), file=sys.stderr)
-				sys.exit(-1)
+				return None
 	elif "dup" in stripped_cds:
 		match_obj = two_number_dup_regex.match(stripped_cds)
 		if match_obj:
@@ -111,7 +109,7 @@ def cds_matching(cds, record):
 			match_obj = one_number_dup_regex.match(stripped_cds)
 			if not match_obj:
 				print("failed cds match [dup]: %s\n%s" % (stripped_cds, "\t".join(record)), file=sys.stderr)
-				sys.exit(-1)
+				return None
 	else:
 		match_obj = two_number_regex.match(stripped_cds)
 		if match_obj:
@@ -120,7 +118,7 @@ def cds_matching(cds, record):
 			match_obj = one_number_regex.match(stripped_cds)
 			if not match_obj:
 				print("failed cds match [mut]: %s\n%s" % (stripped_cds, "\t".join(record)), file=sys.stderr)
-				sys.exit(-1)
+				return None
 
 
 @click.command(help="check cosmic prediction for mutation effects")
