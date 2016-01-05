@@ -43,11 +43,15 @@ def check_vcf_cosmic_quirk(vcf):
 	#It appears 3 of the entries are universal, and the rest only get added to coding records,
 	# without regard for duplication
 #@click.option("--vcf", type=click.File('r'), required=True, help="cosmic VCF file")
+
+one_number_indel_regex = re.compile("^c\\.([0-9?+-]+)del[ ]*(\S*)ins[ ]*(\S+)$")
+two_number_indel_regex = re.compile("^c\\.([0-9?+-]+)[_+-]([cC][.])*([0-9?+-]+)del[ ]*(\S*)ins[ ]*(\S+)$")
+
 one_number_ins_regex = re.compile("^c\\.([0-9?+-]+)ins[ ]*(\S+)$")
 two_number_ins_regex = re.compile("^c\\.([0-9?+-]+)[_+-]([cC][.])*([0-9?+-]+)ins[ ]*(\S+)$")
 
-one_number_del_regex = re.compile("^c\\.([0-9?+-]+)del[ ]*(\S+)$")
-two_number_del_regex = re.compile("^c\\.([0-9?+-]+)[_+-]([cC][.])*([0-9?+-]+)del[ ]*(\S+)$")
+one_number_del_regex = re.compile("^c\\.([0-9?+-]+)del[ ]*(\S*)$")
+two_number_del_regex = re.compile("^c\\.([0-9?+-]+)[_+-]([cC][.])*([0-9?+-]+)del[ ]*(\S*)$")
 
 one_number_dup_regex = re.compile("^c\\.([0-9?+-]+)dup$")
 two_number_dup_regex = re.compile("^c\\.([0-9?+-]+)[_+-]([cC][.])*([0-9?+-]+)dup$")
@@ -72,6 +76,15 @@ def cds_matching(cds, record):
 	stripped_cds = cds.translate(str.maketrans('', '', '()'))
 	if stripped_cds == "c.?":
 		pass
+	elif "ins" in stripped_cds and "del" in stripped_cds:
+		match_obj = two_number_indel_regex.match(stripped_cds)
+		if match_obj:
+			pass
+		else:
+			match_obj = one_number_indel_regex.match(stripped_cds)
+			if not match_obj:
+				print("failed cds match [indel]: %s\n%s" % (stripped_cds, "\t".join(record)), file=sys.stderr)
+				sys.exit(-1)
 	elif "ins" in stripped_cds:
 		match_obj = two_number_ins_regex.match(stripped_cds)
 		if match_obj:
@@ -81,7 +94,6 @@ def cds_matching(cds, record):
 			if not match_obj:
 				print("failed cds match [ins]: %s\n%s" % (stripped_cds, "\t".join(record)), file=sys.stderr)
 				sys.exit(-1)
-
 	elif "del" in stripped_cds:
 		match_obj = two_number_del_regex.match(stripped_cds)
 		if match_obj:
