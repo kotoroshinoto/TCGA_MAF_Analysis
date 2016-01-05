@@ -28,8 +28,8 @@
       <file leaf-file-name="get_COSMIC_status.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pybin/get_COSMIC_status.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.6072289">
-              <caret line="104" column="60" selection-start-line="104" selection-start-column="60" selection-end-line="104" selection-end-column="60" />
+            <state vertical-scroll-proportion="0.21446384">
+              <caret line="144" column="11" selection-start-line="144" selection-start-column="11" selection-end-line="144" selection-end-column="11" />
               <folding>
                 <element signature="e#23#33#0" expanded="true" />
               </folding>
@@ -252,15 +252,15 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pybin" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/pybin/Generic_Formats" />
       <recent name="$PROJECT_DIR$/pybin/TCGA" />
       <recent name="$PROJECT_DIR$/pybin/" />
       <recent name="$PROJECT_DIR$/pybin" />
       <recent name="$PROJECT_DIR$/pybin/Annotation/CUSTOM" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/pybin" />
     </key>
   </component>
   <component name="RunManager">
@@ -469,12 +469,6 @@
       <created>1438714076692</created>
       <option name="number" value="Default" />
       <updated>1438714076692</updated>
-    </task>
-    <task id="LOCAL-00004" summary="organization changes">
-      <created>1441986208728</created>
-      <option name="number" value="00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1441986208728</updated>
     </task>
     <task id="LOCAL-00005" summary="fixes and new script">
       <created>1442244426002</created>
@@ -764,7 +758,13 @@
       <option name="project" value="LOCAL" />
       <updated>1451953670367</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="these regexes are a mess">
+      <created>1451969311562</created>
+      <option name="number" value="00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1451969311562</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -1197,8 +1197,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pybin/get_COSMIC_status.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.6072289">
-          <caret line="104" column="60" selection-start-line="104" selection-start-column="60" selection-end-line="104" selection-end-column="60" />
+        <state vertical-scroll-proportion="0.21446384">
+          <caret line="144" column="11" selection-start-line="144" selection-start-column="11" selection-end-line="144" selection-end-column="11" />
           <folding>
             <element signature="e#23#33#0" expanded="true" />
           </folding>
