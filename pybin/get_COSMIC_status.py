@@ -328,7 +328,7 @@ def advanced_search(chrom, position_key, seq_key, reason, unmatched_fsock=None):
 	if history_key in advanced_search_history:
 		return advanced_search_history[history_key]
 	else:
-		advanced_search_history[history_key] = ["NO_COSMIC_ENTRY"]
+		advanced_search_history[history_key] = [["NO_COSMIC_ENTRY"], ["NO_DATA"]]
 	query = i_tree.search(start, end + 1)
 	overlaps = list()
 	for intvl in query:  # type: Interval
@@ -336,7 +336,7 @@ def advanced_search(chrom, position_key, seq_key, reason, unmatched_fsock=None):
 	if len(overlaps) == 0:
 		if unmatched_fsock is not None:
 			print("[MatchFailure]\t%s\t%s\t%s\t%s" % (chrom, position_key, seq_key, reason), file=unmatched_fsock)
-		return ["NO_COSMIC_ENTRY"]
+		return [["NO_COSMIC_ENTRY"], ["NO_DATA"]]
 	else:
 		print("%s:%s-%s:%s>%s" % (chrom, start, end, ref_seq, alt_seq), file=unmatched_fsock)
 		for intvl in overlaps:  # type: Interval
@@ -358,7 +358,7 @@ def advanced_search(chrom, position_key, seq_key, reason, unmatched_fsock=None):
 				#   if MNC is still MNC, do not keep
 		if unmatched_fsock is not None:
 			print("[MatchFailure]\t%s\t%s\t%s\t%s" % (chrom, position_key, seq_key, reason), file=unmatched_fsock)
-		return ["NO_COSMIC_ENTRY"]
+		return [["NO_COSMIC_ENTRY"], ["NO_DATA"]]
 
 
 @click.command(help="check cosmic prediction for mutation effects")
@@ -378,22 +378,28 @@ def check_maf_against_cosmic(cosmic_table, maf, output, unmatched):
 			position_key = "%s_%s" % (entry.data['Start_Position'], entry.data['End_Position'])
 			if position_key not in COSMIC_DATA[chrom]:
 				result_list = advanced_search(chrom, position_key, seq_key, "coordinates_not_present", unmatched_fsock=unmatched)
-				output_list.append(";".join(result_list))
+				output_list.append(";".join(result_list[0]))
+				output_list.append(";".join(result_list[1]))
 				tsv_writer.writerow(output_list)
 				continue
 			if seq_key not in COSMIC_DATA[chrom][position_key]:
 				result_list = advanced_search(chrom, position_key, seq_key, "mutation_not_present", unmatched_fsock=unmatched)
-				output_list.append(";".join(result_list))
+				output_list.append(";".join(result_list[0]))
+				output_list.append(";".join(result_list[1]))
 				tsv_writer.writerow(output_list)
 				continue
 			cosmic_record_list = COSMIC_DATA[chrom][position_key][seq_key]  # type: list
 
+			cosmic_id_list = list()
+			prediction_list = list()
 			for cosmic_record in cosmic_record_list:  # type: CosmicData
-				prediction_list = list()
+
 				prediction = cosmic_record.prediction
 				if prediction == "":
 					prediction = "NO_PREDICTION_PRESENT"
-				prediction_list.append("%s=%s" % (cosmic_record.cosmic_id, prediction))
+				cosmic_id_list.append(cosmic_record.cosmic_id)
+				prediction_list.append(prediction)
+			output_list.append(";".join(cosmic_id_list))
 			output_list.append(";".join(prediction_list))
 			tsv_writer.writerow(output_list)
 
