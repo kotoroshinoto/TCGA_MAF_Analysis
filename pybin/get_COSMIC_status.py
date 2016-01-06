@@ -303,6 +303,16 @@ def process_maf_file(maf_file):
 advanced_search_history = dict()
 
 
+def compute_mut_type(ref_seq, alt_seq):
+	if ref_seq == "-" and alt_seq != "-":
+		return "INS"
+	if ref_seq != "-" and alt_seq == "-":
+		return "DEL"
+	if len(ref_seq) == 1 and len(alt_seq) == 1:
+		return "SNC"
+	return "MNC"
+
+
 def advanced_search(chrom, position_key, seq_key, reason, unmatched_fsock=None):
 	# find overlapping ranges
 	# in overlapping ranges, see if adjusting start or end
@@ -328,7 +338,7 @@ def advanced_search(chrom, position_key, seq_key, reason, unmatched_fsock=None):
 			print("[MatchFailure]\t%s\t%s\t%s\t%s" % (chrom, position_key, seq_key, reason), file=unmatched_fsock)
 		return ["NO_COSMIC_ENTRY"]
 	else:
-		print("%s:%s-%s:%s>%s" % (chrom, start, end, ref_seq, alt_seq))
+		print("%s:%s-%s:%s>%s" % (chrom, start, end, ref_seq, alt_seq), file=unmatched_fsock)
 		for intvl in overlaps:  # type: Interval
 			r_start = intvl.begin
 			r_end = intvl.end - 1
@@ -338,6 +348,14 @@ def advanced_search(chrom, position_key, seq_key, reason, unmatched_fsock=None):
 				r_ref_seq = r_mut_values[0]
 				r_alt_seq = r_mut_values[1]
 				print("\t%s:%s-%s:%s>%s" % (chrom, r_start, r_end, r_ref_seq, r_alt_seq), file=unmatched_fsock)
+				#filter out mutations of different type
+				#rules:
+				#if search term is MNC, check if it has homologous regions that should be removed
+				#   if it is still MNC, only keep MNC
+				#if search term is INS, only keep INS & MNC, check if MNC is actually an INS
+				#   if MNC is still MNC, do not keep
+				#if search term is DEL, only keep DEL & MNC, check if MNC is actually a DEL
+				#   if MNC is still MNC, do not keep
 		if unmatched_fsock is not None:
 			print("[MatchFailure]\t%s\t%s\t%s\t%s" % (chrom, position_key, seq_key, reason), file=unmatched_fsock)
 		return ["NO_COSMIC_ENTRY"]
