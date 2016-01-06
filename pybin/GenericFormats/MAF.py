@@ -3,6 +3,18 @@ import sys
 
 __author__ = 'mgooch'
 
+
+# def resolve_mnc(nrm:list, tmr:list, mut_type):
+# 	if mut_type == "DEL":
+# 	elif mut_type == "INS":
+# 		if nrm[0] == nrm[1]:
+# 	elif mut_type == "SNP":
+# 		print("[GenericFormats.MAF.resolve_mnc]<WARNING>SNP flagged as MNC", file=sys.stderr)
+# 	else:
+# 		print("[GenericFormats.MAF.resolve_mnc] unknown mutation type encountered", file=sys.stderr)
+# 		sys.exit(-1)
+
+
 class Entry:
 	column2index = dict()
 	index2column = dict()
@@ -95,7 +107,7 @@ class Entry:
 			entry.data[cls.get_heading(i)] = columns[i]
 		return entry
 
-	def determine_mutation(self):
+	def determine_mutation(self, resolve_mnc=False):
 		tmr = list()
 		nrm = list()
 		nrm.append(self.data['Match_Norm_Seq_Allele1'])
@@ -104,7 +116,8 @@ class Entry:
 		tmr.append(self.data['Tumor_Seq_Allele2'])
 
 		if len(nrm[0]) > 1 or len(nrm[1]) > 1 or len(tmr[0]) > 1 or len(tmr[1]) > 1:
-			return ['MNC']
+			if not resolve_mnc:
+				return ['MNC']
 
 		if len(nrm[0]) == 0:
 			nrm[0] = '-'
