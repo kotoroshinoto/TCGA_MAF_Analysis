@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="93cd2a26-0973-445f-bada-db8d4c112c18" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/GenericFormats/MAF.py" afterPath="$PROJECT_DIR$/pybin/GenericFormats/MAF.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/get_COSMIC_status.py" afterPath="$PROJECT_DIR$/pybin/get_COSMIC_status.py" />
     </list>
     <ignored path="TCGA_MAF_Analysis.iws" />
@@ -28,11 +29,21 @@
       <file leaf-file-name="get_COSMIC_status.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pybin/get_COSMIC_status.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44513714">
-              <caret line="330" column="81" selection-start-line="330" selection-start-column="81" selection-end-line="330" selection-end-column="81" />
+            <state vertical-scroll-proportion="1.4775561">
+              <caret line="376" column="77" selection-start-line="376" selection-start-column="77" selection-end-line="376" selection-end-column="77" />
               <folding>
                 <element signature="e#23#33#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MAF.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pybin/GenericFormats/MAF.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="109" column="74" selection-start-line="109" selection-start-column="74" selection-end-line="109" selection-end-column="74" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -42,16 +53,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="142" column="22" selection-start-line="142" selection-start-column="11" selection-end-line="142" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MAF.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pybin/GenericFormats/MAF.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-63.642857">
-              <caret line="109" column="44" selection-start-line="109" selection-start-column="33" selection-end-line="109" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -470,12 +471,6 @@
       <option name="number" value="Default" />
       <updated>1438714076692</updated>
     </task>
-    <task id="LOCAL-00008" summary="fixes and new script">
-      <created>1442263192909</created>
-      <option name="number" value="00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1442263192909</updated>
-    </task>
     <task id="LOCAL-00009" summary="bugfixes with whitespace handling, Changed function and name of one script.">
       <created>1442331336636</created>
       <option name="number" value="00009" />
@@ -764,7 +759,13 @@
       <option name="project" value="LOCAL" />
       <updated>1452061355702</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="minor adjustment to report style">
+      <created>1452062054361</created>
+      <option name="number" value="00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1452062054361</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -814,7 +815,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="renamed classes slightly" />
     <MESSAGE value="counters probably work, but need testing" />
     <MESSAGE value="counters do function, only need to do some polishing now&#10;next task is the sample counts list reader and the actual scripts" />
     <MESSAGE value="experimenting with contracts" />
@@ -839,7 +839,8 @@
     <MESSAGE value="these regexes are a mess" />
     <MESSAGE value="interval trees" />
     <MESSAGE value="fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixes" />
+    <MESSAGE value="minor adjustment to report style" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor adjustment to report style" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1189,16 +1190,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pybin/GenericFormats/MAF.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-63.642857">
-          <caret line="109" column="44" selection-start-line="109" selection-start-column="33" selection-end-line="109" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="109" column="74" selection-start-line="109" selection-start-column="74" selection-end-line="109" selection-end-column="74" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pybin/get_COSMIC_status.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44513714">
-          <caret line="330" column="81" selection-start-line="330" selection-start-column="81" selection-end-line="330" selection-end-column="81" />
+        <state vertical-scroll-proportion="1.4775561">
+          <caret line="376" column="77" selection-start-line="376" selection-start-column="77" selection-end-line="376" selection-end-column="77" />
           <folding>
             <element signature="e#23#33#0" expanded="true" />
           </folding>

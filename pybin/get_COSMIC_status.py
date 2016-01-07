@@ -374,7 +374,10 @@ def check_maf_against_cosmic(cosmic_table, maf, output, unmatched):
 		for entry in MAF_DATA:  # type: GenericFormats.MAF.Entry
 			output_list = entry.__str__().split("\t")
 			chrom = str(entry.data['Chrom']).upper()
-			seq_key = entry.determine_mutation(resolve_mnc=True)[0]
+			seq_key = entry.determine_mutation(resolve_mnc=True, report_ref_seq=True)[0]
+			if seq_key == "LOH_W_MUT":
+				print("[WARNING]: Skipping MAF entry due to mutation type: LOH_W_MUT\t%s" % entry, file=sys.stderr)
+				continue
 			position_key = "%s_%s" % (entry.data['Start_Position'], entry.data['End_Position'])
 			if position_key not in COSMIC_DATA[chrom]:
 				result_list = advanced_search(chrom, position_key, seq_key, "coordinates_not_present", unmatched_fsock=unmatched)

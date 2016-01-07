@@ -107,14 +107,14 @@ class Entry:
 			entry.data[cls.get_heading(i)] = columns[i]
 		return entry
 
-	def determine_mutation(self, resolve_mnc=False):
+	def determine_mutation(self, resolve_mnc=False, report_ref_seq=False):
 		tmr = list()
 		nrm = list()
 		nrm.append(self.data['Match_Norm_Seq_Allele1'])
 		nrm.append(self.data['Match_Norm_Seq_Allele2'])
 		tmr.append(self.data['Tumor_Seq_Allele1'])
 		tmr.append(self.data['Tumor_Seq_Allele2'])
-
+		ref_seq = self.data['Reference_Allele']
 		if len(nrm[0]) > 1 or len(nrm[1]) > 1 or len(tmr[0]) > 1 or len(tmr[1]) > 1:
 			if not resolve_mnc:
 				return ['MNC']
@@ -147,7 +147,10 @@ class Entry:
 				#likely LOH + mutation
 				#can count the mutation TYPE AND LOH
 				#1,1 -> 2,2
-				return ["LOH_W_MUT", "%s_%s" % (nrm[0], tmr[0]), "%s_-" % nrm[0]]
+				if report_ref_seq:
+					return ["LOH_W_MUT", "%s_%s" % (ref_seq, tmr[0]), "%s_-" % ref_seq]
+				else:
+					return ["LOH_W_MUT", "%s_%s" % (nrm[0], tmr[0]), "%s_-" % nrm[0]]
 		elif nrm_same and (not tmr_same):
 			if nrm1_match_tmr1 or nrm1_match_tmr2:
 				#one of the tumor alleles matches the normal alleles (which are the same)
@@ -156,10 +159,16 @@ class Entry:
 				#captures these mutations:
 				if nrm1_match_tmr1:
 					#1,1 -> 1,2
-					return ["%s_%s" % (nrm[0], tmr[1])]
+					if report_ref_seq:
+						return ["%s_%s" % (ref_seq, tmr[1])]
+					else:
+						return ["%s_%s" % (nrm[0], tmr[1])]
 				else:
 					#1,1 -> 2,1
-					return ["%s_%s" % (nrm[0], tmr[0])]
+					if report_ref_seq:
+						return ["%s_%s" % (ref_seq, tmr[0])]
+					else:
+						return ["%s_%s" % (nrm[0], tmr[0])]
 			else:
 				#both tumor alleles are different from normal alleles (which match each other), but don't match each other what do?
 				#LIKELY_ARTIFACT_ERROR
@@ -193,16 +202,28 @@ class Entry:
 			#capture these mutations:
 			if nrm1_match_tmr1 and (not (nrm2_match_tmr2 or nrm1_match_tmr2 or nrm2_match_tmr1)):
 				# 1,2 -> 1,3
-				return ["%s_%s" % (nrm[1], tmr[1])]
+				if report_ref_seq:
+					return ["%s_%s" % (ref_seq, tmr[1])]
+				else:
+					return ["%s_%s" % (nrm[1], tmr[1])]
 			if nrm2_match_tmr1 and (not (nrm2_match_tmr2 or nrm1_match_tmr2 or nrm1_match_tmr1)):
 				# 1,2 -> 2,3
-				return ["%s_%s" % (nrm[0], tmr[1])]
+				if report_ref_seq:
+					return ["%s_%s" % (ref_seq, tmr[1])]
+				else:
+					return ["%s_%s" % (nrm[0], tmr[1])]
 			if nrm1_match_tmr2 and (not (nrm2_match_tmr2 or nrm1_match_tmr1 or nrm2_match_tmr1)):
 				# 1,2 -> 3,1
-				return ["%s_%s" % (nrm[1], tmr[0])]
+				if report_ref_seq:
+					return ["%s_%s" % (ref_seq, tmr[0])]
+				else:
+					return ["%s_%s" % (nrm[1], tmr[0])]
 			if nrm2_match_tmr2 and (not (nrm1_match_tmr1 or nrm1_match_tmr2 or nrm2_match_tmr1)):
 				# 1,2 -> 3,2
-				return ["%s_%s" % (nrm[0], tmr[0])]
+				if report_ref_seq:
+					return ["%s_%s" % (ref_seq, tmr[0])]
+				else:
+					return ["%s_%s" % (nrm[0], tmr[0])]
 			if nrm1_match_tmr1 and nrm2_match_tmr2 and not(nrm1_match_tmr2 or nrm2_match_tmr1):
 				#1,2 -> 1,2
 				return ["NO_MUTATION"]
