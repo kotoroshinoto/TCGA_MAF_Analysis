@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="93cd2a26-0973-445f-bada-db8d4c112c18" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/Util/MAFcounters.py" afterPath="$PROJECT_DIR$/pybin/Util/MAFcounters.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/Util/MAFSampleCountsList.py" afterPath="$PROJECT_DIR$/pybin/Util/MAFSampleCountsList.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/split_maf_with_counts.py" afterPath="$PROJECT_DIR$/pybin/split_maf_with_counts.py" />
     </list>
     <ignored path="TCGA_MAF_Analysis.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,13 +50,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="split_maf_with_counts.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="split_maf_with_counts.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pybin/split_maf_with_counts.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5205811">
+              <caret line="42" column="79" selection-start-line="42" selection-start-column="79" selection-end-line="42" selection-end-column="79" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MAFSampleCountsList.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pybin/Util/MAFSampleCountsList.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+              <folding>
+                <element signature="e#46#55#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -73,10 +86,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MAFcounters.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MAFcounters.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pybin/Util/MAFcounters.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8038741">
+            <state vertical-scroll-proportion="0.0">
               <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
               <folding />
             </state>
@@ -98,7 +111,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pybin/maf_symbol_updater.py" />
         <option value="$PROJECT_DIR$/pybin/biomart_pull_gene_lists.py" />
         <option value="$PROJECT_DIR$/pybin/MAF/Name_Mappers/check_against_lengths_file.py" />
         <option value="$PROJECT_DIR$/pybin/Annotation/MAF/MAF_collect_unique_entrez_ids.py" />
@@ -146,9 +158,10 @@
         <option value="$PROJECT_DIR$/pybin/update_names_entrez.py" />
         <option value="$PROJECT_DIR$/pybin/exon_sizer.py" />
         <option value="$PROJECT_DIR$/pybin/get_COSMIC_status.py" />
-        <option value="$PROJECT_DIR$/pybin/split_maf_with_counts.py" />
         <option value="$PROJECT_DIR$/pybin/MAF_counter.py" />
         <option value="$PROJECT_DIR$/pybin/Util/MAFcounters.py" />
+        <option value="$PROJECT_DIR$/pybin/Util/MAFSampleCountsList.py" />
+        <option value="$PROJECT_DIR$/pybin/split_maf_with_counts.py" />
       </list>
     </option>
   </component>
@@ -486,12 +499,6 @@
       <option name="number" value="Default" />
       <updated>1438714076692</updated>
     </task>
-    <task id="LOCAL-00014" summary="exon sizer now can generate a merged lengths file and same results produced as using both lengths files">
-      <created>1442438149446</created>
-      <option name="number" value="00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1442438149446</updated>
-    </task>
     <task id="LOCAL-00015" summary="working on porting code again">
       <created>1443454318554</created>
       <option name="number" value="00015" />
@@ -780,7 +787,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455227688877</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="MAF.MAFEntry should be MAF.Entry">
+      <created>1455227939563</created>
+      <option name="number" value="00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1455227939563</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -830,7 +843,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="group divider script starting point copied from testing script" />
     <MESSAGE value="maf_counter.py ready for debugging/testing" />
     <MESSAGE value="split_maf_with_counts.py ready for debugging/testing" />
     <MESSAGE value="started work on merging and cleaning up name fixing algorithms" />
@@ -855,7 +867,8 @@
     <MESSAGE value="report reference option added to mutation caller" />
     <MESSAGE value="started switching more scripts to use click instead of argparse" />
     <MESSAGE value="kludge" />
-    <option name="LAST_COMMIT_MESSAGE" value="kludge" />
+    <MESSAGE value="MAF.MAFEntry should be MAF.Entry" />
+    <option name="LAST_COMMIT_MESSAGE" value="MAF.MAFEntry should be MAF.Entry" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1095,23 +1108,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybin/Util/MAFSampleCountsList.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.065296255">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <element signature="e#46#55#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybin/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16342412">
@@ -1236,12 +1232,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybin/split_maf_with_counts.py">
+    <entry file="file://$PROJECT_DIR$/pybin/GenericFormats/MAF.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <caret line="109" column="74" selection-start-line="109" selection-start-column="74" selection-end-line="109" selection-end-column="74" />
           <folding>
-            <element signature="e#23#35#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1256,6 +1252,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pybin/Util/MAFcounters.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pybin/MAF_counter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1266,21 +1270,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybin/GenericFormats/MAF.py">
+    <entry file="file://$PROJECT_DIR$/pybin/Util/MAFSampleCountsList.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="109" column="74" selection-start-line="109" selection-start-column="74" selection-end-line="109" selection-end-column="74" />
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#46#55#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybin/Util/MAFcounters.py">
+    <entry file="file://$PROJECT_DIR$/pybin/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8038741">
-          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybin/split_maf_with_counts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5205811">
+          <caret line="42" column="79" selection-start-line="42" selection-start-column="79" selection-end-line="42" selection-end-column="79" />
+          <folding>
+            <element signature="e#23#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

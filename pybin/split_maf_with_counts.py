@@ -34,13 +34,13 @@ def generate_file_handles(maf, bounds, prefix=None):
 
 @click.command(help="Count # of entries per gene in Util file")
 @click.option('--counts', type=click.File('r'), required=True, help="file containing sample counts")
-@click.option('--boundaries', type=int, nargs='+', required=True, help="list of boundaries for splitting")
 @click.option('--maf', type=click.File('r'), required=True, help="maf file to split")
 @click.option('--key', type=int, required=True, help="0-based column number to use as key in maf file")
-@click.option('--out_prefix', default=None, type=str, required=False, help="output path prefix")
+@click.option('--out_prefix', default="", type=str, required=False, help="output path prefix")
+@click.option('--boundaries', type=str, required=True, help="list of boundaries for splitting")
 def main(counts, boundaries, maf, key, out_prefix):
 	scl = Util.MAFSampleCountsList()
-	fixed_list = Util.MAFSampleCountsList.fix_boundaries(boundaries)
+	fixed_list = Util.MAFSampleCountsList.fix_boundaries(boundaries.split(","))
 	if out_prefix is not None:
 		handles = generate_file_handles(maf, fixed_list, out_prefix)
 		""":type : list[io.TextIOBase]"""

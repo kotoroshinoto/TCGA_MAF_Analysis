@@ -4,7 +4,6 @@ __author__ = 'mgooch'
 import os
 import sys
 import io
-from contracts import contract
 
 
 class MAFSampleCountsList:
@@ -15,13 +14,11 @@ class MAFSampleCountsList:
 	def __contains__(self, item):
 		return item in self.counts
 
-	@contract(sample_key='str', returns='int, >0')
 	def get_count(self, sample_key: 'str') -> 'int':
 		if sample_key in self.counts:
 			return self.counts[sample_key]
 		return None
 
-	@contract(sample_key='str', count='int, >0', returns='None')
 	def set_count(self, sample_key: 'str', count: 'int') -> 'None':
 		self.counts[sample_key] = count
 		return
@@ -36,20 +33,17 @@ class MAFSampleCountsList:
 			self.counts[splitline[0]] = int(splitline[1])
 		return
 
-	@contract(path='str', returns='None')
 	def read_file(self, path: 'str') -> 'None':
 		handle = open(path, mode='r')
 		self.read_file_handle(handle)
 		return
 
 	@staticmethod
-	@contract(bound_list='list[>=1](int, >0)', returns='list(int)')
 	def fix_boundaries(bound_list: 'list[int]') -> 'list[int]':
 		unique_list = list(set(bound_list))
 		sorted_list = sorted(unique_list)
 		return sorted_list
 
-	@contract(bound_list='list[>=1](int, >0)')
 	def split(self, bound_list: 'list[int]') -> 'list[dict[str, int]]':
 		result_lists = list()
 		if len(bound_list) < 1:
@@ -65,7 +59,6 @@ class MAFSampleCountsList:
 		result_lists.append(remaining_list)
 		return result_lists
 
-	@contract(boundary='int, >0', returns='list[2]')
 	def __split_single__(self, boundary: 'int') -> 'list[MAFSampleCountsList]':
 		#TODO finish porting internal splitter
 		# print("[__split_single__] boundary: %d" % boundary)
