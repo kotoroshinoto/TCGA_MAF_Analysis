@@ -31,6 +31,7 @@ def generate_file_handles(maf, bounds, prefix=None):
 		handles.append(open(path, mode='w'))
 	return handles
 
+
 @click.command(help="Count # of entries per gene in Util file")
 @click.option('--counts', type=click.File('r'), required=True, help="file containing sample counts")
 @click.option('--boundaries', type=int, nargs='+', required=True, help="list of boundaries for splitting")
