@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
-import argparse
+import click
 import os
+import sys
 import GenericFormats.MAF
 import Util.MAFSampleCountsList
 
 __author__ = 'mgooch'
 
 
-def generate_file_handles(args, parser, bounds, prefix=None):
+def generate_file_handles(maf, bounds, prefix=None):
 	handles = list()
 	sorted_bounds = sorted(bounds)
 	if prefix is None:
-		maf_path = args.maf.name
+		maf_path = maf.name
 		maf_filename = os.path.split(maf_path)[1]
 		prefix = os.path.splitext(maf_filename)[0]
 	low = 1
@@ -30,43 +31,42 @@ def generate_file_handles(args, parser, bounds, prefix=None):
 		handles.append(open(path, mode='w'))
 	return handles
 
-
-def main():
-	parser = argparse.ArgumentParser(description="Count # of entries per gene in Util file")
-	parser.add_argument('--counts', type=argparse.FileType('r'), required=True, help="file containing sample counts")
-	parser.add_argument('--boundaries', type=int, nargs='+', required=True, help="list of boundaries for splitting")
-	parser.add_argument('--maf', type=argparse.FileType('r'), required=True, help="maf file to split")
-	parser.add_argument('--key', type=int, required=True, help="0-based column number to use as key in maf file")
-	parser.add_argument('--out_prefix', type=str, required=False, help="output path prefix")
-	args = parser.parse_args()
-
+@click.command(help="Count # of entries per gene in Util file")
+@click.option('--counts', type=click.File('r'), required=True, help="file containing sample counts")
+@click.option('--boundaries', type=int, nargs='+', required=True, help="list of boundaries for splitting")
+@click.option('--maf', type=click.File('r'), required=True, help="maf file to split")
+@click.option('--key', type=int, required=True, help="0-based column number to use as key in maf file")
+@click.option('--out_prefix', default=None, type=str, required=False, help="output path prefix")
+def main(counts, boundaries, maf, key, out_prefix):
 	scl = Util.MAFSampleCountsList()
-	fixed_list = Util.MAFSampleCountsList.fix_boundaries(args.boundaries)
-	if args.out_prefix:
-		handles = generate_file_handles(args, parser, fixed_list, args.out_prefix)
+	fixed_list = Util.MAFSampleCountsList.fix_boundaries(boundaries)
+	if out_prefix is not None:
+		handles = generate_file_handles(maf, fixed_list, out_prefix)
 		""":type : list[io.TextIOBase]"""
 	else:
-		handles = generate_file_handles(args, parser, fixed_list)
+		handles = generate_file_handles(maf, fixed_list)
 		""":type : list[io.TextIOBase]"""
-	scl.read_file_handle(args.counts)
+	scl.read_file_handle(counts)
 	split_list = scl.split(fixed_list)
 
-	entries = GenericFormats.MAF.File.get_all_entries_from_filehandle(args.maf)
-	args.maf.close()
+	entries = GenericFormats.MAF.File.get_all_entries_from_filehandle(maf)
+	maf.close()
 
 	for entry in entries:
 		target_list = -1
 		for i in range(0, len(split_list)):
-			if entry.data[GenericFormats.MAF.Entry.get_heading(args.key)] in split_list[i]:
+			if entry.data[GenericFormats.MAF.Entry.get_heading(key)] in split_list[i]:
 				if target_list != -1:
-					parser.exit(-1, "Util entry: %s, is in multiple lists\n" % entry.data[
-						GenericFormats.MAF.Entry.get_heading(args.key)])
+					print("Util entry: %s, is in multiple lists\n" % entry.data[
+						GenericFormats.MAF.Entry.get_heading(key)], file=sys.stderr)
+					sys.exit(-1)
 				target_list = i
-				# print("key %s belongs in list # %d" % (entry.data[GenericFormats.MAF.Entry.get_heading(args.key)], i))
+				# print("key %s belongs in list # %d" % (entry.data[GenericFormats.MAF.Entry.get_heading(key)], i))
 				print("%s" % entry, file=handles[i])
 		if target_list == -1:
-			parser.exit(-1, "Util key: %s, doesn't exist in any of the lists\n" % entry.data[
-				GenericFormats.MAF.Entry.get_heading(args.key)])
+			print("Util key: %s, doesn't exist in any of the lists\n" % entry.data[
+				GenericFormats.MAF.Entry.get_heading(key)], file=sys.stderr)
+			sys.exit(-1)
 	# for i in range(0, len(split_list)):
 	# 	print("list # %d" % i)
 	# 	print("%s" % split_list[i])

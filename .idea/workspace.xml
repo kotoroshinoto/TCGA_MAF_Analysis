@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="93cd2a26-0973-445f-bada-db8d4c112c18" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/Symbol_fixer.py" afterPath="$PROJECT_DIR$/pybin/Symbol_fixer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/check_against_lengths_file.py" afterPath="$PROJECT_DIR$/pybin/check_against_lengths_file.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/exon_sizer.py" afterPath="$PROJECT_DIR$/pybin/exon_sizer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/get_COSMIC_status.py" afterPath="$PROJECT_DIR$/pybin/get_COSMIC_status.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/update_names_entrez.py" afterPath="$PROJECT_DIR$/pybin/update_names_entrez.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/split_maf_with_counts.py" afterPath="$PROJECT_DIR$/pybin/split_maf_with_counts.py" />
     </list>
     <ignored path="TCGA_MAF_Analysis.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,10 +25,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="get_COSMIC_status.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="get_COSMIC_status.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pybin/get_COSMIC_status.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.43583536">
+            <state vertical-scroll-proportion="0.0">
               <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
               <folding>
                 <element signature="e#23#33#0" expanded="true" />
@@ -41,14 +37,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="exon_sizer.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pybin/exon_sizer.py">
+      <file leaf-file-name="split_maf_with_counts.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pybin/split_maf_with_counts.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.91525424">
+              <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+              <folding>
+                <element signature="e#23#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MAF_counter.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pybin/MAF_counter.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="120" column="49" selection-start-line="120" selection-start-column="49" selection-end-line="120" selection-end-column="49" />
-              <folding>
-                <element signature="e#45#57#0" expanded="true" />
-              </folding>
+              <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -106,7 +112,6 @@
         <option value="$PROJECT_DIR$/pybin/Generic_Formats/VCF.py" />
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/pybin/Symbol_query.py" />
-        <option value="$PROJECT_DIR$/pybin/split_maf_with_counts.py" />
         <option value="$PROJECT_DIR$/pybin/GenericFormats/BED.py" />
         <option value="$PROJECT_DIR$/pybin/GenericFormats/VCF.py" />
         <option value="$PROJECT_DIR$/pybin/Cosmic/TSV.py" />
@@ -119,6 +124,7 @@
         <option value="$PROJECT_DIR$/pybin/update_names_entrez.py" />
         <option value="$PROJECT_DIR$/pybin/exon_sizer.py" />
         <option value="$PROJECT_DIR$/pybin/get_COSMIC_status.py" />
+        <option value="$PROJECT_DIR$/pybin/split_maf_with_counts.py" />
       </list>
     </option>
   </component>
@@ -456,12 +462,6 @@
       <option name="number" value="Default" />
       <updated>1438714076692</updated>
     </task>
-    <task id="LOCAL-00011" summary="fairly major oopsie. Checking NEW names in 2 column file against length file is now possible">
-      <created>1442356982428</created>
-      <option name="number" value="00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1442356982428</updated>
-    </task>
     <task id="LOCAL-00012" summary="exon sizer now can generate a merged lengths file and same results produced as using both lengths files">
       <created>1442420494470</created>
       <option name="number" value="00012" />
@@ -750,7 +750,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455223163315</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="kludge">
+      <created>1455226089279</created>
+      <option name="number" value="00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1455226089279</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -800,7 +806,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="experimenting with contracts" />
     <MESSAGE value="group divider script starting point copied from testing script" />
     <MESSAGE value="maf_counter.py ready for debugging/testing" />
     <MESSAGE value="split_maf_with_counts.py ready for debugging/testing" />
@@ -825,7 +830,8 @@
     <MESSAGE value="minor adjustment to report style" />
     <MESSAGE value="report reference option added to mutation caller" />
     <MESSAGE value="started switching more scripts to use click instead of argparse" />
-    <option name="LAST_COMMIT_MESSAGE" value="started switching more scripts to use click instead of argparse" />
+    <MESSAGE value="kludge" />
+    <option name="LAST_COMMIT_MESSAGE" value="kludge" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -875,7 +881,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="142" column="22" selection-start-line="142" selection-start-column="11" selection-end-line="142" selection-end-column="22" />
           <folding>
-            <element signature="e#23#33#0" expanded="true" />
+            <element signature="e#23#33#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -885,7 +891,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1117,13 +1123,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybin/split_maf_with_counts.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60826033">
-          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pybin/MAF_collect_unique_symbols.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.50060457">
@@ -1169,16 +1168,8 @@
         <state vertical-scroll-proportion="0.30508474">
           <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybin/MAF_counter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10895884">
-          <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1205,7 +1196,7 @@
         <state vertical-scroll-proportion="0.48120302">
           <caret line="53" column="47" selection-start-line="53" selection-start-column="44" selection-end-line="53" selection-end-column="47" />
           <folding>
-            <element signature="e#45#54#0" expanded="true" />
+            <element signature="e#45#54#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1215,7 +1206,7 @@
         <state vertical-scroll-proportion="1.1961259">
           <caret line="142" column="22" selection-start-line="142" selection-start-column="11" selection-end-line="142" selection-end-column="22" />
           <folding>
-            <element signature="e#23#33#0" expanded="true" />
+            <element signature="e#23#33#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1225,6 +1216,16 @@
         <state vertical-scroll-proportion="0.8692494">
           <caret line="157" column="0" selection-start-line="157" selection-start-column="0" selection-end-line="159" selection-end-column="9" />
           <folding>
+            <element signature="e#23#33#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybin/get_COSMIC_status.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+          <folding>
             <element signature="e#23#33#0" expanded="true" />
           </folding>
         </state>
@@ -1232,20 +1233,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pybin/exon_sizer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="2.6150122">
           <caret line="120" column="49" selection-start-line="120" selection-start-column="49" selection-end-line="120" selection-end-column="49" />
-          <folding>
-            <element signature="e#45#57#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybin/get_COSMIC_status.py">
+    <entry file="file://$PROJECT_DIR$/pybin/MAF_counter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43583536">
-          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybin/split_maf_with_counts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.91525424">
+          <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
           <folding>
-            <element signature="e#23#33#0" expanded="true" />
+            <element signature="e#23#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
