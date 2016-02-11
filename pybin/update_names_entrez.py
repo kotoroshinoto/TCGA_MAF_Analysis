@@ -4,19 +4,6 @@ import re
 import sys
 import click
 
-# parser = argparse.ArgumentParser(description="Compute exonic sizes of genes and relate them to HUGO IDs")
-# parser.add_argument('--mafnames', type=argparse.FileType('r'), required=True, help="file of names to be translated")
-# parser.add_argument('--name_to_entrez', type=argparse.FileType('r'), required=True, help="output from MAF_collect_unique_entrez_ids.py")
-# parser.add_argument('--entrez', type=argparse.FileType('r'), required=True, help="file containing symbols and entrez ids")
-# parser.add_argument('--col-entrez', type=int, required=True, help="column that has entrez ids")
-# parser.add_argument('--col-symbol', type=int, required=True, help="column that has symbols")
-#
-# parser.add_argument('--outCorrected', type=argparse.FileType('w'), required=True, help="file to use for output")
-# parser.add_argument('--outUnmatched', type=argparse.FileType('w'), required=True, help="file to use for output")
-#
-# args = parser.parse_args()
-
-
 @click.command()
 @click.option('--mafnames', type=click.File('r'), required=True, help="file of names to be translated")
 @click.option('--name_to_entrez', type=click.File('r'), required=True, help="output from MAF_collect_unique_entrez_ids.py")

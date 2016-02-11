@@ -116,15 +116,6 @@ def fix_names(context: AbstractSymbolFixContext):
 	#print to output files and logs
 	return
 
-
-# def get_parser() -> argparse.ArgumentParser:
-# 	parser = argparse.ArgumentParser(description="Fix names in Util Util file to match names in newer annotations")
-# 	#TODO subcommands for Util filetype and TSV with selected columns
-# 	#TODO flag values for specific fixing steps
-# 	#TODO input for manually curated names
-# 	#TODO option for logging as when done manually
-# 	return parser
-
 @click.group()
 def cli():
 	pass

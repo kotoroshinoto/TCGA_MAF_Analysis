@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 __author__ = 'mgooch'
-import argparse
+import click
 import sys
 
 
@@ -83,16 +83,7 @@ def read_files_and_map_names(handlelist, col_list):
 	return read_bed_and_map_names(handlelist[0], name_map)
 
 
-def do_both(args):
-	if args.ucsc is not None and args.ucsc_col is not None:
-		ucsc_bed = read_files_and_map_names(args.ucsc, args.ucsc_col)
-	else:
-		ucsc_bed = None
-	if args.refseq is not None and args.refseq_col is not None:
-		refseq_bed = read_files_and_map_names(args.refseq, args.refseq_col)
-	else:
-		refseq_bed = None
-	return merge_and_write_bed_dicts(ucsc_bed, refseq_bed, args.out)
+
 
 
 def argcheck(parser):
@@ -125,15 +116,23 @@ def argcheck(parser):
 		parser.error(err_msg)
 	return args
 
+@click.command(help="Compute exonic sizes of genes and relate them to HUGO IDs")
+@click.option('--ucsc', nargs=2, type=click.File('r'), help="first path is to a bed file containing genes & exons from UCSC, 2nd path is to path to a file relating BED file names to desired names")
+@click.option('--refseq', nargs=2, default=None, type=click.File('r'), help="first path is to a bed file containing genes & exons from REFSEQ, 2nd path is to path to a file relating BED file names to desired names")
+@click.option('--ucsc_col', type=int, nargs=2, help="pair of 0-based index values for parsing the names file, first column's names match those from the BED file, second names match those to use in the output")
+@click.option('--refseq_col', type=int, nargs=2, help="pair of 0-based index values for parsing the names file, first column's names match those from the BED file, second names match those to use in the output")
+@click.option('--out', type=click.File('w'), default=sys.stdout, help="output file")
+def cli(ucsc, refseq, ucsc_col, refseq_col, out):
+	if ucsc is not None and ucsc_col is not None:
+		ucsc_bed = read_files_and_map_names(ucsc, ucsc_col)
+	else:
+		ucsc_bed = None
+	if refseq is not None and refseq_col is not None:
+		refseq_bed = read_files_and_map_names(refseq, refseq_col)
+	else:
+		refseq_bed = None
+	return merge_and_write_bed_dicts(ucsc_bed, refseq_bed, out)
 
-argument_parser = argparse.ArgumentParser(description="Compute exonic sizes of genes and relate them to HUGO IDs")
-argument_parser.add_argument('--ucsc', nargs=2, type=argparse.FileType('r'), help="first path is to a bed file containing genes & exons from UCSC, 2nd path is to path to a file relating BED file names to desired names")
-argument_parser.add_argument('--refseq', nargs=2, type=argparse.FileType('r'), help="first path is to a bed file containing genes & exons from REFSEQ, 2nd path is to path to a file relating BED file names to desired names")
-argument_parser.add_argument('--ucsc_col', type=int, nargs=2, help="pair of 0-based index values for parsing the names file, first column's names match those from the BED file, second names match those to use in the output")
-argument_parser.add_argument('--refseq_col', type=int, nargs=2, help="pair of 0-based index values for parsing the names file, first column's names match those from the BED file, second names match those to use in the output")
-argument_parser.add_argument('--out', type=argparse.FileType('w'), default=sys.stdout, help="output file")
 
-arguments = argcheck(argument_parser)
-
-do_both(arguments)
-
+if __name__ == "__main__":
+	cli()

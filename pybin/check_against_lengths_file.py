@@ -5,17 +5,6 @@ import re
 import sys
 import os
 
-# parser = argparse.ArgumentParser(description="Check Util names against names in Gene Length files")
-# parser.add_argument('--mafnames', type=argparse.FileType('r'), required=True, help="file of names to be translated")
-# parser.add_argument('--checkcolumn', type=int, help="check this column instead of oldcolumn")
-# parser.add_argument('--oldcolumn', type=int, default=0, help="this column is the original name")
-# parser.add_argument('--genelength', type=argparse.FileType('r'), required=True, help="file of gene lengths that has names", nargs='+')
-# parser.add_argument('--matched', type=argparse.FileType('w'), required=True, help="file to write matched names")
-# parser.add_argument('--unmatched', type=argparse.FileType('w'), required=True, help="file to write unmatched names")
-# parser.add_argument('--keep', default=False, action='store_true', help="put checked label in 2nd column even if unmatched")
-# parser.add_argument('--logOK', default=os.devnull, type=argparse.FileType('w'), help="log OK output to this file")
-# parser.add_argument('--logBAD', default=os.devnull, type=argparse.FileType('w'), help="log BAD output to this file")
-
 
 @click.command()
 @click.option('--mafnames', type=click.File('r'), required=True, help="file of names to be translated")

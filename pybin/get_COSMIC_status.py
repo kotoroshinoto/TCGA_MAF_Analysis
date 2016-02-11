@@ -10,8 +10,15 @@ import copy
 import GenericFormats.MAF
 from intervaltree import Interval, IntervalTree
 
-
-csv.field_size_limit(sys.maxsize)
+maxInt = sys.maxsize
+decrement = True
+while decrement:
+	decrement = False
+	try:
+		csv.field_size_limit(maxInt)
+	except OverflowError:
+		maxInt = int(maxInt/10)
+		decrement = True
 
 tsv_position_matcher = re.compile("([0-9]+):([0-9]+)-([0-9]+)")
 
