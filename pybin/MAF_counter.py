@@ -88,8 +88,8 @@ def handle_outpath_arg(maf, out, nameprefix, muttype, sample, gene, muttypepersa
 
 def handle_action_args(muttype, sample, gene, muttypepersample):
 	counters = dict()
-	if not(muttype or sample or gene):
-		print("must activate at least one counting mode: --muttype --sample --gene", file=sys.stderr)
+	if not(muttype or sample or gene or muttypepersample):
+		print("must activate at least one counting mode: --muttype --sample --gene --muttypepersample", file=sys.stderr)
 		sys.exit(-1)
 	if muttype:
 		counters["MUT_TYPE"] = Util.MAFcounters.MutTypeCounter()

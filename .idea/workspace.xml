@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93cd2a26-0973-445f-bada-db8d4c112c18" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/TCGA_MAF_Analysis.iml" afterPath="$PROJECT_DIR$/.idea/TCGA_MAF_Analysis.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/MAF_counter.py" afterPath="$PROJECT_DIR$/pybin/MAF_counter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/Util/MAFcounters.py" afterPath="$PROJECT_DIR$/pybin/Util/MAFcounters.py" />
@@ -28,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MAF_counter.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MAF_counter.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pybin/MAF_counter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="549">
-              <caret line="116" column="74" selection-start-line="116" selection-start-column="74" selection-end-line="116" selection-end-column="74" />
+            <state relative-caret-position="81">
+              <caret line="91" column="101" selection-start-line="91" selection-start-column="101" selection-end-line="91" selection-end-column="101" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
               </folding>
@@ -40,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MAFcounters.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MAFcounters.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pybin/Util/MAFcounters.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="702">
-              <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+            <state relative-caret-position="345">
+              <caret line="60" column="55" selection-start-line="60" selection-start-column="55" selection-end-line="60" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -114,8 +112,8 @@
         <option value="$PROJECT_DIR$/pybin/get_COSMIC_status.py" />
         <option value="$PROJECT_DIR$/pybin/Util/MAFSampleCountsList.py" />
         <option value="$PROJECT_DIR$/pybin/split_maf_with_counts.py" />
-        <option value="$PROJECT_DIR$/pybin/Util/MAFcounters.py" />
         <option value="$PROJECT_DIR$/pybin/MAF_counter.py" />
+        <option value="$PROJECT_DIR$/pybin/Util/MAFcounters.py" />
       </list>
     </option>
   </component>
@@ -473,13 +471,6 @@
       <option name="presentableId" value="Default" />
       <updated>1438714076692</updated>
     </task>
-    <task id="LOCAL-00015" summary="working on porting code again">
-      <created>1443454318554</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1443454318554</updated>
-    </task>
     <task id="LOCAL-00016" summary="working on porting code again">
       <created>1443476638433</created>
       <option name="number" value="00016" />
@@ -816,7 +807,14 @@
       <option name="project" value="LOCAL" />
       <updated>1455227939563</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="added new type of counter.&#10;counts mutation types, but also tracks them per-sample">
+      <created>1462471885035</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1462471885036</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -866,7 +864,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="maf_counter.py ready for debugging/testing" />
     <MESSAGE value="split_maf_with_counts.py ready for debugging/testing" />
     <MESSAGE value="started work on merging and cleaning up name fixing algorithms" />
     <MESSAGE value="learning how to use click" />
@@ -891,7 +888,8 @@
     <MESSAGE value="started switching more scripts to use click instead of argparse" />
     <MESSAGE value="kludge" />
     <MESSAGE value="MAF.MAFEntry should be MAF.Entry" />
-    <option name="LAST_COMMIT_MESSAGE" value="MAF.MAFEntry should be MAF.Entry" />
+    <MESSAGE value="added new type of counter.&#10;counts mutation types, but also tracks them per-sample" />
+    <option name="LAST_COMMIT_MESSAGE" value="added new type of counter.&#10;counts mutation types, but also tracks them per-sample" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1268,14 +1266,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybin/Util/MAFcounters.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pybin/get_COSMIC_status.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
@@ -1288,11 +1278,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pybin/MAF_counter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="116" column="74" selection-start-line="116" selection-start-column="74" selection-end-line="116" selection-end-column="74" />
+        <state relative-caret-position="81">
+          <caret line="91" column="101" selection-start-line="91" selection-start-column="101" selection-end-line="91" selection-end-column="101" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybin/Util/MAFcounters.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="60" column="55" selection-start-line="60" selection-start-column="55" selection-end-line="60" selection-end-column="55" />
+          <folding />
         </state>
       </provider>
     </entry>

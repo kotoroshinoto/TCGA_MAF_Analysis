@@ -72,12 +72,12 @@ class MutTypePerSampCounter(FeatureCounter):
 	def count(self, entry: MAF.Entry):
 		mut_type_list = entry.determine_mutation()
 		for mut_type in mut_type_list:
-			combin_str = "%s_%s" % (entry.data['Tumor_Sample_Barcode'], mut_type)
+			combin_str = "%s_|_%s" % (entry.data['Tumor_Sample_Barcode'], mut_type)
 			self.__appendcount__(combin_str)
 
 	def __str__(self):
 		str_val = ""
 		for key in sorted(self.counts.keys()):
-			key_split = key.split('_')
+			key_split = key.split('_|_')
 			str_val += "%s\t%s\t%s\n" % (key_split[0],key_split[1], self.counts[key])
 		return str_val
