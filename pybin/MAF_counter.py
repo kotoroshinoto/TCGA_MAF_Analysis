@@ -9,7 +9,7 @@ import Util.MAFcounters
 __author__ = 'mgooch'
 
 
-def generate_file_handles(maf, nameprefix, muttype, sample, gene, outpath):
+def generate_file_handles(maf, nameprefix, muttype, sample, gene, muttypepersample, outpath):
 	maf_path = maf.name
 	maf_path_split = os.path.split(maf_path)
 	if nameprefix == "":
@@ -28,10 +28,12 @@ def generate_file_handles(maf, nameprefix, muttype, sample, gene, outpath):
 		out_handles["SAMPLE"] = open(os.path.join(outpath, (prefix + ".sample.counts")), mode='w')
 	if gene:
 		out_handles["GENE"] = open(os.path.join(outpath, (prefix + ".gene.counts")), mode='w')
+	if muttypepersample:
+		out_handles["MUT_TYPE_PER_SAMPLE"] = open(os.path.join(outpath, (prefix + ".mutation_type.per_sample.counts")), mode='w')
 	return out_handles
 
 
-def handle_outpath_arg(maf, out, nameprefix, muttype, sample, gene):
+def handle_outpath_arg(maf, out, nameprefix, muttype, sample, gene, muttypepersample):
 	if out == "":
 		if nameprefix:
 			print("[WARNING] argument --nameprefix does nothing if outpath is not defined, script will use stdout for all output", file=sys.stderr)
@@ -42,6 +44,8 @@ def handle_outpath_arg(maf, out, nameprefix, muttype, sample, gene):
 			out_handles["SAMPLE"] = sys.stdout
 		if gene:
 			out_handles["GENE"] = sys.stdout
+		if muttypepersample:
+			out_handles["MUT_TYPE_PER_SAMPLE"] = sys.stdout
 		return out_handles
 	else:
 		outpath = os.path.realpath(os.path.abspath(out))
@@ -55,12 +59,12 @@ def handle_outpath_arg(maf, out, nameprefix, muttype, sample, gene):
 				sys.exit(-1)
 		if os.path.exists(outpath) and os.path.isdir(outpath):
 			#craft default filename from maf file + countype.counts
-			return generate_file_handles(maf, nameprefix, muttype, sample, gene, outpath)
+			return generate_file_handles(maf, nameprefix, muttype, sample, gene, muttypepersample, outpath)
 		elif not os.path.exists(outpath):
 			#path does not yet exist, but parent path does
 			#create path automatically, then create the filehandles
 			os.mkdir(outpath)
-			return generate_file_handles(maf, nameprefix, muttype, sample, gene, outpath)
+			return generate_file_handles(maf, nameprefix, muttype, sample, gene, muttypepersample, outpath)
 		else:
 			#file exists and is not a directory
 			if nameprefix:
@@ -77,10 +81,12 @@ def handle_outpath_arg(maf, out, nameprefix, muttype, sample, gene):
 				out_handles["SAMPLE"] = out_handle
 			if gene:
 				out_handles["GENE"] = out_handle
+			if muttypepersample:
+				out_handles["MUT_TYPE_PER_SAMPLE"] = out_handle
 			return out_handles
 
 
-def handle_action_args(muttype, sample, gene):
+def handle_action_args(muttype, sample, gene, muttypepersample):
 	counters = dict()
 	if not(muttype or sample or gene):
 		print("must activate at least one counting mode: --muttype --sample --gene", file=sys.stderr)
@@ -91,6 +97,8 @@ def handle_action_args(muttype, sample, gene):
 		counters["SAMPLE"] = Util.MAFcounters.SampMutCounter()
 	if gene:
 		counters["GENE"] = Util.MAFcounters.GeneMutCounter()
+	if muttypepersample:
+		counters["MUT_TYPE_PER_SAMPLE"] = Util.MAFcounters.MutTypePerSampCounter()
 	return counters
 
 
@@ -101,9 +109,10 @@ def handle_action_args(muttype, sample, gene):
 @click.option('--muttype', is_flag=True, default=False, required=False, help="activate counting according to mutation types")
 @click.option('--sample', is_flag=True, default=False, required=False, help="activate counting according to sample ID")
 @click.option('--gene', is_flag=True, default=False, required=False, help="activate counting according to gene symbol")
-def main(maf, out, nameprefix, muttype, sample, gene):
-	counters = handle_action_args(muttype, sample, gene)
-	out_handles = handle_outpath_arg(maf, out, nameprefix, muttype, sample, gene)
+@click.option('--muttypepersample', is_flag=True, default=False, required=False, help="activate counting according to mutation type, but also tracking sample_id")
+def main(maf, out, nameprefix, muttype, sample, gene, muttypepersample):
+	counters = handle_action_args(muttype, sample, gene, muttypepersample)
+	out_handles = handle_outpath_arg(maf, out, nameprefix, muttype, sample, gene, muttypepersample)
 
 	entries = GenericFormats.MAF.File.get_all_entries_from_filehandle(maf)
 	maf.close()
