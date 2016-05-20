@@ -9,7 +9,7 @@ import Util.MAFcounters
 __author__ = 'mgooch'
 
 
-def generate_file_handles(maf, nameprefix, muttype, sample, gene, muttypepersample, location, outpath):
+def generate_file_handles(maf, nameprefix, muttype, sample, gene, muttypepersample, location, muttypeatlocation, outpath):
 	maf_path = maf.name
 	maf_path_split = os.path.split(maf_path)
 	if nameprefix == "":
@@ -32,10 +32,12 @@ def generate_file_handles(maf, nameprefix, muttype, sample, gene, muttypepersamp
 		out_handles["MUT_TYPE_PER_SAMPLE"] = open(os.path.join(outpath, (prefix + ".mutation_type.per_sample.counts")), mode='w')
 	if location:
 		out_handles["LOCATION"] = open(os.path.join(outpath, (prefix + ".location.counts")), mode='w')
+	if muttypeatlocation:
+		out_handles['MUT_TYPE_AT_LOCATION'] = open(os.path.join(outpath, (prefix + ".mutation_type.at.location.counts")), mode='w')
 	return out_handles
 
 
-def handle_outpath_arg(maf, out, nameprefix, muttype, sample, gene, muttypepersample, location):
+def handle_outpath_arg(maf, out, nameprefix, muttype, sample, gene, muttypepersample, location, muttypeatlocation):
 	if out == "":
 		if nameprefix:
 			print("[WARNING] argument --nameprefix does nothing if outpath is not defined, script will use stdout for all output", file=sys.stderr)
@@ -50,6 +52,8 @@ def handle_outpath_arg(maf, out, nameprefix, muttype, sample, gene, muttypepersa
 			out_handles["MUT_TYPE_PER_SAMPLE"] = sys.stdout
 		if location:
 			out_handles["LOCATION"] = sys.stdout
+		if muttypeatlocation:
+			out_handles["MUT_TYPE_AT_LOCATION"] = sys.stdout
 		return out_handles
 	else:
 		outpath = os.path.realpath(os.path.abspath(out))
@@ -63,12 +67,12 @@ def handle_outpath_arg(maf, out, nameprefix, muttype, sample, gene, muttypepersa
 				sys.exit(-1)
 		if os.path.exists(outpath) and os.path.isdir(outpath):
 			#craft default filename from maf file + countype.counts
-			return generate_file_handles(maf, nameprefix, muttype, sample, gene, muttypepersample, location, outpath)
+			return generate_file_handles(maf, nameprefix, muttype, sample, gene, muttypepersample, location, muttypeatlocation, outpath)
 		elif not os.path.exists(outpath):
 			#path does not yet exist, but parent path does
 			#create path automatically, then create the filehandles
 			os.mkdir(outpath)
-			return generate_file_handles(maf, nameprefix, muttype, sample, gene, muttypepersample, location, outpath)
+			return generate_file_handles(maf, nameprefix, muttype, sample, gene, muttypepersample, location, muttypeatlocation, outpath)
 		else:
 			#file exists and is not a directory
 			if nameprefix:
@@ -89,13 +93,15 @@ def handle_outpath_arg(maf, out, nameprefix, muttype, sample, gene, muttypepersa
 				out_handles["MUT_TYPE_PER_SAMPLE"] = out_handle
 			if location:
 				out_handles["LOCATION"] = out_handle
+			if muttypeatlocation:
+				out_handles["MUT_TYPE_AT_LOCATION"] = out_handle
 			return out_handles
 
 
-def handle_action_args(muttype, sample, gene, muttypepersample, location):
+def handle_action_args(muttype, sample, gene, muttypepersample, location, muttypeatlocation):
 	counters = dict()
-	if not(muttype or sample or gene or muttypepersample or location):
-		print("must activate at least one counting mode: --muttype --sample --gene --muttypepersample --location", file=sys.stderr)
+	if not(muttype or sample or gene or muttypepersample or location or muttypeatlocation):
+		print("must activate at least one counting mode: --muttype --sample --gene --muttypepersample --location --muttypeatlocation", file=sys.stderr)
 		sys.exit(-1)
 	if muttype:
 		counters["MUT_TYPE"] = Util.MAFcounters.MutTypeCounter()
@@ -107,6 +113,8 @@ def handle_action_args(muttype, sample, gene, muttypepersample, location):
 		counters["MUT_TYPE_PER_SAMPLE"] = Util.MAFcounters.MutTypePerSampCounter()
 	if location:
 		counters["LOCATION"] = Util.MAFcounters.LocMutCounter()
+	if muttypeatlocation:
+		counters["MUT_TYPE_AT_LOCATION"] = Util.MAFcounters.MutTypeAtLocCounter()
 	return counters
 
 
@@ -119,9 +127,10 @@ def handle_action_args(muttype, sample, gene, muttypepersample, location):
 @click.option('--gene', is_flag=True, default=False, required=False, help="activate counting according to gene symbol")
 @click.option('--muttypepersample', is_flag=True, default=False, required=False, help="activate counting according to mutation type, but also tracking sample_id")
 @click.option('--location', is_flag=True, default=False, required=False, help="activate counting according to genomic location")
-def main(maf, out, nameprefix, muttype, sample, gene, muttypepersample, location):
-	counters = handle_action_args(muttype, sample, gene, muttypepersample, location)
-	out_handles = handle_outpath_arg(maf, out, nameprefix, muttype, sample, gene, muttypepersample, location)
+@click.option('--muttypeatlocation', is_flag=True, default=False, required=False, help="count more specifically than location does, divides counts by mutation type at each location (probably won't condense data file very much)")
+def main(maf, out, nameprefix, muttype, sample, gene, muttypepersample, location, muttypeatlocation):
+	counters = handle_action_args(muttype, sample, gene, muttypepersample, location, muttypeatlocation)
+	out_handles = handle_outpath_arg(maf, out, nameprefix, muttype, sample, gene, muttypepersample, location, muttypeatlocation)
 
 	entries = GenericFormats.MAF.File.get_all_entries_from_filehandle(maf)
 	maf.close()

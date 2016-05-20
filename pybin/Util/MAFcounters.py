@@ -67,6 +67,7 @@ class LocMutCounter(FeatureCounter):
 			str_rep += "\n"
 		return str_rep
 
+
 class SampMutCounter(FeatureCounter):
 	def count(self, entry: MAF.Entry):
 		self.__appendcount__(entry.data['Tumor_Sample_Barcode'])
@@ -78,6 +79,20 @@ class MutTypeCounter(FeatureCounter):
 		mut_type_list = entry.determine_mutation()
 		for mut_type in mut_type_list:
 			self.__appendcount__(mut_type)
+
+
+class MutTypeAtLocCounter(FeatureCounter):
+	def count(self, entry: MAF.Entry):
+		mut_type_list = entry.determine_mutation()
+		for mut_type in mut_type_list:
+			self.__appendcount__("%s|%s|%s|%s|%s" % (entry.data['Hugo_Symbol'], entry.data['Chrom'], entry.data['Start_Position'], entry.data['End_Position'], mut_type))
+
+	def __str__(self):
+		str_rep = "GENE_SYMBOL\t\CHROM\tSTART\tEND\tMUT_TYPE\tCOUNT\n"
+		for item in self.counts:
+			str_rep += "%s\t%d" % (item.replace("|", "\t"), self.counts[item])
+			str_rep += "\n"
+		return str_rep
 
 
 class MutTypePerSampCounter(FeatureCounter):
