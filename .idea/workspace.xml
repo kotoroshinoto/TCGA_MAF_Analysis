@@ -29,8 +29,8 @@
       <file leaf-file-name="MAF_counter.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pybin/MAF_counter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
-              <caret line="91" column="101" selection-start-line="91" selection-start-column="101" selection-end-line="91" selection-end-column="101" />
+            <state relative-caret-position="544">
+              <caret line="33" column="81" selection-start-line="33" selection-start-column="81" selection-end-line="33" selection-end-column="81" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
               </folding>
@@ -41,9 +41,21 @@
       <file leaf-file-name="MAFcounters.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pybin/Util/MAFcounters.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="60" column="55" selection-start-line="60" selection-start-column="55" selection-end-line="60" selection-end-column="55" />
+            <state relative-caret-position="629">
+              <caret line="67" column="22" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MAF.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pybin/GenericFormats/MAF.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1462">
+              <caret line="87" column="88" selection-start-line="87" selection-start-column="76" selection-end-line="87" selection-end-column="88" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -154,7 +166,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -225,7 +237,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -470,13 +482,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1438714076692</updated>
-    </task>
-    <task id="LOCAL-00016" summary="working on porting code again">
-      <created>1443476638433</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1443476638433</updated>
     </task>
     <task id="LOCAL-00017" summary="working on porting code again">
       <created>1443476647090</created>
@@ -814,7 +819,14 @@
       <option name="project" value="LOCAL" />
       <updated>1462471885036</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="oopsie, minor error">
+      <created>1462481844743</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1462481844743</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -828,7 +840,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="959" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.240625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286385" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -864,7 +876,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="split_maf_with_counts.py ready for debugging/testing" />
     <MESSAGE value="started work on merging and cleaning up name fixing algorithms" />
     <MESSAGE value="learning how to use click" />
     <MESSAGE value="minor oops" />
@@ -889,7 +900,8 @@
     <MESSAGE value="kludge" />
     <MESSAGE value="MAF.MAFEntry should be MAF.Entry" />
     <MESSAGE value="added new type of counter.&#10;counts mutation types, but also tracks them per-sample" />
-    <option name="LAST_COMMIT_MESSAGE" value="added new type of counter.&#10;counts mutation types, but also tracks them per-sample" />
+    <MESSAGE value="oopsie, minor error" />
+    <option name="LAST_COMMIT_MESSAGE" value="oopsie, minor error" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -918,9 +930,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#23#33#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1249,16 +1258,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybin/GenericFormats/MAF.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="109" column="74" selection-start-line="109" selection-start-column="74" selection-end-line="109" selection-end-column="74" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pybin/update_names_entrez.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="867">
@@ -1270,16 +1269,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
           <caret line="261" column="22" selection-start-line="261" selection-start-column="4" selection-end-line="261" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybin/GenericFormats/MAF.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1462">
+          <caret line="87" column="88" selection-start-line="87" selection-start-column="76" selection-end-line="87" selection-end-column="88" />
           <folding>
-            <element signature="e#23#33#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pybin/MAF_counter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="91" column="101" selection-start-line="91" selection-start-column="101" selection-end-line="91" selection-end-column="101" />
+        <state relative-caret-position="544">
+          <caret line="33" column="81" selection-start-line="33" selection-start-column="81" selection-end-line="33" selection-end-column="81" />
           <folding>
             <element signature="e#23#35#0" expanded="true" />
           </folding>
@@ -1288,8 +1294,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pybin/Util/MAFcounters.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="60" column="55" selection-start-line="60" selection-start-column="55" selection-end-line="60" selection-end-column="55" />
+        <state relative-caret-position="629">
+          <caret line="67" column="22" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
           <folding />
         </state>
       </provider>
