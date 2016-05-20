@@ -58,12 +58,12 @@ class GeneMutCounter(FeatureCounter):
 class LocMutCounter(FeatureCounter):
 	def count(self, entry: MAF.Entry):
 		#count according to GENE_CHROM_START_END
-		self.__appendcount__("%s_%s_%s_%s_%s" % (entry.data['Hugo_Symbol'], entry.data['Chrom'], entry.data['Start_Position'], entry.data['End_Position'], entry.data['Variant_Type']))
+		self.__appendcount__("%s|%s|%s|%s|%s|%s" % (entry.data['Hugo_Symbol'], entry.data['Chrom'], entry.data['Start_Position'], entry.data['End_Position'], entry.data['Variant_Type'], entry.data['Variant_Classification']))
 
 	def __str__(self):
-		str_rep = "GENE_SYMBOL\t\CHROM\tSTART\tEND\tVARIANT_TYPE\tCOUNT\n"
+		str_rep = "GENE_SYMBOL\t\CHROM\tSTART\tEND\tVARIANT_TYPE\tVARIANT_CLASS\tCOUNT\n"
 		for item in self.counts:
-			str_rep += "%s\t%d" % (item.replace("_", "\t"), self.counts[item])
+			str_rep += "%s\t%d" % (item.replace("|", "\t"), self.counts[item])
 			str_rep += "\n"
 		return str_rep
 

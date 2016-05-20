@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="93cd2a26-0973-445f-bada-db8d4c112c18" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/MAF_counter.py" afterPath="$PROJECT_DIR$/pybin/MAF_counter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pybin/Util/MAFcounters.py" afterPath="$PROJECT_DIR$/pybin/Util/MAFcounters.py" />
     </list>
     <ignored path="TCGA_MAF_Analysis.iws" />
@@ -41,8 +40,8 @@
       <file leaf-file-name="MAFcounters.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pybin/Util/MAFcounters.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="67" column="22" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
+            <state relative-caret-position="595">
+              <caret line="65" column="50" selection-start-line="65" selection-start-column="50" selection-end-line="65" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -483,13 +482,6 @@
       <option name="presentableId" value="Default" />
       <updated>1438714076692</updated>
     </task>
-    <task id="LOCAL-00017" summary="working on porting code again">
-      <created>1443476647090</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1443476647090</updated>
-    </task>
     <task id="LOCAL-00018" summary="MAFreader (MAFfile and MAFentry) mostly working">
       <created>1443476681170</created>
       <option name="number" value="00018" />
@@ -826,7 +818,14 @@
       <option name="project" value="LOCAL" />
       <updated>1462481844743</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="location counter finished. Counts by genomic location AND variant_type (INS/DEL/SNP)">
+      <created>1463760289682</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1463760289683</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -840,7 +839,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="959" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.240625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286385" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -876,7 +875,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="started work on merging and cleaning up name fixing algorithms" />
     <MESSAGE value="learning how to use click" />
     <MESSAGE value="minor oops" />
     <MESSAGE value="renamed functions" />
@@ -901,7 +899,8 @@
     <MESSAGE value="MAF.MAFEntry should be MAF.Entry" />
     <MESSAGE value="added new type of counter.&#10;counts mutation types, but also tracks them per-sample" />
     <MESSAGE value="oopsie, minor error" />
-    <option name="LAST_COMMIT_MESSAGE" value="oopsie, minor error" />
+    <MESSAGE value="location counter finished. Counts by genomic location AND variant_type (INS/DEL/SNP)" />
+    <option name="LAST_COMMIT_MESSAGE" value="location counter finished. Counts by genomic location AND variant_type (INS/DEL/SNP)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1294,8 +1293,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pybin/Util/MAFcounters.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="67" column="22" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
+        <state relative-caret-position="595">
+          <caret line="65" column="50" selection-start-line="65" selection-start-column="50" selection-end-line="65" selection-end-column="50" />
           <folding />
         </state>
       </provider>
