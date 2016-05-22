@@ -2,7 +2,7 @@ __author__ = 'mgooch'
 import os
 import sys
 
-from GenericFormats import MAF
+from Formats import MAF
 
 
 class FeatureCounter:

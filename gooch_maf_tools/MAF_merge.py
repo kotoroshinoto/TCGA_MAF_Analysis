@@ -1,7 +1,7 @@
 import click
 import os
 import sys
-import GenericFormats.MAF
+import Formats.MAF
 
 
 @click.command(help="Count # of entries per gene in Util file")
@@ -10,9 +10,9 @@ import GenericFormats.MAF
 @click.option('--noheader', type=bool(), required=False, default=False, help="disable header line in output")
 def main(maf, out, noheader):
 	if not noheader:
-		print(GenericFormats.MAF.Entry.get_header_line(), file=out)
+		print(Formats.MAF.Entry.get_header_line(), file=out)
 	for maf_file in maf:
-		entries = GenericFormats.MAF.File.get_all_entries_from_filehandle(maf_file)
+		entries = Formats.MAF.File.get_all_entries_from_filehandle(maf_file)
 		maf_file.close()
 		for entry in entries:
 			print(entry, file=out)

@@ -9,9 +9,9 @@ __author__ = 'mgooch'
 # 	elif mut_type == "INS":
 # 		if nrm[0] == nrm[1]:
 # 	elif mut_type == "SNP":
-# 		print("[GenericFormats.MAF.resolve_mnc]<WARNING>SNP flagged as MNC", file=sys.stderr)
+# 		print("[Formats.MAF.resolve_mnc]<WARNING>SNP flagged as MNC", file=sys.stderr)
 # 	else:
-# 		print("[GenericFormats.MAF.resolve_mnc] unknown mutation type encountered", file=sys.stderr)
+# 		print("[Formats.MAF.resolve_mnc] unknown mutation type encountered", file=sys.stderr)
 # 		sys.exit(-1)
 
 

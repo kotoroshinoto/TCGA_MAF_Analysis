@@ -1,0 +1,3 @@
+[console_scripts]
+gooch-maf-tools = gooch_maf_tools.CLI:cli
+

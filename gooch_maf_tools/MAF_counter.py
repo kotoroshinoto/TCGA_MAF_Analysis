@@ -2,8 +2,7 @@
 import click
 import os
 import sys
-
-import GenericFormats.MAF
+import Formats.MAF
 import Util.MAFcounters
 
 __author__ = 'mgooch'
@@ -132,7 +131,7 @@ def main(maf, out, nameprefix, muttype, sample, gene, muttypepersample, location
 	counters = handle_action_args(muttype, sample, gene, muttypepersample, location, muttypeatlocation)
 	out_handles = handle_outpath_arg(maf, out, nameprefix, muttype, sample, gene, muttypepersample, location, muttypeatlocation)
 
-	entries = GenericFormats.MAF.File.get_all_entries_from_filehandle(maf)
+	entries = Formats.MAF.File.get_all_entries_from_filehandle(maf)
 	maf.close()
 
 	for entry in entries:

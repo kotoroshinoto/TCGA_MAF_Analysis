@@ -2,7 +2,7 @@
 import click
 import os
 import sys
-import GenericFormats.MAF
+import Formats.MAF
 import Util.MAFSampleCountsList
 
 __author__ = 'mgooch'
@@ -50,23 +50,23 @@ def main(counts, boundaries, maf, key, out_prefix):
 	scl.read_file_handle(counts)
 	split_list = scl.split(fixed_list)
 
-	entries = GenericFormats.MAF.File.get_all_entries_from_filehandle(maf)
+	entries = Formats.MAF.File.get_all_entries_from_filehandle(maf)
 	maf.close()
 
 	for entry in entries:
 		target_list = -1
 		for i in range(0, len(split_list)):
-			if entry.data[GenericFormats.MAF.Entry.get_heading(key)] in split_list[i]:
+			if entry.data[Formats.MAF.Entry.get_heading(key)] in split_list[i]:
 				if target_list != -1:
 					print("Util entry: %s, is in multiple lists\n" % entry.data[
-						GenericFormats.MAF.Entry.get_heading(key)], file=sys.stderr)
+						Formats.MAF.Entry.get_heading(key)], file=sys.stderr)
 					sys.exit(-1)
 				target_list = i
-				# print("key %s belongs in list # %d" % (entry.data[GenericFormats.MAF.Entry.get_heading(key)], i))
+				# print("key %s belongs in list # %d" % (entry.data[Formats.MAF.Entry.get_heading(key)], i))
 				print("%s" % entry, file=handles[i])
 		if target_list == -1:
 			print("Util key: %s, doesn't exist in any of the lists\n" % entry.data[
-				GenericFormats.MAF.Entry.get_heading(key)], file=sys.stderr)
+				Formats.MAF.Entry.get_heading(key)], file=sys.stderr)
 			sys.exit(-1)
 	# for i in range(0, len(split_list)):
 	# 	print("list # %d" % i)

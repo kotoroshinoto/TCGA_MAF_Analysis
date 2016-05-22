@@ -1,0 +1,2 @@
+Click>=5.1
+intervaltree>=2.1.0

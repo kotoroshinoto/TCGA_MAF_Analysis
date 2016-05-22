@@ -7,7 +7,7 @@ import re
 import vcf
 import vcf.model
 import copy
-import GenericFormats.MAF
+import Formats.MAF
 from intervaltree import Interval, IntervalTree
 
 maxInt = sys.maxsize
@@ -304,7 +304,7 @@ def process_cosmic_table(cosmic_table):
 def process_maf_file(maf_file):
 	print("Starting to read MAF file", file=sys.stderr)
 	global MAF_DATA
-	MAF_DATA = GenericFormats.MAF.File.get_all_entries_from_filehandle(maf_file)
+	MAF_DATA = Formats.MAF.File.get_all_entries_from_filehandle(maf_file)
 	print("Finished reading MAF file", file=sys.stderr)
 
 advanced_search_history = dict()
@@ -378,7 +378,7 @@ def check_maf_against_cosmic(cosmic_table, maf, output, unmatched):
 	process_maf_file(maf)
 	with open(output, 'w', newline='') as csvfile:
 		tsv_writer = csv.writer(csvfile, dialect="excel-tab")  # type: csv.DictWriter
-		for entry in MAF_DATA:  # type: GenericFormats.MAF.Entry
+		for entry in MAF_DATA:  # type: Formats.MAF.Entry
 			output_list = entry.__str__().split("\t")
 			chrom = str(entry.data['Chrom']).upper()
 			seq_key = entry.determine_mutation(resolve_mnc=True, report_ref_seq=True)[0]

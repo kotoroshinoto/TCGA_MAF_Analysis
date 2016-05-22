@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import sys
 import os
-import GenericFormats.MAF
+import Formats.MAF
 import click
 
 #global args
@@ -101,7 +101,7 @@ def query_maf(database):
 	"""
 	# click.echo("maf file to be queried: %s" % database.name, err=True)
 	#read Util lines from file, spit them out to output stream if their symbol matches one of the queries
-	maf_file_reader = GenericFormats.MAF.File()
+	maf_file_reader = Formats.MAF.File()
 	maf_file_reader.use_filehandle(database)
 	while maf_file_reader.has_more_entries():
 		entry = maf_file_reader.get_next_entry()
