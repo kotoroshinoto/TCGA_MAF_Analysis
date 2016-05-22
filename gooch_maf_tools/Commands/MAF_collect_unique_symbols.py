@@ -1,25 +1,26 @@
 #!/usr/bin/env python3
-__author__ = 'mgooch'
-import argparse
+import click
 import sys
-parser = argparse.ArgumentParser(description="Collect Unique entries from first column of Util file")
-parser.add_argument('--maf', type=argparse.FileType('r'), required=True, help="file to collect names from")
-parser.add_argument('--out', type=argparse.FileType('w'), default=sys.stdout, help="file to use for output")
+__author__ = 'mgooch'
 
-args = parser.parse_args()
-Names = list()
-#Entrez_IDs = list()
 
-for line in args.maf:
-	line = line.rstrip()
-	if len(line) <= 0:
-		continue
-	line_split = line.split("\t")
-	if len(line_split) < 2:
-		continue
-	symbol = line_split[0].rstrip()
-	entrez_id = line_split[1].rstrip()
-	if entrez_id != "0" and symbol not in Names:
-		Names.append(symbol)
-		#Entrez_IDs.append(line_split[1])
-		print("%s\t" % line_split[0])
+@click.command(help="Collect Unique entries from first column of Util file")
+@click.option('--maf', type=click.File('r'), required=True, help="file to collect names from")
+@click.option('--out', type=click.File('w'), default=sys.stdout, help="file to use for output")
+def cli(maf, out):
+	Names = list()
+	#Entrez_IDs = list()
+
+	for line in maf:
+		line = line.rstrip()
+		if len(line) <= 0:
+			continue
+		line_split = line.split("\t")
+		if len(line_split) < 2:
+			continue
+		symbol = line_split[0].rstrip()
+		entrez_id = line_split[1].rstrip()
+		if entrez_id != "0" and symbol not in Names:
+			Names.append(symbol)
+			#Entrez_IDs.append(line_split[1])
+			print("%s\t" % line_split[0], file=out)

@@ -6,7 +6,7 @@ import os
 __author__ = 'mgooch'
 
 
-@click.command()
+@click.command(help="check MAF names against names in transcript length files")
 @click.option('--mafnames', type=click.File('r'), required=True, help="file of names to be translated")
 @click.option('--checkcolumn', type=int, default=None, help="check this column instead of oldcolumn")
 @click.option('--oldcolumn', type=int, default=0, help="this column is the original name")
