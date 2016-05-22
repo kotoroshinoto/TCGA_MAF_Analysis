@@ -1,12 +1,12 @@
 Metadata-Version: 1.1
 Name: gooch-maf-tools
-Version: 0.1
-Summary: tools for working with TSV and Util files
+Version: 0.1.dev1
+Summary: tools for working with TCGA MAF files
 Home-page: https://github.com/kotoroshinoto/TCGA_MAF_Analysis
 Author: Michael Gooch
 Author-email: goochmi@gmail.com
 License: UNKNOWN
-Description: 	Several scripts for working with Util files and TSV files. Fixing symbol names, querying large TSV files, etc.
+Description: 	Several scripts for working with Util files and TSV files. Fixing symbol names, querying large MAF files, etc.
         	
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3 :: Only
