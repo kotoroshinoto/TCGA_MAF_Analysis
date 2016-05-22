@@ -2,8 +2,11 @@
 import click
 import os
 import sys
-import Formats.MAF
-import Util.MAFcounters
+from ..Formats import MAF
+from ..Util import MAFcounters
+# from gooch_maf_tools.Formats.MAF import Entry
+# from gooch_maf_tools.Formats.MAF import File
+# from gooch_maf_tools.Util.MAFcounters import GeneMutCounter,LocMutCounter,SampMutCounter,MutTypeCounter,MutTypeAtLocCounter,MutTypePerSampCounter
 
 __author__ = 'mgooch'
 
@@ -127,7 +130,7 @@ def handle_action_args(muttype, sample, gene, muttypepersample, location, muttyp
 @click.option('--muttypepersample', is_flag=True, default=False, required=False, help="activate counting according to mutation type, but also tracking sample_id")
 @click.option('--location', is_flag=True, default=False, required=False, help="activate counting according to genomic location")
 @click.option('--muttypeatlocation', is_flag=True, default=False, required=False, help="count more specifically than location does, divides counts by mutation type at each location (probably won't condense data file very much)")
-def main(maf, out, nameprefix, muttype, sample, gene, muttypepersample, location, muttypeatlocation):
+def cli(maf, out, nameprefix, muttype, sample, gene, muttypepersample, location, muttypeatlocation):
 	counters = handle_action_args(muttype, sample, gene, muttypepersample, location, muttypeatlocation)
 	out_handles = handle_outpath_arg(maf, out, nameprefix, muttype, sample, gene, muttypepersample, location, muttypeatlocation)
 
@@ -141,4 +144,4 @@ def main(maf, out, nameprefix, muttype, sample, gene, muttypepersample, location
 		out_handles[handle].write("%s" % counters[handle])
 
 if __name__ == "__main__":
-	main()
+	cli()

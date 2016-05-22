@@ -1,15 +1,13 @@
 import click
-import os
-import sys
+from .Commands import MAF_counter
 
-import gooch_maf_tools.MAF_counter
 
 @click.group(name='TEST')
 def cli():
 	print("DERP")
 	return
 
-cli.add_command(gooch_maf_tools.MAF_counter.main, "COUNT")
+cli.add_command(MAF_counter.cli, "COUNT")
 
 if __name__ == "__main__":
 	cli()

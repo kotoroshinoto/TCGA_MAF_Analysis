@@ -4,6 +4,7 @@ import sys
 import click
 import re
 
+
 @click.command()
 @click.argument('cosmic_file', type=click.File('r'), required=True)
 @click.argument('output_file', type=click.File('w'), required=False, default=sys.stdout)

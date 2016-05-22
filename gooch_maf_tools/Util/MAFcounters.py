@@ -1,9 +1,8 @@
-__author__ = 'mgooch'
 import os
 import sys
+from ..Formats import MAF
 
-from Formats import MAF
-
+__author__ = 'mgooch'
 
 class FeatureCounter:
 	def __init__(self):
