@@ -4,6 +4,7 @@ from ..Formats import MAF
 
 __author__ = 'mgooch'
 
+
 class FeatureCounter:
 	def __init__(self):
 		self.counts = dict()
@@ -60,7 +61,7 @@ class LocMutCounter(FeatureCounter):
 		self.__appendcount__("%s|%s|%s|%s|%s|%s" % (entry.data['Hugo_Symbol'], entry.data['Chrom'], entry.data['Start_Position'], entry.data['End_Position'], entry.data['Variant_Type'], entry.data['Variant_Classification']))
 
 	def __str__(self):
-		str_rep = "GENE_SYMBOL\t\CHROM\tSTART\tEND\tVARIANT_TYPE\tVARIANT_CLASS\tCOUNT\n"
+		str_rep = "GENE_SYMBOL\tCHROM\tSTART\tEND\tVARIANT_TYPE\tVARIANT_CLASS\tCOUNT\n"
 		for item in self.counts:
 			str_rep += "%s\t%d" % (item.replace("|", "\t"), self.counts[item])
 			str_rep += "\n"
@@ -87,7 +88,7 @@ class MutTypeAtLocCounter(FeatureCounter):
 			self.__appendcount__("%s|%s|%s|%s|%s" % (entry.data['Hugo_Symbol'], entry.data['Chrom'], entry.data['Start_Position'], entry.data['End_Position'], mut_type))
 
 	def __str__(self):
-		str_rep = "GENE_SYMBOL\t\CHROM\tSTART\tEND\tMUT_TYPE\tCOUNT\n"
+		str_rep = "GENE_SYMBOL\tCHROM\tSTART\tEND\tMUT_TYPE\tCOUNT\n"
 		for item in self.counts:
 			str_rep += "%s\t%d" % (item.replace("|", "\t"), self.counts[item])
 			str_rep += "\n"

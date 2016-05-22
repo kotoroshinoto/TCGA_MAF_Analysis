@@ -12,6 +12,7 @@ from .Commands import parse_symbolcheck_output
 from .Commands import Symbol_query
 from .Commands import split_maf_with_counts
 from .Commands import update_names_entrez
+from .Commands import COUNT_merge
 
 
 @click.group(name='gooch_maf_tools')
@@ -27,10 +28,11 @@ cli.add_command(MAF_collect_unique_entrez_ids.cli, "MAF_collect_unique_entrez_id
 cli.add_command(MAF_collect_unique_symbols.cli, "MAF_collect_unique_symbols")
 cli.add_command(MAF_merge.cli, "MAF_merge")
 cli.add_command(parse_symbolcheck_output.cli, "parse_symbolcheck")
-cli.add_command(Symbol_query.cli,"symbol_query")
+cli.add_command(Symbol_query.cli, "symbol_query")
 # cli.add_command(Symbol_fixer.cli,"")
 cli.add_command(split_maf_with_counts.cli, "MAF_count_split")
-cli.add_command(update_names_entrez.cli,"update_names_entrez")
+cli.add_command(update_names_entrez.cli, "update_names_entrez")
+cli.add_command(COUNT_merge.cli, "COUNT_merge")
 
 if __name__ == "__main__":
 	cli()
