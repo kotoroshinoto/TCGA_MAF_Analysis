@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="93cd2a26-0973-445f-bada-db8d4c112c18" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gooch_maf_tools.egg-info/PKG-INFO" afterPath="$PROJECT_DIR$/gooch_maf_tools.egg-info/PKG-INFO" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gooch_maf_tools.egg-info/SOURCES.txt" afterPath="$PROJECT_DIR$/gooch_maf_tools.egg-info/SOURCES.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gooch_maf_tools.egg-info/entry_points.txt" afterPath="$PROJECT_DIR$/gooch_maf_tools.egg-info/entry_points.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_counter.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_counter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_merge.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_merge.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gooch_maf_tools/Util/__init__.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Util/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gooch_maf_tools/CLI.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/CLI.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/exon_sizer.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/exon_sizer.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/get_COSMIC_status.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/get_COSMIC_status.py" />
     </list>
     <ignored path="TCGA_MAF_Analysis.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,11 +27,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="MAF_counter.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_counter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="591">
+              <caret line="133" column="14" selection-start-line="133" selection-start-column="14" selection-end-line="133" selection-end-column="14" />
+              <folding>
+                <element signature="e#23#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="CLI.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gooch_maf_tools/CLI.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="33" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
+            <state relative-caret-position="85">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -42,35 +51,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="check_against_lengths_file.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/check_against_lengths_file.py">
+      <file leaf-file-name="get_COSMIC_status.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/get_COSMIC_status.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MAF_merge.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_merge.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+            <state relative-caret-position="221">
+              <caret line="13" column="83" selection-start-line="13" selection-start-column="83" selection-end-line="13" selection-end-column="83" />
               <folding>
-                <element signature="e#0#12#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="setup.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/setup.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="102" selection-start-line="20" selection-start-column="102" selection-end-line="20" selection-end-column="102" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#23#33#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -91,8 +78,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pybin/Annotation/MAF/File_Handlers/MAFreader.py" />
-        <option value="$PROJECT_DIR$/pybin/MAF_symbol_query.py" />
         <option value="$PROJECT_DIR$/pybin/Commandline_Entrypoint.py" />
         <option value="$PROJECT_DIR$/pybin/__init__.py" />
         <option value="$PROJECT_DIR$/__init__.py" />
@@ -134,7 +119,6 @@
         <option value="$PROJECT_DIR$/gooch_maf_tools/get_COSMIC_status.py" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/MAF_counter.py" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/Formats/__init__.py" />
-        <option value="$PROJECT_DIR$/gooch_maf_tools/CLI.py" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/check_against_lengths_file.py" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/cosmic_name_clipper.py" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/Util/MAFcounters.py" />
@@ -142,6 +126,9 @@
         <option value="$PROJECT_DIR$/gooch_maf_tools/Util/__init__.py" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_counter.py" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_merge.py" />
+        <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/exon_sizer.py" />
+        <option value="$PROJECT_DIR$/gooch_maf_tools/CLI.py" />
+        <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/get_COSMIC_status.py" />
       </list>
     </option>
   </component>
@@ -520,13 +507,6 @@
       <option name="presentableId" value="Default" />
       <updated>1438714076692</updated>
     </task>
-    <task id="LOCAL-00022" summary="counters do function, only need to do some polishing now&#10;next task is the sample counts list reader and the actual scripts">
-      <created>1443570083930</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1443570083930</updated>
-    </task>
     <task id="LOCAL-00023" summary="experimenting with contracts">
       <created>1443649392830</created>
       <option name="number" value="00023" />
@@ -863,7 +843,14 @@
       <option name="project" value="LOCAL" />
       <updated>1463906085955</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="minor fixes">
+      <created>1463906953297</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1463906953297</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -913,7 +900,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="abstract base classes" />
     <MESSAGE value="some functions added, not sure if they'll all stay or how i'll do this." />
     <MESSAGE value="Symbol Query uses click CLI now, and has been adjusted to allow queries of generic TSV files as well" />
     <MESSAGE value="some setuptools stuff, we don't actually need to install it" />
@@ -938,7 +924,8 @@
     <MESSAGE value="mutation type at location" />
     <MESSAGE value="avoid header printing" />
     <MESSAGE value="command line interface started" />
-    <option name="LAST_COMMIT_MESSAGE" value="command line interface started" />
+    <MESSAGE value="minor fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1125,13 +1112,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/exon_sizer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="120" column="49" selection-start-line="120" selection-start-column="49" selection-end-line="120" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Util/MAFSampleCountsList.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
@@ -1241,26 +1221,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/get_COSMIC_status.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="723">
-          <caret line="425" column="0" selection-start-line="423" selection-start-column="0" selection-end-line="425" selection-end-column="0" />
-          <folding>
-            <element signature="e#23#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="102" selection-start-line="20" selection-start-column="102" selection-end-line="20" selection-end-column="102" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commandline_Entrypoint.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1290,7 +1250,7 @@
         <state relative-caret-position="85">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding>
-            <element signature="e#23#32#0" expanded="true" />
+            <element signature="e#23#32#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1327,6 +1287,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_merge.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#12#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="102" selection-start-line="20" selection-start-column="102" selection-end-line="20" selection-end-column="102" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/exon_sizer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="693">
+          <caret line="139" column="4" selection-start-line="139" selection-start-column="4" selection-end-line="139" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/CLI.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/check_against_lengths_file.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -1345,22 +1343,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/CLI.py">
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/get_COSMIC_status.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="33" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
+        <state relative-caret-position="221">
+          <caret line="13" column="83" selection-start-line="13" selection-start-column="83" selection-end-line="13" selection-end-column="83" />
           <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_merge.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
+            <element signature="e#23#33#0" expanded="true" />
           </folding>
         </state>
       </provider>

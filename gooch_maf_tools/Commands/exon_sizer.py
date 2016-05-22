@@ -59,9 +59,14 @@ def read_namefile(name_handle, col_list):
 
 
 def merge_and_write_bed_dicts(primary, secondary, outfilehandle):
+
+	if (primary is None) and (secondary is None):
+		return
+
 	#warning, the names from both dicts should be mapped prior to doing this
 	#primary names will take priority, taking entries from secondary only if they don't already exist within the dict
 	merged = dict()
+
 	def do_output_for_dict(current_dict, merged_dict):
 		for entry in current_dict:
 			if entry in merged_dict:
@@ -81,9 +86,6 @@ def merge_and_write_bed_dicts(primary, secondary, outfilehandle):
 def read_files_and_map_names(handlelist, col_list):
 	name_map = read_namefile(handlelist[1], col_list)
 	return read_bed_and_map_names(handlelist[0], name_map)
-
-
-
 
 
 def argcheck(parser):
@@ -116,21 +118,25 @@ def argcheck(parser):
 		parser.error(err_msg)
 	return args
 
+
 @click.command(help="Compute exonic sizes of genes and relate them to HUGO IDs")
 @click.option('--ucsc', nargs=2, type=click.File('r'), help="first path is to a bed file containing genes & exons from UCSC, 2nd path is to path to a file relating BED file names to desired names")
-@click.option('--refseq', nargs=2, default=None, type=click.File('r'), help="first path is to a bed file containing genes & exons from REFSEQ, 2nd path is to path to a file relating BED file names to desired names")
+@click.option('--refseq', nargs=2, type=click.File('r'), help="first path is to a bed file containing genes & exons from REFSEQ, 2nd path is to path to a file relating BED file names to desired names")
 @click.option('--ucsc_col', type=int, nargs=2, help="pair of 0-based index values for parsing the names file, first column's names match those from the BED file, second names match those to use in the output")
 @click.option('--refseq_col', type=int, nargs=2, help="pair of 0-based index values for parsing the names file, first column's names match those from the BED file, second names match those to use in the output")
 @click.option('--out', type=click.File('w'), default=sys.stdout, help="output file")
 def cli(ucsc, refseq, ucsc_col, refseq_col, out):
-	if ucsc is not None and ucsc_col is not None:
+	if len(refseq) == 0 and len(ucsc) == 0:
+		raise click.BadArgumentUsage("Must give at least one of the following: --ucsc --refseq")
+	if len(ucsc) == 2 and len(ucsc_col) == 2:
 		ucsc_bed = read_files_and_map_names(ucsc, ucsc_col)
 	else:
-		ucsc_bed = None
-	if refseq is not None and refseq_col is not None:
+		raise click.BadArgumentUsage("Must provide --ucsc_col when using --ucsc")
+	if len(refseq) == 2 and len(refseq_col) == 2:
 		refseq_bed = read_files_and_map_names(refseq, refseq_col)
 	else:
-		refseq_bed = None
+		raise click.BadArgumentUsage("Must provide --refseq_col when using --refseq")
+
 	return merge_and_write_bed_dicts(ucsc_bed, refseq_bed, out)
 
 
