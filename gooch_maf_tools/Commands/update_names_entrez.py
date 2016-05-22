@@ -4,6 +4,7 @@ import re
 import sys
 import click
 
+
 @click.command()
 @click.option('--mafnames', type=click.File('r'), required=True, help="file of names to be translated")
 @click.option('--name_to_entrez', type=click.File('r'), required=True, help="output from MAF_collect_unique_entrez_ids.py")

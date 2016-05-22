@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 import sys
-import os
 import click
-import abc
 
 
 class GeneSymbolMapper:
@@ -116,12 +114,13 @@ def fix_names(context: AbstractSymbolFixContext):
 	#print to output files and logs
 	return
 
+
 @click.group()
 def cli():
 	pass
 
 
-@click.command()
+@cli.command(name="TSV")
 @click.option('--input', type=(click.File('r'), int), required=True, help="path to file containing names, and the column to read")
 @click.option('--lengths', type=(click.File('r'), int), help="path to lengths file, name column")
 @click.option('--symbolcheck', type=(click.File('r'), int, int, int), help="path to symbolcheck file, input column, match type column, approved symbol column")
@@ -132,7 +131,8 @@ def tsv_command():
 	#TODO validate option validity
 	return
 
-@click.command()
+
+@cli.command(name="TSV-ENTREZ")
 @click.option('--input', type=(click.File('r'), int, int), required=True, help="path to file containing names and entrez ids, symbol column, entrez column")
 @click.option('--lengths', type=(click.File('r'), int), help="path to lengths file, name column")
 @click.option('--symbolcheck', type=(click.File('r'), int, int, int), help="path to symbolcheck file, input column, match type column, approved symbol column")
@@ -142,7 +142,8 @@ def tsv_with_entrez_command():
 	#TODO validate option validity
 	return
 
-@click.command()
+
+@cli.command(name="Util")
 @click.option('--input', type=click.File('r'), required=True, help="path to maf file")
 @click.option('--lengths', type=(click.File('r'), int), help="path to lengths file, name column")
 @click.option('--symbolcheck', type=(click.File('r'), int, int, int), help="path to symbolcheck file, input column, match type column, approved symbol column")
@@ -152,9 +153,9 @@ def maf_command():
 	#TODO validate option validity
 	return
 
-cli.add_command(maf_command, name="Util")
-cli.add_command(tsv_command, name="TSV")
-cli.add_command(tsv_with_entrez_command, name="TSV-ENTREZ")
+# cli.add_command(maf_command, name="Util")
+# cli.add_command(tsv_command, name="TSV")
+# cli.add_command(tsv_with_entrez_command, name="TSV-ENTREZ")
 
 if __name__ == "__main__":
 	cli()

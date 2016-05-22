@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import sys
 import os
-import Formats.MAF
+from  ..Formats import MAF
 import click
 
 #global args
@@ -38,7 +38,7 @@ def cli(out, unmatched):
 	return
 
 
-@click.group(no_args_is_help=True)
+@cli.group(no_args_is_help=True, name="file")
 @click.argument('query', type=click.File('r'), required=True)
 @click.option('--column', type=int, required=False, help='if file is a TSV, provide this argument to select symbol column')
 def input_file(query, column):
@@ -74,7 +74,7 @@ def input_file(query, column):
 	return
 
 
-@click.group(no_args_is_help=True)
+@cli.group(no_args_is_help=True, name="list")
 @click.argument('query', type=str, required=True)
 def input_list(query):
 	"""query using a list from commandline
@@ -101,7 +101,7 @@ def query_maf(database):
 	"""
 	# click.echo("maf file to be queried: %s" % database.name, err=True)
 	#read Util lines from file, spit them out to output stream if their symbol matches one of the queries
-	maf_file_reader = Formats.MAF.File()
+	maf_file_reader = MAF.File()
 	maf_file_reader.use_filehandle(database)
 	while maf_file_reader.has_more_entries():
 		entry = maf_file_reader.get_next_entry()
@@ -146,8 +146,8 @@ input_file.add_command(query_tsv, name="tsv")
 input_list.add_command(query_maf, name="maf")
 input_list.add_command(query_tsv, name="tsv")
 
-cli.add_command(input_file, name="file")
-cli.add_command(input_list, name="list")
+# cli.add_command(input_file, name="file")
+# cli.add_command(input_list, name="list")
 
 
 if __name__ == "__main__":

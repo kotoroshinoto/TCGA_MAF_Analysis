@@ -2,8 +2,8 @@
 import click
 import os
 import sys
-import Formats.MAF
-import Util.MAFSampleCountsList
+from ..Formats import MAF
+from ..Util import MAFSampleCountsList
 
 __author__ = 'mgooch'
 
@@ -38,9 +38,9 @@ def generate_file_handles(maf, bounds, prefix=None):
 @click.option('--key', type=int, required=True, help="0-based column number to use as key in maf file")
 @click.option('--out_prefix', default="", type=str, required=False, help="output path prefix")
 @click.option('--boundaries', type=str, required=True, help="list of boundaries for splitting")
-def main(counts, boundaries, maf, key, out_prefix):
-	scl = Util.MAFSampleCountsList()
-	fixed_list = Util.MAFSampleCountsList.fix_boundaries(boundaries.split(","))
+def cli(counts, boundaries, maf, key, out_prefix):
+	scl = MAFSampleCountsList()
+	fixed_list = MAFSampleCountsList.fix_boundaries(boundaries.split(","))
 	if out_prefix is not None:
 		handles = generate_file_handles(maf, fixed_list, out_prefix)
 		""":type : list[io.TextIOBase]"""
@@ -50,23 +50,23 @@ def main(counts, boundaries, maf, key, out_prefix):
 	scl.read_file_handle(counts)
 	split_list = scl.split(fixed_list)
 
-	entries = Formats.MAF.File.get_all_entries_from_filehandle(maf)
+	entries = MAF.File.get_all_entries_from_filehandle(maf)
 	maf.close()
 
 	for entry in entries:
 		target_list = -1
 		for i in range(0, len(split_list)):
-			if entry.data[Formats.MAF.Entry.get_heading(key)] in split_list[i]:
+			if entry.data[MAF.Entry.get_heading(key)] in split_list[i]:
 				if target_list != -1:
 					print("Util entry: %s, is in multiple lists\n" % entry.data[
-						Formats.MAF.Entry.get_heading(key)], file=sys.stderr)
+						MAF.Entry.get_heading(key)], file=sys.stderr)
 					sys.exit(-1)
 				target_list = i
-				# print("key %s belongs in list # %d" % (entry.data[Formats.MAF.Entry.get_heading(key)], i))
+				# print("key %s belongs in list # %d" % (entry.data[MAF.Entry.get_heading(key)], i))
 				print("%s" % entry, file=handles[i])
 		if target_list == -1:
 			print("Util key: %s, doesn't exist in any of the lists\n" % entry.data[
-				Formats.MAF.Entry.get_heading(key)], file=sys.stderr)
+				MAF.Entry.get_heading(key)], file=sys.stderr)
 			sys.exit(-1)
 	# for i in range(0, len(split_list)):
 	# 	print("list # %d" % i)
@@ -74,4 +74,4 @@ def main(counts, boundaries, maf, key, out_prefix):
 
 
 if __name__ == "__main__":
-	main()
+	cli()
