@@ -103,17 +103,17 @@ def handle_action_args(muttype, sample, gene, muttypepersample, location, muttyp
 		print("must activate at least one counting mode: --muttype --sample --gene --muttypepersample --location --muttypeatlocation", file=sys.stderr)
 		sys.exit(-1)
 	if muttype:
-		counters["MUT_TYPE"] = Util.MAFcounters.MutTypeCounter()
+		counters["MUT_TYPE"] = MAFcounters.MutTypeCounter()
 	if sample:
-		counters["SAMPLE"] = Util.MAFcounters.SampMutCounter()
+		counters["SAMPLE"] = MAFcounters.SampMutCounter()
 	if gene:
-		counters["GENE"] = Util.MAFcounters.GeneMutCounter()
+		counters["GENE"] = MAFcounters.GeneMutCounter()
 	if muttypepersample:
-		counters["MUT_TYPE_PER_SAMPLE"] = Util.MAFcounters.MutTypePerSampCounter()
+		counters["MUT_TYPE_PER_SAMPLE"] = MAFcounters.MutTypePerSampCounter()
 	if location:
-		counters["LOCATION"] = Util.MAFcounters.LocMutCounter()
+		counters["LOCATION"] = MAFcounters.LocMutCounter()
 	if muttypeatlocation:
-		counters["MUT_TYPE_AT_LOCATION"] = Util.MAFcounters.MutTypeAtLocCounter()
+		counters["MUT_TYPE_AT_LOCATION"] = MAFcounters.MutTypeAtLocCounter()
 	return counters
 
 

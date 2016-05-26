@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="93cd2a26-0973-445f-bada-db8d4c112c18" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_counter.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_counter.py" />
     </list>
     <ignored path="TCGA_MAF_Analysis.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,7 +38,7 @@
       <file leaf-file-name="COUNT_merge.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/COUNT_merge.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="625">
+            <state relative-caret-position="-580">
               <caret line="86" column="41" selection-start-line="86" selection-start-column="41" selection-end-line="86" selection-end-column="41" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
@@ -47,7 +47,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="requirements.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="requirements.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/requirements.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
@@ -57,16 +57,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MAF_counter.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="setup.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/setup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="20" column="102" selection-start-line="20" selection-start-column="102" selection-end-line="20" selection-end-column="102" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MAF_counter.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_counter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2363">
-              <caret line="143" column="9" selection-start-line="142" selection-start-column="0" selection-end-line="143" selection-end-column="9" />
+            <state relative-caret-position="84">
+              <caret line="95" column="64" selection-start-line="95" selection-start-column="64" selection-end-line="95" selection-end-column="64" />
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
-                <marker date="1464287694111" expanded="true" signature="1485:6801" placeholder="..." />
-                <marker date="1464287694111" expanded="true" signature="1500:6801" placeholder="..." />
-                <marker date="1464287694111" expanded="true" signature="2064:6801" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -121,7 +128,6 @@
         <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/cosmic_name_clipper.py" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/__init__.py" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/Util/__init__.py" />
-        <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_counter.py" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/exon_sizer.py" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/get_COSMIC_status.py" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/check_against_lengths_file.py" />
@@ -138,6 +144,7 @@
         <option value="$PROJECT_DIR$/gooch_maf_tools/Util/MAFcounters.py" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/COUNT_merge.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_counter.py" />
       </list>
     </option>
   </component>
@@ -516,13 +523,6 @@
       <option name="presentableId" value="Default" />
       <updated>1438714076692</updated>
     </task>
-    <task id="LOCAL-00027" summary="started work on merging and cleaning up name fixing algorithms">
-      <created>1445527479366</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1445527479366</updated>
-    </task>
     <task id="LOCAL-00028" summary="learning how to use click">
       <created>1447716577448</created>
       <option name="number" value="00028" />
@@ -859,7 +859,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464287812356</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="BEEP">
+      <created>1464287881285</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1464287881285</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -1135,16 +1142,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="102" selection-start-line="20" selection-start-column="102" selection-end-line="20" selection-end-column="102" />
-          <folding>
-            <element signature="e#0#10#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/exon_sizer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="693">
@@ -1230,23 +1227,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MergeCounts.py" />
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_counter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2363">
-          <caret line="143" column="9" selection-start-line="142" selection-start-column="0" selection-end-line="143" selection-end-column="9" />
-          <folding>
-            <element signature="e#23#35#0" expanded="true" />
-            <marker date="1464287694111" expanded="true" signature="1485:6801" placeholder="..." />
-            <marker date="1464287694111" expanded="true" signature="1500:6801" placeholder="..." />
-            <marker date="1464287694111" expanded="true" signature="2064:6801" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Util/MAFcounters.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-854">
           <caret line="63" column="32" selection-start-line="63" selection-start-column="32" selection-end-line="63" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1258,9 +1245,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="20" column="102" selection-start-line="20" selection-start-column="102" selection-end-line="20" selection-end-column="102" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/COUNT_merge.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="625">
+        <state relative-caret-position="-580">
           <caret line="86" column="41" selection-start-line="86" selection-start-column="41" selection-end-line="86" selection-end-column="41" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
@@ -1268,11 +1271,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_counter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
-          <folding />
+        <state relative-caret-position="84">
+          <caret line="95" column="64" selection-start-line="95" selection-start-column="64" selection-end-line="95" selection-end-column="64" />
+          <folding>
+            <element signature="e#23#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
