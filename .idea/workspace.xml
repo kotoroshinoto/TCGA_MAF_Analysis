@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93cd2a26-0973-445f-bada-db8d4c112c18" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/TCGA_MAF_Analysis.iml" afterPath="$PROJECT_DIR$/.idea/TCGA_MAF_Analysis.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
     </list>
@@ -53,7 +51,7 @@
         <entry file="file://$PROJECT_DIR$/requirements.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+              <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -518,13 +516,6 @@
       <option name="presentableId" value="Default" />
       <updated>1438714076692</updated>
     </task>
-    <task id="LOCAL-00026" summary="split_maf_with_counts.py ready for debugging/testing">
-      <created>1444271206301</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1444271206301</updated>
-    </task>
     <task id="LOCAL-00027" summary="started work on merging and cleaning up name fixing algorithms">
       <created>1445527479366</created>
       <option name="number" value="00027" />
@@ -861,7 +852,14 @@
       <option name="project" value="LOCAL" />
       <updated>1463912867456</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="BEEP">
+      <created>1464287812355</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1464287812356</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -911,7 +909,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Symbol Query uses click CLI now, and has been adjusted to allow queries of generic TSV files as well" />
     <MESSAGE value="some setuptools stuff, we don't actually need to install it" />
     <MESSAGE value="minor rearrangement" />
     <MESSAGE value="created file skeleton for cosmic name fixer" />
@@ -936,7 +933,8 @@
     <MESSAGE value="command line interface started" />
     <MESSAGE value="minor fixes" />
     <MESSAGE value="commandline interface mostly done" />
-    <option name="LAST_COMMIT_MESSAGE" value="commandline interface mostly done" />
+    <MESSAGE value="BEEP" />
+    <option name="LAST_COMMIT_MESSAGE" value="BEEP" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1273,7 +1271,7 @@
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
           <folding />
         </state>
       </provider>
