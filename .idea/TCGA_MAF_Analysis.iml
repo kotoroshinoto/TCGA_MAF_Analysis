@@ -5,7 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/gooch_maf_tools" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.5.0 (C:\python3.5\python.exe)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.5.1 (C:\Users\gooch\AppData\Local\Programs\Python\Python35-32\python.exe)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TestRunnerService">
