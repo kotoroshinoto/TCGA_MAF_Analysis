@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93cd2a26-0973-445f-bada-db8d4c112c18" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/get_stats.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/TCGA_MAF_Analysis.iml" afterPath="$PROJECT_DIR$/.idea/TCGA_MAF_Analysis.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/COUNT_merge.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/COUNT_merge.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gooch_maf_tools/Util/MAFcounters.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Util/MAFcounters.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/get_stats.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/get_stats.py" />
     </list>
     <ignored path="TCGA_MAF_Analysis.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,7 +61,7 @@
         <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/get_stats.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="260">
-              <caret line="124" column="23" selection-start-line="124" selection-start-column="23" selection-end-line="124" selection-end-column="23" />
+              <caret line="88" column="59" selection-start-line="88" selection-start-column="59" selection-end-line="88" selection-end-column="59" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
               </folding>
@@ -574,20 +569,6 @@
       <option name="presentableId" value="Default" />
       <updated>1438714076692</updated>
     </task>
-    <task id="LOCAL-00029" summary="minor oops">
-      <created>1447716750146</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1447716750146</updated>
-    </task>
-    <task id="LOCAL-00030" summary="renamed functions">
-      <created>1447717539423</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1447717539423</updated>
-    </task>
     <task id="LOCAL-00031" summary="abstract base classes">
       <created>1447719301226</created>
       <option name="number" value="00031" />
@@ -917,7 +898,21 @@
       <option name="project" value="LOCAL" />
       <updated>1464289415095</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="get stats program added. Kurtosis for location implemented">
+      <created>1464398625913</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1464398625914</updated>
+    </task>
+    <task id="LOCAL-00079" summary="forgot example R files">
+      <created>1464398646240</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1464398646240</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -967,8 +962,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="minor rearrangement" />
-    <MESSAGE value="created file skeleton for cosmic name fixer" />
     <MESSAGE value="name clipper works" />
     <MESSAGE value="derp" />
     <MESSAGE value="some code reorganization" />
@@ -992,7 +985,9 @@
     <MESSAGE value="commandline interface mostly done" />
     <MESSAGE value="BEEP" />
     <MESSAGE value="DERP Util.MAFcounters changed to MAFcounters" />
-    <option name="LAST_COMMIT_MESSAGE" value="DERP Util.MAFcounters changed to MAFcounters" />
+    <MESSAGE value="get stats program added. Kurtosis for location implemented" />
+    <MESSAGE value="forgot example R files" />
+    <option name="LAST_COMMIT_MESSAGE" value="forgot example R files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1332,7 +1327,7 @@
     <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/get_stats.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
-          <caret line="124" column="23" selection-start-line="124" selection-start-column="23" selection-end-line="124" selection-end-column="23" />
+          <caret line="88" column="59" selection-start-line="88" selection-start-column="59" selection-end-line="88" selection-end-column="59" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
           </folding>

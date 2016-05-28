@@ -86,10 +86,14 @@ def compute_kurtosis_string(label_positions, gene_symbol):
 		chrom = split_pos[0]
 		start = int(split_pos[1])
 		end = int(split_pos[2])
+		if start != end:  # skip Multi-Nucleotide Mutations
+			continue
 		if count == 1:
 			num_list.append(str(start))
 		else:
 			num_list.append('rep(%d,%d)' % (start, count))
+	if len(num_list) <= 1:
+		return None
 	return ','.join(num_list)
 
 
@@ -106,6 +110,7 @@ def cli():
 	pass
 
 
+#highly negative kurtosis indicates uniform distribution. Highly positive kurtosis implies very thin distributions
 @cli.command(name='locations', help='Produce kurtosis calculations from mutation locations file')
 @click.argument('filename', nargs=1, type=click.File('r'))
 @click.argument('output', nargs=1, required=False, default=None, type=click.Path(dir_okay=False, writable=True))
