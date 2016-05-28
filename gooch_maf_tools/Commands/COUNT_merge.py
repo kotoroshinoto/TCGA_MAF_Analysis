@@ -108,8 +108,6 @@ def merge_locations():
 	column_keys.append("CHROM")
 	column_keys.append("START")
 	column_keys.append("END")
-	column_keys.append("VARIANT_TYPE")
-	column_keys.append("VARIANT_CLASS")
 	counts = dict()
 	for label in labels:
 		# click.echo("[merge_locations] label: %s" % label)
@@ -118,7 +116,7 @@ def merge_locations():
 		for line in tsv_reader:
 			# check for header lines
 			# print(','.join(line))
-			if line[0] == 'GENE_SYMBOL' and line[1] == 'CHROM' and line[2] == 'START' and line[3] == 'END' and line[4] == 'VARIANT_TYPE' and line[5] == 'VARIANT_CLASS' and line[6] == 'COUNT':
+			if line[0] == 'GENE_SYMBOL' and line[1] == 'CHROM' and line[2] == 'START' and line[3] == 'END' and line[4] == 'COUNT':
 				# print("HEADER LINE DETECTED")
 				continue
 			tmp_lst = list(line)
@@ -150,6 +148,8 @@ def merge_mutation_specific_locations():
 	column_keys.append("START")
 	column_keys.append("END")
 	column_keys.append("MUT_TYPE")
+	column_keys.append("VARIANT_TYPE")
+	column_keys.append("VARIANT_CLASS")
 	counts = dict()
 	for label in labels:
 		# click.echo("[merge_mut_specific_locations] label: %s" % label)
@@ -158,7 +158,7 @@ def merge_mutation_specific_locations():
 		for line in tsv_reader:
 			# check for header lines
 			# print(','.join(line))
-			if line[0] == 'GENE_SYMBOL' and line[1] == 'CHROM' and line[2] == 'START' and line[3] == 'END' and line[4] == 'MUT_TYPE' and line[5] == 'COUNT':
+			if line[0] == 'GENE_SYMBOL' and line[1] == 'CHROM' and line[2] == 'START' and line[3] == 'END' and line[4] == 'MUT_TYPE' and line[5] == 'VARIANT_TYPE' and line[6] == 'VARIANT_CLASS' and line[7] == 'COUNT':
 				# print("HEADER LINE DETECTED")
 				continue
 			tmp_lst = list(line)

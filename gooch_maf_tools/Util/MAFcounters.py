@@ -58,10 +58,10 @@ class GeneMutCounter(FeatureCounter):
 class LocMutCounter(FeatureCounter):
 	def count(self, entry: MAF.Entry):
 		#count according to GENE_CHROM_START_END
-		self.__appendcount__("%s|%s|%s|%s|%s|%s" % (entry.data['Hugo_Symbol'], entry.data['Chrom'], entry.data['Start_Position'], entry.data['End_Position'], entry.data['Variant_Type'], entry.data['Variant_Classification']))
+		self.__appendcount__("%s|%s|%s|%s" % (entry.data['Hugo_Symbol'], entry.data['Chrom'], entry.data['Start_Position'], entry.data['End_Position']))
 
 	def __str__(self):
-		str_rep = "GENE_SYMBOL\tCHROM\tSTART\tEND\tVARIANT_TYPE\tVARIANT_CLASS\tCOUNT\n"
+		str_rep = "GENE_SYMBOL\tCHROM\tSTART\tEND\tCOUNT\n"
 		for item in self.counts:
 			str_rep += "%s\t%d" % (item.replace("|", "\t"), self.counts[item])
 			str_rep += "\n"
@@ -85,10 +85,10 @@ class MutTypeAtLocCounter(FeatureCounter):
 	def count(self, entry: MAF.Entry):
 		mut_type_list = entry.determine_mutation()
 		for mut_type in mut_type_list:
-			self.__appendcount__("%s|%s|%s|%s|%s" % (entry.data['Hugo_Symbol'], entry.data['Chrom'], entry.data['Start_Position'], entry.data['End_Position'], mut_type))
+			self.__appendcount__("%s|%s|%s|%s|%s|%s|%s" % (entry.data['Hugo_Symbol'], entry.data['Chrom'], entry.data['Start_Position'], entry.data['End_Position'], entry.data['Variant_Type'], entry.data['Variant_Classification'], mut_type))
 
 	def __str__(self):
-		str_rep = "GENE_SYMBOL\tCHROM\tSTART\tEND\tMUT_TYPE\tCOUNT\n"
+		str_rep = "GENE_SYMBOL\tCHROM\tSTART\tEND\tMUT_TYPE\tVARIANT_TYPE\tVARIANT_CLASS\tCOUNT\n"
 		for item in self.counts:
 			str_rep += "%s\t%d" % (item.replace("|", "\t"), self.counts[item])
 			str_rep += "\n"
