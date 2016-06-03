@@ -151,6 +151,45 @@ def compute_kurtosis_location(filename, output):
 		output_csv_writer.writerow(output)
 
 
+class GeneData4Linreg:
+	def __init__(self, symbol, count, length):
+		self.symbol = str(symbol)
+		self.count = int(count)
+		self.length = int(length)
+
+
+def read_gene_counts_into_dict(in_file: csv.DictReader):
+	data = dict()
+	for line in in_file:
+		entry = GeneData4Linreg(line['Gene_Symbol'], line['Count'], line['Length'])
+		data[entry.symbol] = entry
+	return data
+
+
+@cli.command(name='Gene_Outliers', help="compute studentized residuals for list of gene counts")
+@click.argument('filename', nargs=1, type=click.File('r'))
+@click.argument('output', nargs=1, required=False, default=None, type=click.Path(dir_okay=False, writable=True))
+def compute_studentized_residuals_genes(filename, output):
+	fields = list(['Gene_Symbol', 'Count', 'Length'])
+	gene_file_reader = csv.DictReader(filename, fieldnames=fields, dialect='excel-tab')
+	data = read_gene_counts_into_dict(gene_file_reader)
+	output_file = open(output, newline='', mode='w')
+	output_writer = csv.writer(output_file, dialect='excel-tab')
+	pass
+
+
+@cli.command(name='Mutation_Type_T_Test', help="perform t-test on ")
+@click.argument('file1', nargs=2, type=(str, click.File('r')))
+@click.argument('file2', nargs=2, type=(str, click.File('r')))
+@click.argument('output', nargs=1, required=False, default=None, type=click.Path(dir_okay=False, writable=True))
+def compute_mutation_type_t_test(file1,file2, output):
+	file1_reader = csv.reader(file1[1], dialect='excel-tab')
+	file2_reader = csv.reader(file2[1], dialect='excel-tab')
+	output_file = open(output, newline='', mode='w')
+	output_writer = csv.writer(output_file, dialect='excel-tab')
+	pass
+
+
 if __name__ == "__main__":
 	cli()
 
