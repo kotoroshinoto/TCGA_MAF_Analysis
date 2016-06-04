@@ -28,10 +28,10 @@
       <file leaf-file-name="get_stats.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/get_stats.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="843">
-              <caret line="426" column="56" selection-start-line="426" selection-start-column="56" selection-end-line="426" selection-end-column="56" />
+            <state relative-caret-position="282">
+              <caret line="558" column="57" selection-start-line="558" selection-start-column="57" selection-end-line="558" selection-end-column="57" />
               <folding>
-                <marker date="1465002663263" expanded="false" signature="0:158" ph="import ..." />
+                <element signature="e#0#42#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -606,13 +606,6 @@
       <option name="presentableId" value="Default" />
       <updated>1438714076692</updated>
     </task>
-    <task id="LOCAL-00033" summary="Symbol Query uses click CLI now, and has been adjusted to allow queries of generic TSV files as well">
-      <created>1447875240871</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1447875240871</updated>
-    </task>
     <task id="LOCAL-00034" summary="some setuptools stuff, we don't actually need to install it">
       <created>1447878712658</created>
       <option name="number" value="00034" />
@@ -949,7 +942,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464982773465</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="[T-Test] files are read properly. Stats come next">
+      <created>1465002726560</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1465002726560</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -962,7 +962,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1015" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1015" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.240625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -999,7 +999,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="name clipper works" />
     <MESSAGE value="derp" />
     <MESSAGE value="some code reorganization" />
     <MESSAGE value="testing" />
@@ -1024,7 +1023,8 @@
     <MESSAGE value="DERP Util.MAFcounters changed to MAFcounters" />
     <MESSAGE value="get stats program added. Kurtosis for location implemented" />
     <MESSAGE value="forgot example R files" />
-    <option name="LAST_COMMIT_MESSAGE" value="forgot example R files" />
+    <MESSAGE value="[T-Test] files are read properly. Stats come next" />
+    <option name="LAST_COMMIT_MESSAGE" value="[T-Test] files are read properly. Stats come next" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1035,7 +1035,7 @@
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="6" />
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1342,10 +1342,10 @@
     <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Formats/MAF2.py" />
     <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/get_stats.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="843">
-          <caret line="426" column="56" selection-start-line="426" selection-start-column="56" selection-end-line="426" selection-end-column="56" />
+        <state relative-caret-position="282">
+          <caret line="558" column="57" selection-start-line="558" selection-start-column="57" selection-end-line="558" selection-end-column="57" />
           <folding>
-            <marker date="1465002663263" expanded="false" signature="0:158" ph="import ..." />
+            <element signature="e#0#42#0" expanded="true" />
           </folding>
         </state>
       </provider>
