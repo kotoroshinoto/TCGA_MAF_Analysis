@@ -512,32 +512,11 @@ class GroupedMutationData:
 		self[label] = group_data
 
 
-@cli.command(name='Mutation_Type_T_Test', help="perform t-test on mutation type data")
-@click.option('--file', nargs=2, type=(str, click.File('r')), required=True, multiple=True)
-@click.option('--output', nargs=1, required=False, default=None, type=click.Path(dir_okay=False, writable=True))
-def compute_mutation_type_t_test(file, output):
-
-	#handle args and read files
-	if len(file) != 2:
-		raise click.BadArgumentUsage("require --file option 2 times for t-test")
-	file1 = file[0]
-	file2 = file[1]
-	file1_reader = csv.DictReader(file1[1], dialect='excel-tab')
-	file2_reader = csv.DictReader(file2[1], dialect='excel-tab')
-	data = GroupedMutationData()
-	data.read_file(file1_reader, file1[0])
-	data.read_file(file2_reader, file2[0])
-	#pull list of strings to use as keys
+def perform_t_test(data: GroupedMutationData) -> Dict[str, Dict[str, int]]:
+	#first index str will be mut_type, 2nd will be according to the dictwriter's rules
 	mut_type_keys = MutationTypeSampleEntry.get_output_column_labels()
-
-	output_file = None
-	if output is None:
-		output_file = sys.stdout
-	else:
-		output_file = open(output, newline='', mode='w')
 	mut_type_values = dict()  # type: Dict[str, Dict[str, ro.IntVector]]
-
-	#create int vectors for use with R
+	# create int vectors for use with R
 	for group_label in data.groups():
 		group = data[group_label]
 		mut_type_values[group_label] = dict()
@@ -548,15 +527,13 @@ def compute_mutation_type_t_test(file, output):
 			# print(column)
 			r_vector = ro.IntVector(column)
 			mut_type_values[group_label][mut_type_str] = r_vector
-	#perform t test
-	#get R object for t test function:
+	# perform t test
+	# get R object for t test function:
 	r_t_test = ro.r['t.test']
-	#iterate over pairs of vectors, calling t test function for each and storing results.
-	t_test_result_dict  = dict()  # type: Dict[str, Dict]
+	# iterate over pairs of vectors, calling t test function for each and storing results.
+	t_test_result_dict = dict()  # type: Dict[str, Dict]
 	htest_components = ['statistic', 'parameter', 'p.value', 'conf.int', 'estimate', 'null.value', 'alternative', 'method']
-	field_names_output = ['mut_type', 'statistic', 'parameter', 'p.value', 'conf.int_1', 'conf.int_2', 'estimate_1', 'estimate_2', 'null.value', 'alternative', 'method']
-	output_writer = csv.DictWriter(output_file, fieldnames=field_names_output, dialect='excel-tab')
-	print('\t'.join(field_names_output), file=output_file)
+	result_dict = dict()
 	for mut_type_str in mut_type_keys:
 		if mut_type_str == 'sample_ID':
 			continue
@@ -578,13 +555,46 @@ def compute_mutation_type_t_test(file, output):
 				# print_str += str(tmp[0][0])
 				# print_str += '\t'
 				# print_str += str(tmp[0][1])
-				out_row[str_key + '_1'] = tmp[0][0]
-				out_row[str_key + '_2'] = tmp[0][1]
+				out_row[str_key + '_%s' % data.groups()[0]] = tmp[0][0]
+				out_row[str_key + '_%s' % data.groups()[1]] = tmp[0][1]
 			else:
 				out_row[str_key] = tmp[0][0]
-				# print_str += str(tmp[0][0])
-		output_writer.writerow(out_row)
-		# print(print_str)
+			# print_str += str(tmp[0][0])
+		result_dict[mut_type_str] = out_row
+	return result_dict
+
+
+@cli.command(name='Mutation_Type_T_Test', help="perform t-test on mutation type data")
+@click.option('--file', nargs=2, type=(str, click.File('r')), required=True, multiple=True)
+@click.option('--output', nargs=1, required=False, default=None, type=click.Path(dir_okay=False, writable=True))
+def compute_mutation_type_t_test(file, output):
+
+	#handle args and read files
+	if len(file) != 2:
+		raise click.BadArgumentUsage("require --file option 2 times for t-test")
+	file1 = file[0]
+	file2 = file[1]
+	file1_reader = csv.DictReader(file1[1], dialect='excel-tab')
+	file2_reader = csv.DictReader(file2[1], dialect='excel-tab')
+	data = GroupedMutationData()
+	data.read_file(file1_reader, file1[0])
+	data.read_file(file2_reader, file2[0])
+	#pull list of strings to use as keys
+	mut_type_keys = MutationTypeSampleEntry.get_output_column_labels()
+	output_file = None
+	if output is None:
+		output_file = sys.stdout
+	else:
+		output_file = open(output, newline='', mode='w')
+	field_names_output = ['mut_type', 'statistic', 'parameter', 'p.value', 'conf.int_%s' % data.groups()[0], 'conf.int_%s' % data.groups()[1], 'estimate_%s' % data.groups()[0], 'estimate_%s' % data.groups()[1], 'null.value', 'alternative', 'method']
+	print('\t'.join(field_names_output), file=output_file)
+	output_writer = csv.DictWriter(output_file, fieldnames=field_names_output, dialect='excel-tab')
+	t_test_dict = perform_t_test(data)
+	for mut_type_str in mut_type_keys:
+		if mut_type_str == 'sample_ID':
+			continue
+		output_writer.writerow(t_test_dict[mut_type_str])
+
 
 #https://stat.ethz.ch/R-manual/R-devel/library/stats/html/# t.test.html
 
