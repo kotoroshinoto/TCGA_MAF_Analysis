@@ -16,8 +16,8 @@ def check_r_packages(packagenames: list):
 	return results
 
 
-def check_and_install_dependencies():
-	required_r_packages = list(['e1071', 'MASS'])
+def check_and_install_R_dependency(library_name: str):
+	required_r_packages = list([library_name])
 	required_r_packages_install_status = check_r_packages(required_r_packages)
 	need_to_install_r_packages = list()
 	for package in required_r_packages_install_status:
@@ -27,10 +27,6 @@ def check_and_install_dependencies():
 		utils = rpackages.importr('utils')
 		utils.chooseCRANmirror(ind=1)
 		utils.install_packages(StrVector(need_to_install_r_packages))
-
-check_and_install_dependencies()
-rpackages.importr('e1071')
-rpackages.importr('MASS')
 
 
 def build_position_dicts_from_location_file(csv_file_reader: csv.reader):
@@ -117,6 +113,8 @@ def cli():
 @click.option('--file', nargs=1, type=click.File('r'))
 @click.option('--output', nargs=1, required=False, default=None, type=click.Path(dir_okay=False, writable=True))
 def compute_kurtosis_location(filename, output):
+	check_and_install_R_dependency('e1071')
+	rpackages.importr('e1071')
 	output_file = None
 	output_csv_writer = None
 	if output is None:
@@ -168,18 +166,6 @@ def read_gene_counts_into_dict(in_file: csv.DictReader):
 	return data
 
 
-@cli.command(name='Gene_Outliers', help="compute studentized residuals for list of gene counts")
-@click.option('--file', nargs=1, type=click.File('r'), required=True)
-@click.option('--output', nargs=1, required=False, default=None, type=click.Path(dir_okay=False, writable=True))
-def compute_studentized_residuals_genes(file, output):
-	fields = list(['Gene_Symbol', 'Count', 'Length'])
-	gene_file_reader = csv.DictReader(file, fieldnames=fields, dialect='excel-tab')
-	data = read_gene_counts_into_dict(gene_file_reader)
-	output_file = open(output, newline='', mode='w')
-	output_writer = csv.writer(output_file, dialect='excel-tab')
-	pass
-
-
 def revcomp(nuc: str) -> str:
 	if nuc.upper() == 'A':
 		return 'T'
@@ -189,6 +175,7 @@ def revcomp(nuc: str) -> str:
 		return 'G'
 	if nuc.upper() == 'G':
 		return 'C'
+
 
 class MutationTypeSampleEntry:
 
@@ -402,6 +389,9 @@ class MutationTypeSampleEntry:
 	def transversions(self) -> int:
 		return self.A_T_or_T_A() + self.C_G_or_G_C() + self.C_A_or_G_T() + self.A_C_or_T_G()
 
+	def total_mut_count(self) -> int:
+		return self.transitions() + self.transversions() + self.INDEL() + self.MNC()
+
 	def output_dict(self) -> Dict[str, int]:
 		outdict = dict()
 		outdict['sample_ID'] = self._sample_ID
@@ -478,12 +468,20 @@ class GroupMutationData:
 			retlist.append(self._data[sample_id][mut_type])
 		return retlist
 
+	def get_normalized_column(self, mut_type) -> List[float]:
+		normalized_list = list()
+		for sample_id in self._samples:
+			countval = float(self._data[sample_id][mut_type])
+			totalval = float(self._data[sample_id].total_mut_count())
+			normalized_list.append(countval / totalval)
+		return normalized_list
+
 	@classmethod
 	def __read_file__(cls, file: csv.DictReader, label: str):
 		group_data = cls(label)
 		for line in file:
 			sample_data = MutationTypeSampleEntry(line)
-			group_data[sample_data._sample_ID] = sample_data
+			group_data[sample_data.sample_id()] = sample_data
 		return group_data
 
 
@@ -512,7 +510,7 @@ class GroupedMutationData:
 		self[label] = group_data
 
 
-def perform_t_test(data: GroupedMutationData) -> Dict[str, Dict[str, int]]:
+def perform_t_test(data: GroupedMutationData, use_proportions=False) -> Dict[str, Dict[str, int]]:
 	#first index str will be mut_type, 2nd will be according to the dictwriter's rules
 	mut_type_keys = MutationTypeSampleEntry.get_output_column_labels()
 	mut_type_values = dict()  # type: Dict[str, Dict[str, ro.IntVector]]
@@ -523,9 +521,13 @@ def perform_t_test(data: GroupedMutationData) -> Dict[str, Dict[str, int]]:
 		for mut_type_str in mut_type_keys:
 			if mut_type_str == 'sample_ID':
 				continue
-			column = group.get_column(mut_type_str)
 			# print(column)
-			r_vector = ro.IntVector(column)
+			if use_proportions:
+				column = group.get_normalized_column(mut_type_str)
+				r_vector = ro.FloatVector(column)
+			else:
+				column = group.get_column(mut_type_str)
+				r_vector = ro.IntVector(column)
 			mut_type_values[group_label][mut_type_str] = r_vector
 	# perform t test
 	# get R object for t test function:
@@ -587,16 +589,40 @@ def compute_mutation_type_t_test(file, output):
 	else:
 		output_file = open(output, newline='', mode='w')
 	field_names_output = ['mut_type', 'statistic', 'parameter', 'p.value', 'conf.int_%s' % data.groups()[0], 'conf.int_%s' % data.groups()[1], 'estimate_%s' % data.groups()[0], 'estimate_%s' % data.groups()[1], 'null.value', 'alternative', 'method']
+	print('Raw Counts', file=output_file)
 	print('\t'.join(field_names_output), file=output_file)
 	output_writer = csv.DictWriter(output_file, fieldnames=field_names_output, dialect='excel-tab')
+
 	t_test_dict = perform_t_test(data)
 	for mut_type_str in mut_type_keys:
 		if mut_type_str == 'sample_ID':
 			continue
 		output_writer.writerow(t_test_dict[mut_type_str])
 
+	print('\nNormalized Counts', file=output_file)
+	print('\t'.join(field_names_output), file=output_file)
+	normal_t_test_dict = perform_t_test(data, use_proportions=True)
+	for mut_type_str in mut_type_keys:
+		if mut_type_str == 'sample_ID':
+			continue
+		output_writer.writerow(normal_t_test_dict[mut_type_str])
+
 
 #https://stat.ethz.ch/R-manual/R-devel/library/stats/html/# t.test.html
+
+@cli.command(name='Gene_Outliers', help="compute studentized residuals for list of gene counts")
+@click.option('--count_file', nargs=1, type=click.File('r'), required=True)
+@click.option('--length_file', nargs=1, type=click.File('r'), required=True)
+@click.option('--output', nargs=1, required=False, default=None, type=click.Path(dir_okay=False, writable=True))
+def compute_studentized_residuals_genes(file, output):
+	check_and_install_R_dependency('MASS')
+	rpackages.importr('MASS')
+	fields = list(['Gene_Symbol', 'Count', 'Length'])
+	gene_file_reader = csv.DictReader(file, fieldnames=fields, dialect='excel-tab')
+	data = read_gene_counts_into_dict(gene_file_reader)
+	output_file = open(output, newline='', mode='w')
+	output_writer = csv.writer(output_file, dialect='excel-tab')
+	pass
 
 if __name__ == "__main__":
 	cli()
