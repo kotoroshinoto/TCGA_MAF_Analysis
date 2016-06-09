@@ -2,34 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93cd2a26-0973-445f-bada-db8d4c112c18" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/analysis/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/lengths/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/names/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/COUNT_merge.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/analysis/COUNT_merge.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_collect_unique_entrez_ids.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/analysis/MAF_collect_unique_entrez_ids.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_collect_unique_symbols.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/names/MAF_collect_unique_symbols.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_counter.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/analysis/MAF_counter.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_merge.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/analysis/MAF_merge.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/Symbol_fixer.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/names/Symbol_fixer.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/Symbol_query.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/names/Symbol_query.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/check_against_lengths_file.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/lengths/check_against_lengths_file.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/cosmic_name_clipper.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/names/cosmic_name_clipper.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/exon_sizer.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/lengths/exon_sizer.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/get_COSMIC_status.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/analysis/get_COSMIC_status.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/get_stats.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/analysis/get_stats.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/parse_symbolcheck_output.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/names/parse_symbolcheck_output.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/split_maf_with_counts.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/analysis/split_maf_with_counts.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/update_names_entrez.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/names/update_names_entrez.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/TCGA_MAF_Analysis.iml" afterPath="$PROJECT_DIR$/.idea/TCGA_MAF_Analysis.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gooch_maf_tools/CLI.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/CLI.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gooch_maf_tools/Formats/MAF.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Formats/MAF.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gooch_maf_tools/Formats/__init__.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Formats/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gooch_maf_tools/Util/MAFcounters.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Util/MAFcounters.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gooch_maf_tools/Util/__init__.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Util/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gooch_maf_tools/Commands/analysis/get_stats.py" afterPath="$PROJECT_DIR$/gooch_maf_tools/Commands/analysis/get_stats.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup.py" afterPath="$PROJECT_DIR$/setup.py" />
     </list>
     <ignored path="TCGA_MAF_Analysis.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,27 +24,13 @@
     <favorites_list name="TCGA_MAF_Analysis" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CLI.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gooch_maf_tools/CLI.py">
+    <leaf>
+      <file leaf-file-name="get_stats.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/analysis/get_stats.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="692">
-              <caret line="58" column="50" selection-start-line="58" selection-start-column="50" selection-end-line="58" selection-end-column="50" />
-              <folding>
-                <element signature="e#0#12#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Symbol_fixer.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/names/Symbol_fixer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2550">
-              <caret line="150" column="31" selection-start-line="150" selection-start-column="31" selection-end-line="150" selection-end-column="31" />
-              <folding>
-                <element signature="e#23#33#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="632">
+              <caret line="619" column="53" selection-start-line="619" selection-start-column="53" selection-end-line="619" selection-end-column="53" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -89,6 +50,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/pybin/Generic_Formats/TSV.py" />
+        <option value="$PROJECT_DIR$/pybin/Generic_Formats/BED.py" />
+        <option value="$PROJECT_DIR$/pybin/Generic_Formats/VCF.py" />
+        <option value="$PROJECT_DIR$/pybin/Symbol_query.py" />
+        <option value="$PROJECT_DIR$/pybin/GenericFormats/BED.py" />
+        <option value="$PROJECT_DIR$/pybin/GenericFormats/VCF.py" />
         <option value="$PROJECT_DIR$/pybin/Cosmic/TSV.py" />
         <option value="$PROJECT_DIR$/pybin/Cosmic/VCF.py" />
         <option value="$PROJECT_DIR$/pybin/GenericFormats/__Base.py" />
@@ -121,25 +89,18 @@
         <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_merge.py" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/parse_symbolcheck_output.py" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/Symbol_fixer.py" />
+        <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/Symbol_query.py" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/split_maf_with_counts.py" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/update_names_entrez.py" />
+        <option value="$PROJECT_DIR$/gooch_maf_tools/CLI.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_counter.py" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/Util/MAFcounters.py" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/COUNT_merge.py" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/Formats/MAF2.py" />
-        <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/get_stats.py" />
-        <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/Symbol_query.py" />
-        <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/names/Symbol_query.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
-        <option value="$PROJECT_DIR$/gooch_maf_tools/commands/analysis/get_COSMIC_status.py" />
-        <option value="$PROJECT_DIR$/gooch_maf_tools/commands/analysis/MAF_counter.py" />
-        <option value="$PROJECT_DIR$/gooch_maf_tools/commands/analysis/MAF_merge.py" />
-        <option value="$PROJECT_DIR$/gooch_maf_tools/commands/analysis/split_maf_with_counts.py" />
-        <option value="$PROJECT_DIR$/gooch_maf_tools/commands/names/Symbol_query.py" />
+        <option value="$PROJECT_DIR$/gooch_maf_tools/Commands/get_stats.py" />
         <option value="$PROJECT_DIR$/gooch_maf_tools/commands/analysis/get_stats.py" />
-        <option value="$PROJECT_DIR$/gooch_maf_tools/CLI.py" />
-        <option value="$PROJECT_DIR$/gooch_maf_tools/commands/names/Symbol_fixer.py" />
       </list>
     </option>
   </component>
@@ -180,7 +141,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -227,87 +188,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TCGA_MAF_Analysis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TCGA_MAF_Analysis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gooch_maf_tools" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="formats" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TCGA_MAF_Analysis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TCGA_MAF_Analysis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gooch_maf_tools" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="commands" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TCGA_MAF_Analysis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TCGA_MAF_Analysis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gooch_maf_tools" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="commands" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="names" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TCGA_MAF_Analysis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TCGA_MAF_Analysis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gooch_maf_tools" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="commands" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lengths" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -349,29 +230,29 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="C:/Anaconda3/python.exe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files (x86)\nodejs\node.exe" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\gooch\PycharmProjects\TCGA_MAF_Analysis\gooch_maf_tools\Commands\analysis" />
-      <recent name="C:\Users\gooch\PycharmProjects\TCGA_MAF_Analysis\gooch_maf_tools\Commands\lengths" />
-      <recent name="C:\Users\gooch\PycharmProjects\TCGA_MAF_Analysis\gooch_maf_tools\Commands\names" />
-      <recent name="C:\Users\mgooc\PycharmProjects\TCGA_MAF_Analysis\gooch_maf_tools\Commands" />
-      <recent name="C:\Users\mgooc\PycharmProjects\TCGA_MAF_Analysis\gooch_maf_tools" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\mgooc\PycharmProjects\TCGA_MAF_Analysis\gooch_maf_tools\Formats" />
       <recent name="C:\Users\mgooc\PycharmProjects\TCGA_MAF_Analysis\gooch_maf_tools\Commands" />
       <recent name="C:\Users\mgooc\PycharmProjects\TCGA_MAF_Analysis\gooch_maf_tools\Util" />
       <recent name="$PROJECT_DIR$/pybin" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mgooc\PycharmProjects\TCGA_MAF_Analysis\gooch_maf_tools\Commands" />
+      <recent name="C:\Users\mgooc\PycharmProjects\TCGA_MAF_Analysis\gooch_maf_tools" />
+      <recent name="$PROJECT_DIR$/pybin/Generic_Formats" />
+      <recent name="$PROJECT_DIR$/pybin/TCGA" />
+      <recent name="$PROJECT_DIR$/pybin/" />
     </key>
   </component>
   <component name="RunManager">
@@ -598,20 +479,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1438714076692</updated>
-    </task>
-    <task id="LOCAL-00034" summary="some setuptools stuff, we don't actually need to install it">
-      <created>1447878712658</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1447878712658</updated>
-    </task>
-    <task id="LOCAL-00035" summary="some setuptools stuff, we don't actually need to install it">
-      <created>1447878753889</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1447878753889</updated>
     </task>
     <task id="LOCAL-00036" summary="minor rearrangement">
       <created>1447878868800</created>
@@ -929,20 +796,34 @@
       <updated>1464982768234</updated>
     </task>
     <task id="LOCAL-00081" summary="forgot example R files">
-      <created>1464982833298</created>
+      <created>1464982773465</created>
       <option name="number" value="00081" />
       <option name="presentableId" value="LOCAL-00081" />
       <option name="project" value="LOCAL" />
-      <updated>1464982833299</updated>
+      <updated>1464982773465</updated>
     </task>
-    <task id="LOCAL-00082" summary="forgot example R files">
-      <created>1464982996035</created>
+    <task id="LOCAL-00082" summary="[T-Test] files are read properly. Stats come next">
+      <created>1465002726560</created>
       <option name="number" value="00082" />
       <option name="presentableId" value="LOCAL-00082" />
       <option name="project" value="LOCAL" />
-      <updated>1464982996035</updated>
+      <updated>1465002726560</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="completed t test and output reporting">
+      <created>1465077053707</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1465077053707</updated>
+    </task>
+    <task id="LOCAL-00084" summary="put t-test code into a function to allow for running with normalization.">
+      <created>1465080052192</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1465080052192</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -962,7 +843,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286385" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32983682" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32983682" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -975,7 +856,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32273263" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3237569" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -992,9 +873,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="name clipper works" />
-    <MESSAGE value="derp" />
-    <MESSAGE value="some code reorganization" />
     <MESSAGE value="testing" />
     <MESSAGE value="some method stubs for format objects" />
     <MESSAGE value="these regexes are a mess" />
@@ -1017,100 +895,34 @@
     <MESSAGE value="DERP Util.MAFcounters changed to MAFcounters" />
     <MESSAGE value="get stats program added. Kurtosis for location implemented" />
     <MESSAGE value="forgot example R files" />
-    <option name="LAST_COMMIT_MESSAGE" value="forgot example R files" />
+    <MESSAGE value="[T-Test] files are read properly. Stats come next" />
+    <MESSAGE value="completed t test and output reporting" />
+    <MESSAGE value="put t-test code into a function to allow for running with normalization." />
+    <option name="LAST_COMMIT_MESSAGE" value="put t-test code into a function to allow for running with normalization." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/gooch_maf_tools/util/MAFSampleCountsList.py</url>
+          <url>file://$PROJECT_DIR$/gooch_maf_tools/Util/MAFSampleCountsList.py</url>
           <line>3</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="6" />
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/names/update_names_entrez.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/names/parse_symbolcheck_output.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="6" column="116" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="116" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/analysis/MAF_collect_unique_entrez_ids.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="5" column="107" selection-start-line="5" selection-start-column="107" selection-end-line="6" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/names/update_names_entrez.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/names/parse_symbolcheck_output.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="6" column="116" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="116" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/analysis/MAF_collect_unique_entrez_ids.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/lengths/exon_sizer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/names/parse_symbolcheck_output.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/lengths/exon_sizer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/names/parse_symbolcheck_output.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_collect_unique_entrez_ids.py" />
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/update_names_entrez.py" />
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/parse_symbolcheck_output.py" />
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_collect_unique_entrez_ids.py" />
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/exon_sizer.py" />
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/parse_symbolcheck_output.py" />
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/exon_sizer.py" />
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/parse_symbolcheck_output.py" />
     <entry file="file://$PROJECT_DIR$/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gooch_maf_tools/util/MAFSampleCountsList.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
@@ -1155,13 +967,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/names/cosmic_name_clipper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/cosmic_name_clipper.py" />
     <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1183,27 +989,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/analysis/MAF_collect_unique_entrez_ids.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="9" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/names/MAF_collect_unique_symbols.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/names/parse_symbolcheck_output.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/exon_sizer.py" />
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/get_COSMIC_status.py" />
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_collect_unique_entrez_ids.py" />
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_collect_unique_symbols.py" />
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/parse_symbolcheck_output.py" />
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/Symbol_fixer.py" />
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/Symbol_query.py" />
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/update_names_entrez.py" />
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/split_maf_with_counts.py" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1219,20 +1013,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/lengths/check_against_lengths_file.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="70" column="9" selection-start-line="69" selection-start-column="0" selection-end-line="70" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/R_scripts/Low High.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="11" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/check_against_lengths_file.py" />
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_merge.py" />
     <entry file="file://$PROJECT_DIR$/gooch_maf_tools/util/MAFcounters.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
@@ -1240,13 +1022,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/COUNT_merge.py" />
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/CLI.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="20" column="102" selection-start-line="20" selection-start-column="102" selection-end-line="20" selection-end-column="102" />
+        <state relative-caret-position="425">
+          <caret line="34" column="47" selection-start-line="34" selection-start-column="47" selection-end-line="34" selection-end-column="47" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/MAF_counter.py" />
     <entry file="file://$PROJECT_DIR$/gooch_maf_tools/formats/MAF.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2329">
@@ -1255,113 +1039,47 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Formats/MAF2.py" />
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/names/update_names_entrez.py">
+    <entry file="file://$PROJECT_DIR$/R_scripts/Low High.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="11" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/lengths/exon_sizer.py">
+    <entry file="file://$PROJECT_DIR$/LICENSE">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2346">
-          <caret line="139" column="4" selection-start-line="139" selection-start-column="4" selection-end-line="139" selection-end-column="4" />
-          <folding>
-            <element signature="e#45#57#0" expanded="true" />
-            <marker date="1464287694168" expanded="true" signature="1540:5324" ph="..." />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="11" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/analysis/COUNT_merge.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/analysis/MAF_counter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="44" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
-          <folding>
-            <element signature="e#23#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/analysis/get_COSMIC_status.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/analysis/MAF_merge.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/analysis/split_maf_with_counts.py">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="4" column="39" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
-          <folding />
+          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/names/Symbol_query.py">
+    <entry file="file://$PROJECT_DIR$/setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="21" />
-          <folding />
+        <state relative-caret-position="578">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="37" selection-start-line="0" selection-start-column="0" selection-end-line="28" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/Commands/get_stats.py" />
     <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/analysis/get_stats.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="180" column="85" selection-start-line="180" selection-start-column="85" selection-end-line="180" selection-end-column="85" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/CLI.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="692">
-          <caret line="58" column="50" selection-start-line="58" selection-start-column="50" selection-end-line="58" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gooch_maf_tools/commands/names/Symbol_fixer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2550">
-          <caret line="150" column="31" selection-start-line="150" selection-start-column="31" selection-end-line="150" selection-end-column="31" />
-          <folding>
-            <element signature="e#23#33#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="632">
+          <caret line="619" column="53" selection-start-line="619" selection-start-column="53" selection-end-line="619" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
