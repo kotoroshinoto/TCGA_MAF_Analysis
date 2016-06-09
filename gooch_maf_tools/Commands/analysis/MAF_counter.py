@@ -2,8 +2,8 @@
 import click
 import os
 import sys
-from ..Formats import MAF
-from ..Util import MAFcounters
+from gooch_maf_tools.formats import MAF
+from gooch_maf_tools.util import MAFcounters
 
 __author__ = 'mgooch'
 
@@ -117,8 +117,8 @@ def handle_action_args(muttype, sample, gene, muttypepersample, location, muttyp
 	return counters
 
 
-@click.command(help="Count # of entries per gene in Util file")
-@click.option('--maf', type=click.File('r'), required=True, help="file containing Util entries")
+@click.command(help="Count # of entries per gene in util file")
+@click.option('--maf', type=click.File('r'), required=True, help="file containing util entries")
 @click.option('--out', type=str, required=False, default="", help='path to use for output files')
 @click.option('--nameprefix', type=str, required=False, default="", help='use this prefix in output names instead of automatically generating one')
 @click.option('--muttype', is_flag=True, default=False, required=False, help="activate counting according to mutation types")

@@ -105,7 +105,7 @@ def compute_kurtosis(kurt_str, label):
 	return result
 
 
-@click.group(name="get_stats", no_args_is_help=True)
+@click.group(name="get_stats", help='perform statistics on tabular data files', no_args_is_help=True)
 def cli():
 	pass
 
@@ -178,7 +178,7 @@ def compute_studentized_residuals_genes(filename, output):
 	pass
 
 
-@cli.command(name='Mutation_Type_T_Test', help="perform t-test on ")
+@cli.command(name='Mutation_Type_T_Test', help="perform t-test on mutation-type files")
 @click.argument('file1', nargs=2, type=(str, click.File('r')))
 @click.argument('file2', nargs=2, type=(str, click.File('r')))
 @click.argument('output', nargs=1, required=False, default=None, type=click.Path(dir_okay=False, writable=True))

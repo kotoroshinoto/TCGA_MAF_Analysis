@@ -4,7 +4,7 @@ import click
 import sys
 
 
-@click.command(help="Collect Unique entries from first two columns of Util file")
+@click.command(help="Collect Unique entries from first two columns of util file")
 @click.option('--maf', type=click.File('r'), required=True, help="file to collect names from")
 @click.option('--out', type=click.File('w'), required=True, help="file to use for output")
 @click.option('--outNoEntrez', type=click.File('w'), help="file to use for output names lacking entrez IDs")

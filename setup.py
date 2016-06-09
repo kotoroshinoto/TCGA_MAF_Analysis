@@ -18,7 +18,7 @@ setup(
 	install_requires=reqs,
 	description="tools for working with TCGA MAF files",
 	long_description="""\
-	Several scripts for working with Util files and TSV files. Fixing symbol names, querying large MAF files, etc.
+	Several scripts for working with util files and TSV files. Fixing symbol names, querying large MAF files, etc.
 	""",
 	author="Michael Gooch",
 	author_email="goochmi@gmail.com",

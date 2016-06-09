@@ -43,7 +43,7 @@ class MappingInputFile:
 
 
 # TODO merge functionality of all the name fixer scripts into one file for ease of use
-# TODO make name fixer scripts work on either actual Util files or custom files with numbered columns
+# TODO make name fixer scripts work on either actual util files or custom files with numbered columns
 
 
 class AbstractSymbolFixContext:
@@ -95,7 +95,7 @@ def fix_names(context: AbstractSymbolFixContext):
 
 	#keep a list of the names that have been corrected or were already fine in a dict
 	#the dict value should tell us which category they fell into
-	#use classes with standard API for handling Util vs more generic TSV input
+	#use classes with standard API for handling util vs more generic TSV input
 	#output only corrected or already-correct entries into main output file, have a separate file for non-fixed entries
 
 	#name fix steps:
@@ -115,7 +115,7 @@ def fix_names(context: AbstractSymbolFixContext):
 	return
 
 
-@click.group()
+@click.group(name='SymbolFixer')
 def cli():
 	pass
 
@@ -125,9 +125,9 @@ def cli():
 @click.option('--lengths', type=(click.File('r'), int), help="path to lengths file, name column")
 @click.option('--symbolcheck', type=(click.File('r'), int, int, int), help="path to symbolcheck file, input column, match type column, approved symbol column")
 @click.option('--entrez', type=(click.File('r'), int, int), help="path to entrez file, hugo symbol column, entrez id column")
-@click.option('--manual', (click.File('r'), int, int), help="path to file containing manually curated names, oldname column, newname column")
+@click.option('--manual', type=(click.File('r'), int, int), help="path to file containing manually curated names, oldname column, newname column")
 @click.option('--name_to_entrez', type=click.File('r'), help="output from MAF_collect_unique_entrez_ids.py")
-def tsv_command():
+def tsv_command(input, lengths, symbolcheck, entrez, manual, name_to_entrez):
 	#TODO validate option validity
 	return
 
@@ -137,25 +137,22 @@ def tsv_command():
 @click.option('--lengths', type=(click.File('r'), int), help="path to lengths file, name column")
 @click.option('--symbolcheck', type=(click.File('r'), int, int, int), help="path to symbolcheck file, input column, match type column, approved symbol column")
 @click.option('--entrez', type=(click.File('r'), int, int), help="path to entrez file, hugo symbol column, entrez id column")
-@click.option('--manual', (click.File('r'), int, int), help="path to file containing manually curated names, oldname column, newname column")
-def tsv_with_entrez_command():
+@click.option('--manual', type=(click.File('r'), int, int), help="path to file containing manually curated names, oldname column, newname column")
+def tsv_with_entrez_command(input, lengths, symbolcheck, entrez, manual):
 	#TODO validate option validity
 	return
 
 
-@cli.command(name="Util")
+@cli.command(name="util")
 @click.option('--input', type=click.File('r'), required=True, help="path to maf file")
 @click.option('--lengths', type=(click.File('r'), int), help="path to lengths file, name column")
 @click.option('--symbolcheck', type=(click.File('r'), int, int, int), help="path to symbolcheck file, input column, match type column, approved symbol column")
 @click.option('--entrez', type=(click.File('r'), int, int), help="path to entrez file, hugo symbol column, entrez id column")
-@click.option('--manual', (click.File('r'), int, int), help="path to file containing manually curated names, oldname column, newname column")
-def maf_command():
+@click.option('--manual', type=(click.File('r'), int, int), help="path to file containing manually curated names, oldname column, newname column")
+def maf_command(input, lengths, symbolcheck, entrez, manual):
 	#TODO validate option validity
 	return
 
-# cli.add_command(maf_command, name="Util")
-# cli.add_command(tsv_command, name="TSV")
-# cli.add_command(tsv_with_entrez_command, name="TSV-ENTREZ")
 
 if __name__ == "__main__":
 	cli()

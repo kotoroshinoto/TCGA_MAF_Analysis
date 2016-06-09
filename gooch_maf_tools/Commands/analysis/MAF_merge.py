@@ -1,11 +1,11 @@
 import click
 import os
 import sys
-from ..Formats import MAF
+from gooch_maf_tools.formats import MAF
 
 
 @click.command(help="Merge MAF files")
-@click.option("--maf", type=click.File('r'), required=True, multiple=True, help="file containing Util entries")
+@click.option("--maf", type=click.File('r'), required=True, multiple=True, help="file containing util entries")
 @click.option('--out', type=click.File('w'), required=False, default=sys.stdout, help='path to use for output files')
 @click.option('--noheader', type=bool, required=False, default=False, help="disable header line in output")
 def cli(maf, out, noheader):

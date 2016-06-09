@@ -4,7 +4,7 @@ import sys
 __author__ = 'mgooch'
 
 
-@click.command(help="Collect Unique entries from first column of Util file")
+@click.command(help="Collect Unique entries from first column of util file")
 @click.option('--maf', type=click.File('r'), required=True, help="file to collect names from")
 @click.option('--out', type=click.File('w'), default=sys.stdout, help="file to use for output")
 def cli(maf, out):

@@ -9,9 +9,9 @@ __author__ = 'mgooch'
 # 	elif mut_type == "INS":
 # 		if nrm[0] == nrm[1]:
 # 	elif mut_type == "SNP":
-# 		print("[Formats.MAF.resolve_mnc]<WARNING>SNP flagged as MNC", file=sys.stderr)
+# 		print("[formats.MAF.resolve_mnc]<WARNING>SNP flagged as MNC", file=sys.stderr)
 # 	else:
-# 		print("[Formats.MAF.resolve_mnc] unknown mutation type encountered", file=sys.stderr)
+# 		print("[formats.MAF.resolve_mnc] unknown mutation type encountered", file=sys.stderr)
 # 		sys.exit(-1)
 
 
@@ -140,7 +140,7 @@ class Entry:
 		if nrm_same and tmr_same:
 			if nrm[0] == tmr[0]:
 				#no mutation
-				#1,1 -> 1,1 Don't expect this to be triggered, it shouldn't be in the Util file at all
+				#1,1 -> 1,1 Don't expect this to be triggered, it shouldn't be in the util file at all
 				return ["NO_MUTATION"]
 			else:
 				#mutation either of both chromosomes or paired with LOH

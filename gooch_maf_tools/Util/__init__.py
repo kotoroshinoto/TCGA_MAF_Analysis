@@ -1,2 +1,2 @@
-import gooch_maf_tools.Util.MAFcounters
-import gooch_maf_tools.Util.MAFSampleCountsList
+import gooch_maf_tools.util.MAFcounters
+import gooch_maf_tools.util.MAFSampleCountsList

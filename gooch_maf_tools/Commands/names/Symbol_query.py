@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import sys
 import os
-from  ..Formats import MAF
+from gooch_maf_tools.formats import MAF
 import click
 
 #global args
@@ -27,7 +27,7 @@ def log_unmatched_symbols():
 @click.option('--out', type=click.File('w'), required=False, default=sys.stdout, help='path to file for query output, defaults to <stdout>')
 @click.option('--unmatched', type=click.File('w'), required=False, default=None, help='if defined, write unmatched symbols to file')
 def cli(out, unmatched):
-	"""Query Util file for entries that have desired gene symbols"""
+	"""Query util file for entries that have desired gene symbols"""
 	# click.echo("output file %s" % out.name, err=True)
 	global output_file
 	output_file = out
@@ -94,13 +94,13 @@ def input_list(query):
 @click.command(add_help_option=True)
 @click.argument('database', type=click.File('r'), required=True)
 def query_maf(database):
-	"""query an Util file
+	"""query an util file
 
 	\b
-	 DATABASE\tfile to be queried containing Util entries
+	 DATABASE\tfile to be queried containing util entries
 	"""
 	# click.echo("maf file to be queried: %s" % database.name, err=True)
-	#read Util lines from file, spit them out to output stream if their symbol matches one of the queries
+	#read util lines from file, spit them out to output stream if their symbol matches one of the queries
 	maf_file_reader = MAF.File()
 	maf_file_reader.use_filehandle(database)
 	while maf_file_reader.has_more_entries():

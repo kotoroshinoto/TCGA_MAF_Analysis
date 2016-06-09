@@ -1,4 +1,4 @@
-import gooch_maf_tools.Formats.MAF
-import gooch_maf_tools.Formats.BED
-import gooch_maf_tools.Formats.TSV
-import gooch_maf_tools.Formats.VCF
+import gooch_maf_tools.formats.MAF
+import gooch_maf_tools.formats.BED
+import gooch_maf_tools.formats.TSV
+import gooch_maf_tools.formats.VCF

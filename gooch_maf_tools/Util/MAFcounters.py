@@ -1,6 +1,6 @@
 import os
 import sys
-from ..Formats import MAF
+from ..formats import MAF
 
 __author__ = 'mgooch'
 

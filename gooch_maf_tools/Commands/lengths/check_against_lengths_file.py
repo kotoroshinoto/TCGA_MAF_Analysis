@@ -22,7 +22,7 @@ def cli(mafnames, checkcolumn, oldcolumn, genelength, matched, unmatched, keep, 
 	if checkcolumn is None:
 		checkcolumn = oldcolumn
 
-	#pull Util names from file
+	#pull util names from file
 	for line in mafnames:
 		if len(line) > 0:
 			split_line = line.split("\t")
