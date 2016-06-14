@@ -600,29 +600,44 @@ class GeneNameMap:
 
 	def __init__(self):
 		self.name_map = dict()  # type: Dict[str, str]
-		# self.symbols = list()  # type: List[str]
+		self.rev_name_map = dict()  # type: Dict[str, str]
+		self.symbols = list()  # type: List[str])
 
 	def register_name(self, nameold: str, namenew: str):
 		if nameold in self.name_map:
-			raise ValueError("that name already has a mapping")
+			raise ValueError("MAF symbol: \"%s\" already has a mapping" % nameold)
 		self.name_map[nameold] = namenew
-		# self.symbols.append(nameold)
+		self.rev_name_map[namenew] = nameold
+		self.symbols.append(nameold)
 
 	def replace_name_registration(self, nameold: str, namenew: str):
 		if nameold not in self.name_map:
-			raise ValueError("that name does not have an existing mapping")
+			raise ValueError("MAF symbol: \"%s\" does not have an existing mapping" % nameold)
 		self.name_map[nameold] = namenew
+		self.rev_name_map[namenew] = nameold
 
 	def get_name_for(self, nameold) -> str:
 		if nameold not in self.name_map:
-			raise ValueError("that name does not have a mapping")
+			raise ValueError("MAF symbol: \"%s\" does not have a mapping" % nameold)
 		return self.name_map[nameold]
 
-	def read_name_file(self, filehandle, old_col: int, new_col: int):
-		reader = csv.reader(filehandle, dialect='excel-tab')
-		for row in reader:
-			self.name_map[row[old_col]] = row[new_col]
+	def is_registered(self, nameold: str):
+		return nameold in self.name_map
 
+	def read_name_file(self, filehandle, old_col: int, new_col: int, has_header: bool):
+		reader = csv.reader(filehandle, dialect='excel-tab')
+		if has_header:
+			next(reader)  # skip first line
+		for row in reader:
+			self.register_name(row[old_col], row[new_col])
+
+	def rev_get_name_for(self, newname:str):
+		if newname not in self.rev_name_map:
+			raise ValueError("UPDATED  symbol: \"%s\" does not have an existing mapping" % nameold)
+		return self.rev_name_map[newname]
+
+	def rev_is_regstered(self, newname):
+		return newname in self.rev_name_map
 
 class GeneLinregEntry:
 	def __init__(self, symbol: str):
@@ -637,8 +652,11 @@ class GeneLinregData:
 		self.symbol_list = list()  #type: List[str]
 		self.name_map = GeneNameMap()  # type: GeneNameMap
 
-	def read_count_file(self, filehandle, name_col: int, count_col: int):
+	def read_count_file(self, filehandle, name_col: int, count_col: int, has_header: bool):
 		reader = csv.reader(filehandle, dialect='excel-tab')
+		if has_header:
+			next(reader)  # skip first line
+
 		for row in reader:
 			oldsymbol = row[name_col]
 			newsymbol = self.name_map.get_name_for(oldsymbol)
@@ -650,53 +668,81 @@ class GeneLinregData:
 				entry = self.data_dict[newsymbol]  # type: GeneLinregEntry
 			entry._count = int(row[count_col])
 
-	def read_length_file(self, filehandle, name_col: int, length_col: int):
+	def read_length_file(self, filehandle, name_col: int, length_col: int, has_header: bool):
 		reader = csv.reader(filehandle, dialect='excel-tab')
+		if has_header:
+			next(reader)  # skip first line
 		for row in reader:
 			oldsymbol = row[name_col]
+			if not self.name_map.is_registered(oldsymbol):
+				continue  # skip missing names, as they are likely not in the data
 			newsymbol = self.name_map.get_name_for(oldsymbol)
 			if newsymbol not in self.data_dict:
-				entry = GeneLinregEntry(newsymbol)  # type: GeneLinregEntry
-				self.data_dict[newsymbol] = entry
-				self.symbol_list.append(newsymbol)
+				continue
+				# entry = GeneLinregEntry(newsymbol)  # type: GeneLinregEntry
+				# self.data_dict[newsymbol] = entry
+				# self.symbol_list.append(newsymbol)
 			else:
 				entry = self.data_dict[newsymbol]  # type: GeneLinregEntry
 			entry._length = int(row[length_col])
 
-	def read_name_file(self, filehandle, old_col: int, new_col: int):
-		self.name_map.read_name_file(filehandle, old_col, new_col)
+	def read_name_file(self, filehandle, old_col: int, new_col: int, has_header: bool):
+		self.name_map.read_name_file(filehandle, old_col, new_col, has_header)
 
 	def generate_count_vector(self) -> ro.IntVector:
-		pass
+		counts = list()
+		for symbol in self.symbol_list:
+			counts.append(self.data_dict[symbol]._count)
+		return ro.IntVector(counts)
 
 	def generate_length_vector(self) -> ro.IntVector:
-		pass
+		lengths = list()
+		for symbol in self.symbol_list:
+			lengths.append(self.data_dict[symbol]._length)
+		return ro.IntVector(lengths)
+
+	def get_symbol_list(self):
+		return self.symbol_list
 
 
 @cli.command(name='Gene_Outliers', help="compute studentized residuals for list of gene counts")
-@click.option('--count_file', type=(click.File('r'), int, int), required=True, help="count file, symbol column, count column")
-@click.option('--length_file', type=(click.File('r'), int, int), required=True, help="length file, symbol column,  length column")
-@click.option('--name_map_file', type=(click.File('r'), int, int) , required=True, help="names file, old name column, new name column")
-@click.option('--output', required=False, default=None, type=click.Path(dir_okay=False, writable=True))
-def compute_studentized_residuals_genes(count_file, length_file, name_map_file, output):
+@click.option('--count_file', type=(click.File('r'), int, int), default=(None, None, None), required=True, help="count file, symbol column, count column")
+@click.option('--length_file', type=(click.File('r'), int, int), default=(None, None, None), required=True, help="length file, symbol column,  length column")
+@click.option('--name_map_file', type=(click.File('r'), int, int), default=(None, None, None), required=True, help="names file, old name column, new name column")
+@click.option('--header_count/--noheader_count', default=True)
+@click.option('--header_length/--noheader_length', default=True)
+@click.option('--header_name_map/--noheader_name_map', default=True)
+@click.option('--output', required=False, default=None, type=click.Path(dir_okay=False, writable=True), help="output file path")
+@click.pass_context
+def compute_studentized_residuals_genes(ctx, count_file, length_file, name_map_file, output, header_count, header_length, header_name_map):
+	errormsg=list()
+	if count_file[0] is None:
+		errormsg.append("--count_file is required")
+	if length_file[0] is None:
+		errormsg.append("--length_file is required")
+	if name_map_file[0] is None:
+		errormsg.append("--name_map_file is required")
+	if len(errormsg) > 0:
+		print(compute_studentized_residuals_genes.get_help(ctx))
+		raise click.UsageError(', '.join(errormsg))
 	check_and_install_R_dependency('MASS')
 	rpackages.importr('MASS')
 	linreg_data = GeneLinregData()
 
 	#read in name map
-	linreg_data.read_name_file(name_map_file[0],name_map_file[1], name_map_file[3])
-
-	#read in length file
-	linreg_data.read_length_file(length_file[0], length_file[1], length_file[2])
+	linreg_data.read_name_file(name_map_file[0], name_map_file[1], name_map_file[2], header_name_map)
 
 	#read in counts file
-	linreg_data.read_count_file(count_file[0], count_file[1], count_file[2])
+	linreg_data.read_count_file(count_file[0], count_file[1], count_file[2], header_count)
+
+	#read in length file
+	linreg_data.read_length_file(length_file[0], length_file[1], length_file[2], header_length)
 
 	length_vector = linreg_data.generate_length_vector()
-	ro.r('x='+ str(length_vector.r_repr()))
-
 	count_vctr = linreg_data.generate_count_vector()
-	ro.r('y=' + str(count_vctr .r_repr()))
+
+	ro.r('x=' + str(length_vector.r_repr()))
+	ro.r('y=' + str(count_vctr.r_repr()))
 
 	linreg_result = ro.r('lm(y~x)')
 
@@ -704,10 +750,32 @@ def compute_studentized_residuals_genes(count_file, length_file, name_map_file, 
 
 	studres_result = studres_func(linreg_result)
 
-
-	output_file = open(output, newline='', mode='w')
-	output_writer = csv.DictWriter(output_file, dialect='excel-tab')
-	pass
+	if output is None:
+		output_file = sys.stdout
+	else:
+		output_file = open(output, newline='', mode='w')
+	fieldnames = list()
+	fieldnames.append('Gene Symbol[MAF]')
+	fieldnames.append('Gene Symbol[UPDATED]')
+	fieldnames.append('Length')
+	fieldnames.append('Mutation Count')
+	fieldnames.append('Studentized Residual')
+	output_writer = csv.writer(output_file, dialect='excel-tab')
+	output_writer.writerow(fieldnames)
+	symbol_list = linreg_data.symbol_list
+	for i in range(0, len(symbol_list)):
+		newsymbol = symbol_list[i]
+		oldsymbol = linreg_data.name_map.rev_get_name_for(newsymbol)
+		if newsymbol not in linreg_data.data_dict:
+			continue
+		dataentry = linreg_data.data_dict[newsymbol]  # type: GeneLinregEntry
+		row = list()
+		row.append(oldsymbol)
+		row.append(newsymbol)
+		row.append(dataentry._length)
+		row.append(dataentry._count)
+		row.append(studres_result[i])
+		output_writer.writerow(row)
 
 if __name__ == "__main__":
 	cli()

@@ -1,0 +1,6 @@
+SET COMMAND_PATH=C:\Users\mgooc\Documents\COLON_PROJECT\dissertation\data
+SET ANNOTATION_PATH=%COMMAND_PATH%\downloaded_annotations\TCGA_Name_annotations
+SET COUNT_PATH=%COMMAND_PATH%\tabular_data\counts
+python -m gooch_maf_tools.main analysis get_stats Gene_Outliers --length_file %ANNOTATION_PATH%\gene_lengths.tsv 0 1 --name_map_file %ANNOTATION_PATH%\name_mapping.tsv 0 2 --count_file %COUNT_PATH%\hgsc.bcm.edu__Illumina_Genome_Analyzer_DNA_Sequencing_level2.maf.gene.counts 0 1 --header_length --output %COUNT_PATH%\all_sample.gene.linreg.tsv
+python -m gooch_maf_tools.main analysis get_stats Gene_Outliers --length_file %ANNOTATION_PATH%\gene_lengths.tsv 0 1 --name_map_file %ANNOTATION_PATH%\name_mapping.tsv 0 2 --count_file %COUNT_PATH%\hgsc.bcm.edu__Illumina_Genome_Analyzer_DNA_Sequencing_level2.maf.counts.0-999.gene.counts 0 1 --header_length  --output %COUNT_PATH%\0-999.gene.linreg.tsv
+python -m gooch_maf_tools.main analysis get_stats Gene_Outliers --length_file %ANNOTATION_PATH%\gene_lengths.tsv 0 1 --name_map_file %ANNOTATION_PATH%\name_mapping.tsv 0 2 --count_file %COUNT_PATH%\hgsc.bcm.edu__Illumina_Genome_Analyzer_DNA_Sequencing_level2.maf.counts.1000-above.gene.counts 0 1 --header_length  --output %COUNT_PATH%\1000-above.gene.linreg.tsv
