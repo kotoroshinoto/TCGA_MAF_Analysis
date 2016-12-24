@@ -12,7 +12,7 @@ def cli(maf, out, noheader):
 	if not noheader:
 		print(MAF.Entry.get_header_line(), file=out)
 	for maf_file in maf:
-		entries = MAF.File.get_all_entries_from_filehandle(maf_file)
+		entries = MAF.EntryReader.get_all_entries_from_filehandle(maf_file)
 		maf_file.close()
 		for entry in entries:
 			print(entry, file=out)

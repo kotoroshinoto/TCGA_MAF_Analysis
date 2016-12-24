@@ -9,6 +9,7 @@ from .commands.analysis import get_stats
 from .commands.analysis import MAF_collect_unique_entrez_ids
 from .commands.analysis import MAF_counter
 from .commands.analysis import MAF_merge
+from .commands.analysis import MAF_merge_variant_callers
 from .commands.analysis import split_maf_with_counts
 
 
@@ -25,7 +26,7 @@ def cli():
 	pass
 
 
-@cli.group(name='names', help="performing counts and analysis")
+@cli.group(name='names', help="correcting name mismatches")
 def names():
 	pass
 
@@ -35,7 +36,7 @@ def lengths():
 	pass
 
 
-@cli.group(name='analysis', help='correcting name mismatches')
+@cli.group(name='analysis', help='performing counts and analysis')
 def analysis():
 	pass
 
@@ -43,6 +44,7 @@ analysis.add_command(MAF_counter.cli, "MAF_counter")
 analysis.add_command(COUNT_merge.cli, "COUNT_merge")
 analysis.add_command(split_maf_with_counts.cli, "MAF_count_split")
 analysis.add_command(MAF_merge.cli, "MAF_merge")
+analysis.add_command(MAF_merge_variant_callers.cli, "MAF_merge_variant_callers")
 analysis.add_command(get_stats.cli, 'get_stats')
 analysis.add_command(get_COSMIC_status.cli, "get_COSMIC_status")
 

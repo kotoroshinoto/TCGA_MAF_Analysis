@@ -309,7 +309,7 @@ def process_cosmic_table(cosmic_table):
 def process_maf_file(maf_file):
 	print("Starting to read MAF file", file=sys.stderr)
 	global MAF_DATA
-	MAF_DATA = MAF.File.get_all_entries_from_filehandle(maf_file)
+	MAF_DATA = MAF.EntryReader.get_all_entries_from_filehandle(maf_file)
 	print("Finished reading MAF file", file=sys.stderr)
 
 advanced_search_history = dict()

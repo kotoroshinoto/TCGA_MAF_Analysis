@@ -50,7 +50,7 @@ def cli(counts, boundaries, maf, key, out_prefix):
 	scl.read_file_handle(counts)
 	split_list = scl.split(fixed_list)
 
-	entries = MAF.File.get_all_entries_from_filehandle(maf)
+	entries = MAF.EntryReader.get_all_entries_from_filehandle(maf)
 	maf.close()
 
 	for entry in entries:

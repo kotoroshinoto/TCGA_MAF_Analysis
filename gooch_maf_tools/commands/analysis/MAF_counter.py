@@ -131,7 +131,7 @@ def cli(maf, out, nameprefix, muttype, sample, gene, muttypepersample, location,
 	counters = handle_action_args(muttype, sample, gene, muttypepersample, location, muttypeatlocation)
 	out_handles = handle_outpath_arg(maf, out, nameprefix, muttype, sample, gene, muttypepersample, location, muttypeatlocation)
 
-	entries = MAF.File.get_all_entries_from_filehandle(maf)
+	entries = MAF.EntryReader.get_all_entries_from_filehandle(maf)
 	maf.close()
 
 	for entry in entries:
