@@ -3,13 +3,16 @@ import click
 import os
 import sys
 from gooch_maf_tools.formats import MAF
-from gooch_maf_tools.util import MAFSampleCountsList
+from gooch_maf_tools.util.MAFSampleCountsList import MAFSampleCountsList
 
 __author__ = 'mgooch'
 
 
 def generate_file_handles(maf, bounds, prefix=None):
 	handles = list()
+	for i in range(len(bounds)):
+		bounds[i] = int(bounds[i])
+
 	sorted_bounds = sorted(bounds)
 	if prefix is None:
 		maf_path = maf.name
@@ -53,20 +56,23 @@ def cli(counts, boundaries, maf, key, out_prefix):
 	entries = MAF.EntryReader.get_all_entries_from_filehandle(maf)
 	maf.close()
 
+	#write initial header line to all output files
+	#TODO use CSV handler or a built in function to the class to do this more elegantly
+	for handle in handles:
+		print("\t".join(entries[0].fieldnames), file=handle)
+
 	for entry in entries:
 		target_list = -1
 		for i in range(0, len(split_list)):
-			if entry.data[MAF.Entry.get_heading(key)] in split_list[i]:
+			if entry.get_data(key) in split_list[i]:
 				if target_list != -1:
-					print("util entry: %s, is in multiple lists\n" % entry.data[
-						MAF.Entry.get_heading(key)], file=sys.stderr)
+					print("util entry: %s, is in multiple lists\n" % entry.get_data(key), file=sys.stderr)
 					sys.exit(-1)
 				target_list = i
 				# print("key %s belongs in list # %d" % (entry.data[MAF.Entry.get_heading(key)], i))
 				print("%s" % entry, file=handles[i])
 		if target_list == -1:
-			print("util key: %s, doesn't exist in any of the lists\n" % entry.data[
-				MAF.Entry.get_heading(key)], file=sys.stderr)
+			print("util key: %s, doesn't exist in any of the lists\n" % entry.get_data(key), file=sys.stderr)
 			sys.exit(-1)
 	# for i in range(0, len(split_list)):
 	# 	print("list # %d" % i)

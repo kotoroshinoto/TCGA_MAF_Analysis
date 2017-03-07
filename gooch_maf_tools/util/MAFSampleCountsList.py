@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-__author__ = 'mgooch'
-
 import os
 import sys
 import io
+
+__author__ = 'mgooch'
 
 
 class MAFSampleCountsList:
@@ -23,7 +23,7 @@ class MAFSampleCountsList:
 		self.counts[sample_key] = count
 		return
 
-	def read_file_handle(self, handle: io.TextIOBase) -> 'None':
+	def read_file_handle(self, handle) -> 'None':
 		lines = handle.readlines()
 		""":type : list[str]"""
 		for line in lines:

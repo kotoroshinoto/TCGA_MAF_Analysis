@@ -11,9 +11,9 @@ import click
 @click.option('--entrez', type=click.File('r'), required=True, help="file containing symbols and entrez ids")
 @click.option('--col-entrez', type=int, required=True, help="column that has entrez ids")
 @click.option('--col-symbol', type=int, required=True, help="column that has symbols")
-@click.option('--outCorrected', type=click.File('w'), required=True, help="file to use for output")
-@click.option('--outUnmatched', type=click.File('w'), required=True, help="file to use for output")
-def cli(mafnames,name_to_entrez, entrez, col_entrez, col_symbol, outCorrected, outUnmatched):
+@click.option('--outcorrected', type=click.File('w'), required=True, help="file to use for output")
+@click.option('--outunmatched', type=click.File('w'), required=True, help="file to use for output")
+def cli(mafnames, name_to_entrez, entrez, col_entrez, col_symbol, outcorrected, outunmatched):
 	MAF_names = dict()
 
 	#pull TCGA names from file
@@ -59,14 +59,14 @@ def cli(mafnames,name_to_entrez, entrez, col_entrez, col_symbol, outCorrected, o
 			entrez_id = Name2EntrezID[name]
 			if entrez_id in EntrezID2ModernSymbol:
 				symbol = EntrezID2ModernSymbol[entrez_id]
-				print("%s\t%s" % (MAF_names[name], symbol), file=outCorrected)
+				print("%s\t%s" % (MAF_names[name], symbol), file=outcorrected)
 			else:
-				print("%s\t" % (MAF_names[name]), file=outUnmatched)
+				print("%s\t" % (MAF_names[name]), file=outunmatched)
 		else:
-			print("%s\t" % (MAF_names[name]), file=outUnmatched)
+			print("%s\t" % (MAF_names[name]), file=outunmatched)
 		#convert entrez_id back to symbol
-	outCorrected.close()
-	outUnmatched.close()
+	outcorrected.close()
+	outunmatched.close()
 
 if __name__ == "__main__":
 	cli()

@@ -5,8 +5,8 @@ from gooch_maf_tools.formats import MAF
 from typing import Tuple
 
 
-@click.command(help="Merge MAF files from multiple variant callers")
-@click.option("--maf", type=(str, click.File('r')), required=True, multiple=True, help="label for caller and path to file containing MAF entries")
+@click.command(help="Merge MAF files from multiple sources, with associated labels")
+@click.option("--maf", type=(str, click.File('r')), required=True, multiple=True, help="label for file and path to file containing MAF entries")
 @click.option('--out', type=click.File('w'), required=False, default=sys.stdout, help='path to use for output files')
 # @click.option('--noheader', type=bool, required=False, default=False, help="disable header line in output")
 def cli(maf: 'list[Tuple[str, click.File]]', out: 'click.File'):

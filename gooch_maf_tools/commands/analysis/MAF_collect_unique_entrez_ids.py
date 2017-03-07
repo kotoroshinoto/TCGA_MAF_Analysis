@@ -8,7 +8,7 @@ import sys
 @click.option('--maf', type=click.File('r'), required=True, help="file to collect names from")
 @click.option('--out', type=click.File('w'), required=True, help="file to use for output")
 @click.option('--outNoEntrez', type=click.File('w'), help="file to use for output names lacking entrez IDs")
-def cli(maf, out, outNoEntrez):
+def cli(maf, out, outnoentrez):
 	Names = list()
 	#Entrez_IDs = list()
 	first_line_skipped = False
@@ -31,8 +31,8 @@ def cli(maf, out, outNoEntrez):
 			if entrez_id != "0":
 				print("%s\t%s" % (line_split[0], line_split[1]), file=out)
 			else:
-				if outNoEntrez is not None:
-					print("%s\t" % line_split[0], file=outNoEntrez)
+				if outnoentrez is not None:
+					print("%s\t" % line_split[0], file=outnoentrez)
 
 if __name__ == "__main__":
 	cli()

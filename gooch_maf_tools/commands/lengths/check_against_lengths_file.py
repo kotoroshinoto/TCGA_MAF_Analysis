@@ -10,13 +10,13 @@ __author__ = 'mgooch'
 @click.option('--mafnames', type=click.File('r'), required=True, help="file of names to be translated")
 @click.option('--checkcolumn', type=int, default=None, help="check this column instead of oldcolumn")
 @click.option('--oldcolumn', type=int, default=0, help="this column is the original name")
-@click.option('--genelength', type=click.File('r'), required=True, help="file of gene lengths that has names")#, nargs='+'
-@click.option('--matched', type=click.File('w'), required=True, help="file to write matched names")
-@click.option('--unmatched', type=click.File('w'), required=True, help="file to write unmatched names")
+@click.option('--genelength', type=click.File('r'), multiple=True, required=True, help="file of gene lengths that has names")#, nargs='+'
+@click.option('--matched', type=click.File('w+'), required=True, help="file to write matched names")
+@click.option('--unmatched', type=click.File('w+'), required=True, help="file to write unmatched names")
 @click.option('--keep', default=False, is_flag=True, help="put checked label in 2nd column even if unmatched")
-@click.option('--logOK', default=os.devnull, type=click.File('w'), help="log OK output to this file")
-@click.option('--logBAD', default=os.devnull, type=click.File('w'), help="log BAD output to this file")
-def cli(mafnames, checkcolumn, oldcolumn, genelength, matched, unmatched, keep, logOK, logBAD):
+@click.option('--logok', default=os.devnull, type=click.File('w+'), help="log OK output to this file")
+@click.option('--logbad', default=os.devnull, type=click.File('w+'), help="log BAD output to this file")
+def cli(mafnames, checkcolumn, oldcolumn, genelength, matched, unmatched, keep, logok, logbad):
 	MAF_original_names = dict()
 	MAF_names = dict()
 	if checkcolumn is None:
@@ -51,15 +51,15 @@ def cli(mafnames, checkcolumn, oldcolumn, genelength, matched, unmatched, keep, 
 	for check_symbol in MAF_names:
 		if check_symbol in Length_File_Name_List:
 			if oldcolumn != checkcolumn:
-				print("checked name OK for: %s -> %s" % (MAF_original_names[check_symbol], MAF_names[check_symbol]), file=logOK)
+				print("checked name OK for: %s -> %s" % (MAF_original_names[check_symbol], MAF_names[check_symbol]), file=logok)
 			else:
-				print("checked name OK for: %s" % (MAF_names[check_symbol]), file=logOK)
+				print("checked name OK for: %s" % (MAF_names[check_symbol]), file=logok)
 			print("%s\t%s" % (MAF_original_names[check_symbol], MAF_names[check_symbol]), file=matched)
 		else:
 			if oldcolumn != checkcolumn:
-				print("checked name BAD for: %s - > %s" % (MAF_original_names[check_symbol], MAF_names[check_symbol]), file=logBAD)
+				print("checked name BAD for: %s - > %s" % (MAF_original_names[check_symbol], MAF_names[check_symbol]), file=logbad)
 			else:
-				print("checked name BAD for: %s" % (MAF_names[check_symbol]), file=logBAD)
+				print("checked name BAD for: %s" % (MAF_names[check_symbol]), file=logbad)
 			if keep:
 				print("%s\t%s" % (MAF_original_names[check_symbol], MAF_names[check_symbol]), file=unmatched)
 			else:

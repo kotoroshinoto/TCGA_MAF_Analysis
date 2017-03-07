@@ -10,7 +10,7 @@ __author__ = 'mgooch'
 @click.option('--outApproved', type=click.File('w'), required=True, help="file to write approved symbols to")
 @click.option('--outUnmatched', type=click.File('w'), required=True, help="file to write unmatched symbols to")
 @click.option('--outCorrected', type=click.File('w'), required=True, help="file to write symbols that were corrected to")
-def cli(symbolcheck, outApproved, outUnmatched, outCorrected):
+def cli(symbolcheck, outapproved, outunmatched, outcorrected):
 	#build map of names from symbolcheck file
 	symbolcheck_approved = dict()
 	symbolcheck_unmatched = list()
@@ -44,13 +44,13 @@ def cli(symbolcheck, outApproved, outUnmatched, outCorrected):
 				print("unrecognized category: %s" % category, file=sys.stderr)
 
 	for symbol in symbolcheck_approved:
-		print("%s\t%s" % (symbol, symbolcheck_approved[symbol]), file=outApproved)
+		print("%s\t%s" % (symbol, symbolcheck_approved[symbol]), file=outapproved)
 	for symbol in symbolcheck_unmatched:
-		print("%s\t" % symbol, file=outUnmatched)
+		print("%s\t" % symbol, file=outunmatched)
 	for symbol in symbolcheck_updated:
-		print("%s\t%s" % (symbol, symbolcheck_updated[symbol]), file=outCorrected)
+		print("%s\t%s" % (symbol, symbolcheck_updated[symbol]), file=outcorrected)
 	for symbol in symbolcheck_synonyms:
 		if symbol not in symbolcheck_approved and symbol not in symbolcheck_updated:
-			print("%s\t%s" % (symbol, symbolcheck_synonyms[symbol]), file=outCorrected)
+			print("%s\t%s" % (symbol, symbolcheck_synonyms[symbol]), file=outcorrected)
 	for symbol in symbolcheck_withdrawn:
 		print("[WARNING] symbol withdrawn: %s ", file=sys.stderr)

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-__author__ = 'mgooch'
 import click
 import sys
+
+__author__ = 'mgooch'
 
 
 def next_bed(line):
@@ -122,17 +123,19 @@ def argcheck(parser):
 # @click.option('--ucsc_col', type=int, nargs=2, help="")
 # @click.option('--refseq_col', type=int, nargs=2, help="")
 @click.command(help="Compute exonic sizes of genes and relate them to HUGO IDs")
-@click.option('--ucsc', type=(click.File('r'), click.File('r'), int, int), help="first path is to a bed file containing genes & exons from UCSC, \n2nd path is to path to a file relating BED file names to desired names. \nInts are a pair of 0-based index values for parsing the names file, first column's names match those from the BED file, second names match those to use in the output")
-@click.option('--refseq', type=(click.File('r'), click.File('r'), int, int), help="first path is to a bed file containing genes & exons from REFSEQ, \n2nd path is to path to a file relating BED file names to desired names. \nInts are a pair of 0-based index values for parsing the names file, first column's names match those from the BED file, second names match those to use in the output")
+@click.option('--ucsc', type=(click.File('r'), click.File('r'), int, int), default=(None, None, None, None), help="first path is to a bed file containing genes & exons from UCSC, \n2nd path is to path to a file relating BED file names to desired names. \nInts are a pair of 0-based index values for parsing the names file, first column's names match those from the BED file, second names match those to use in the output")
+@click.option('--refseq', type=(click.File('r'), click.File('r'), int, int), default=(None, None, None, None), help="first path is to a bed file containing genes & exons from REFSEQ, \n2nd path is to path to a file relating BED file names to desired names. \nInts are a pair of 0-based index values for parsing the names file, first column's names match those from the BED file, second names match those to use in the output")
 @click.option('--out', type=click.File('w'), default=sys.stdout, help="output file")
 def cli(ucsc, refseq, out):
-	if len(refseq) == 0 and len(ucsc) == 0:
+	refseq_given = refseq[0] is not None
+	ucsc_given = ucsc[0] is not None
+	if (not refseq_given) and (not ucsc_given):
 		raise click.BadArgumentUsage("Must give at least one of the following: --ucsc --refseq")
-	if len(ucsc) == 4:
+	if ucsc_given:
 		ucsc_bed = read_files_and_map_names(ucsc)
 	else:
 		ucsc_bed = None
-	if len(refseq) == 4:
+	if refseq_given:
 		refseq_bed = read_files_and_map_names(refseq)
 	else:
 		refseq_bed = None
