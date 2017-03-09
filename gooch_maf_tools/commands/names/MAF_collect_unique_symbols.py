@@ -1,26 +1,24 @@
 #!/usr/bin/env python3
 import click
 import sys
+import csv
 __author__ = 'mgooch'
 
 
 @click.command(help="Collect Unique entries from first column of maf file")
 @click.option('--maf', type=click.File('r'), required=True, help="file to collect names from")
-@click.option('--out', type=click.File('w'), default=sys.stdout, help="file to use for output")
+@click.option('--out', type=click.File('w+'), default=sys.stdout, help="file to use for output")
 def cli(maf, out):
 	Names = list()
 	#Entrez_IDs = list()
-
-	for line in maf:
-		line = line.rstrip()
-		if len(line) <= 0:
+	rdr = csv.reader(maf, dialect='excel-tab')
+	for line in rdr:
+		if len(line) < 1:
 			continue
-		line_split = line.split("\t")
-		if len(line_split) < 2:
-			continue
-		symbol = line_split[0].rstrip()
-		entrez_id = line_split[1].rstrip()
-		if entrez_id != "0" and symbol not in Names:
+		symbol = line[0].rstrip()
+		if symbol != "Hugo_Symbol" and symbol not in Names:
 			Names.append(symbol)
 			#Entrez_IDs.append(line_split[1])
-			print("%s\t" % line_split[0], file=out)
+			print("%s\t" % line[0], file=out)
+	out.write("")
+	out.close()

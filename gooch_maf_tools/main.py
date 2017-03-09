@@ -1,24 +1,21 @@
 import click
 
-from .commands.lengths import exon_sizer
-from .commands.lengths import check_against_lengths_file
-
+from .commands.names import MAF_collect_unique_entrez_ids
 from .commands.analysis import COUNT_merge
-from .commands.analysis import get_COSMIC_status
-from .commands.analysis import get_stats
-from .commands.analysis import MAF_collect_unique_entrez_ids
 from .commands.analysis import MAF_counter
 from .commands.analysis import MAF_merge
 from .commands.analysis import MAF_merge_with_label
+from .commands.analysis import get_COSMIC_status
+from .commands.analysis import get_stats
 from .commands.analysis import split_maf_with_counts
-
-
-from .commands.names import cosmic_name_clipper
+from .commands.lengths import check_against_lengths_file
+from .commands.lengths import exon_sizer
 from .commands.names import MAF_collect_unique_symbols
+from .commands.names import Symbol_fixer
 from .commands.names import Symbol_query
+from .commands.names import cosmic_name_clipper
 from .commands.names import parse_symbolcheck_output
 from .commands.names import update_names_entrez
-from .commands.names import Symbol_fixer
 
 
 @click.group(name='gooch_maf_tools', help="collection of tools for working with MAF files and gene annotations")

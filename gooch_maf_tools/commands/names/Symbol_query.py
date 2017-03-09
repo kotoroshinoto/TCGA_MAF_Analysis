@@ -27,7 +27,7 @@ def log_unmatched_symbols():
 @click.option('--out', type=click.File('w'), required=False, default=sys.stdout, help='path to file for query output, defaults to <stdout>')
 @click.option('--unmatched', type=click.File('w'), required=False, default=None, help='if defined, write unmatched symbols to file')
 def cli(out, unmatched):
-	"""Query util file for entries that have desired gene symbols"""
+	"""Query maf file for entries that have desired gene symbols"""
 	# click.echo("output file %s" % out.name, err=True)
 	global output_file
 	output_file = out

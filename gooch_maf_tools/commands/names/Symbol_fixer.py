@@ -1,156 +1,118 @@
 #!/usr/bin/env python3
+import warnings
+import io
 import sys
 import click
-
-
-class GeneSymbolMapper:
-	def __init__(self):
-		self.__symbols = dict()
-
-	def map_symbol(self, key, symbol):
-		if key in self.__symbols:
-			print("you attempted to map an already mapped key: %s, which is mapped to %s, tried to map it to %s" % (
-			key, symbol, self.__symbols[key]), file=sys.stderr);
-			exit(-1)
-		self.__symbols[key] = symbol
-
-	def get_mapped_name(self, oldname):
-		if oldname not in self.__symbols:
-			return ""
-		return self.__symbols[oldname]
-
-
-class MappingInputFile:
-	def __init__(self):
-		self.__raw_lines = list()
-		self.__encoded_lines = list()
-
-	def add_line(self, raw, encoded):
-		self.__raw_lines.append(raw)
-		self.__encoded_lines.append(encoded)
-
-	def get_encoded(self, index):
-		return self.__encoded_lines[index]
-
-	def get_raw(self, index):
-		return self.__raw_lines
-
-	def get_encoded_list(self):
-		return self.__encoded_lines
-
-	def get_raw_list(self):
-		return self.__raw_lines
-
-
-# TODO merge functionality of all the name fixer scripts into one file for ease of use
-# TODO make name fixer scripts work on either actual util files or custom files with numbered columns
-
-
-class AbstractSymbolFixContext:
-	# __metaclass__ = abc.ABCMeta
-
-	def __init__(self):
-		return
-
-	# @abc.abstractmethod
-	def getSymbol(self, index):
-		return
-
-
-# class SymbolFixContextTSV(AbstractSymbolFixContext):
-# 	def __init__(self):
-# 		super(SymbolFixContextTSV, self).__init__()
-# 		return
+import gooch_maf_tools.formats.MAF as MAF
+from typing import Dict, List, Tuple
+import csv
+#
+# @cli.command(name="TSV")
+# @click.option('--input', type=(click.File('r'), int), required=True, help="path to file containing names, and the column to read")
+# @click.option('--lengths', type=(click.File('r'), int), help="path to lengths file, name column")
+# @click.option('--symbolcheck', type=(click.File('r'), int, int, int), help="path to symbolcheck file, input column, match type column, approved symbol column")
+# @click.option('--entrez', type=(click.File('r'), int, int), help="path to entrez file, hugo symbol column, entrez id column")
+# @click.option('--manual', type=(click.File('r'), int, int), help="path to file containing manually curated names, oldname column, newname column")
+# @click.option('--name_to_entrez', type=click.File('r'), help="output from MAF_collect_unique_entrez_ids.py")
+# def tsv_command(input, lengths, symbolcheck, entrez, manual, name_to_entrez):
+# 	#validate option validity
+# 	return
 #
 #
-# class SymbolFixContextMAF(AbstractSymbolFixContext):
-# 	def __init__(self):
-# 		super(SymbolFixContextMAF, self).__init__()
-# 		return
-
-def prep_steps(context: AbstractSymbolFixContext):
-	#prep steps
-	#read in all lists, many will need columns to be specified
-	#symbolcheck file
-	#^produced by giving output from MAF_collect_unique_symbols.py to http://www.genenames.org/cgi-bin/symbol_checker
-	#entrez ID -> hugo symbol file
-	#lengths file (produced by exon_sizer.py)
-	#manual curation file
-	return
+# @cli.command(name="TSV-ENTREZ")
+# @click.option('--input', type=(click.File('r'), int, int), required=True, help="path to file containing names and entrez ids, symbol column, entrez column")
+# @click.option('--lengths', type=(click.File('r'), int), help="path to lengths file, name column")
+# @click.option('--symbolcheck', type=(click.File('r'), int, int, int), help="path to symbolcheck file, input column, match type column, approved symbol column")
+# @click.option('--entrez', type=(click.File('r'), int, int), help="path to entrez file, hugo symbol column, entrez id column")
+# @click.option('--manual', type=(click.File('r'), int, int), help="path to file containing manually curated names, oldname column, newname column")
+# def tsv_with_entrez_command(input, lengths, symbolcheck, entrez, manual):
+# 	#validate option validity
+# 	return
 
 
-def prep_tsv_with_entrez(context: AbstractSymbolFixContext):
-	return
+class KeptSymbol:
+	def __init__(self, symbol=None, source=None):
+		self.symbol = symbol
+		self.source = source
 
 
-def prep_maf(context: AbstractSymbolFixContext):
-	return
+class KeptSymbols:
+	def __init__(self):
+		self.old_symbols = list()  # type: List[str]
+		self.kept_symbols = dict()  # type: Dict[str, KeptSymbol]
+
+	def register_symbol_pair(self, oldsymbol:str, newsymbol:str, source: str):
+		if oldsymbol not in self.old_symbols:
+			self.old_symbols.append(oldsymbol)
+		if oldsymbol not in self.kept_symbols:
+			self.kept_symbols[oldsymbol] = KeptSymbol(newsymbol, source)
+		else:
+			self.kept_symbols[oldsymbol].symbol = newsymbol
+			self.kept_symbols[oldsymbol].source = source
+
+	def update_maf_symbol(self, entry: MAF.Entry):
+		oldsymb = entry.get_data(0)
+		entry.fieldnames.append("oldsymbol")
+		entry.fieldnames.append("symbol_source")
+		if (oldsymb in self.old_symbols) and (oldsymb in self.kept_symbols):
+			entry.set_data(0, self.kept_symbols[oldsymb].symbol)
+			entry.data["oldsymbol"] = oldsymb
+			entry.data["symbol_source"] = self.kept_symbols[oldsymb].source
+		else:  # (oldsymb not in self.old_symbols) or (oldsymb not in self.kept_symbols)
+			warnings.warn(RuntimeWarning("tried to update symbol that wasn't in provided data: %s" % oldsymb))
+			entry.data["oldsymbol"] = oldsymb
+			entry.data["symbol_source"] = "unmatched"
+
+	def read_lengthcheck_file(self, length_option: Tuple[io.IOBase, int, int], sourcename: str) -> None:
+		print(length_option[0].name)
+		if length_option[0] is None:
+			return
+		reader = csv.reader(length_option[0], dialect='excel-tab')
+		for entry in reader:
+			oldsymb = entry[length_option[1]]
+			newsymb = entry[length_option[2]]
+			# print("old symbol: %s\tnew symbol: %s" %(oldsymb, newsymb))
+			self.register_symbol_pair(oldsymb, newsymb, sourcename)
+
+	def update_maf(self, maf_handle: io.IOBase, out_option: io.IOBase) -> None:
+		mafreader = MAF.EntryReader(maf_handle)
+		wrote_headers = False
+		while mafreader.has_next():
+			entry = mafreader.next()
+			self.update_maf_symbol(entry)
+			if not wrote_headers:
+				print("\t".join(entry.fieldnames), file=out_option)
+				wrote_headers = True
+			print("%s" % entry, file=out_option)
 
 
-def prep_tsv(context: AbstractSymbolFixContext):
-	return
+@click.command(name="SymbolFixer")
+@click.option('--maf', type=click.File('r'), required=True, help="path to maf file")
+@click.option('--original', type=(click.File('r'), int, int), help="path to original lengthcheck file, original_name column index, newname column index")
+@click.option('--symbolcheck', type=(click.File('r'), int, int), help="path to symbolcheck lengthcheck file, original_name column index, newname column index")
+@click.option('--entrez', type=(click.File('r'), int, int), help="path to entrez lengthcheck file, original_name column index, newname column index")
+@click.option('--manual', type=(click.File('r'), int, int), help="path to file containing manually curated symbols, original_name column index, newname column index")
+@click.option('--out', type=click.File('w+'), default=sys.stdout, help="output path to write changed maf entries")
+def cli(maf, original, symbolcheck, entrez, manual, out):
+	"""Create output MAF with updated symbols,
+		add additional columns showing what the old symbols were,
+		and whether the symbol should be considered up-to-date or not"""
+	symbols = KeptSymbols()
 
+	symbols.read_lengthcheck_file(manual, 'manual')
+	symbols.read_lengthcheck_file(entrez, 'entrez')
+	symbols.read_lengthcheck_file(symbolcheck, 'symbolcheck')
+	symbols.read_lengthcheck_file(original, 'original')
 
-def fix_names(context: AbstractSymbolFixContext):
-
-	#keep a list of the names that have been corrected or were already fine in a dict
-	#the dict value should tell us which category they fell into
-	#use classes with standard API for handling util vs more generic TSV input
-	#output only corrected or already-correct entries into main output file, have a separate file for non-fixed entries
-
-	#name fix steps:
-	#check against lengths file -- pre-screen names that already match
-
-	#attempt fix using entrez IDs
-	#check against lengths file  -- mark as corrected using entrez
-	#REMINDER: ignore zeroes
-
-	#attempt fix using symbolchecker output
-	#check against lengths file -- mark as corrected using symbolcheck
-
-	#attempt fix using manual curation file
-	#check against lengths file -- mark as corrected using manual curation
-
-	#print to output files and logs
-	return
-
-
-@click.group(name='SymbolFixer')
-def cli():
-	pass
-
-
-@cli.command(name="TSV")
-@click.option('--input', type=(click.File('r'), int), required=True, help="path to file containing names, and the column to read")
-@click.option('--lengths', type=(click.File('r'), int), help="path to lengths file, name column")
-@click.option('--symbolcheck', type=(click.File('r'), int, int, int), help="path to symbolcheck file, input column, match type column, approved symbol column")
-@click.option('--entrez', type=(click.File('r'), int, int), help="path to entrez file, hugo symbol column, entrez id column")
-@click.option('--manual', type=(click.File('r'), int, int), help="path to file containing manually curated names, oldname column, newname column")
-@click.option('--name_to_entrez', type=click.File('r'), help="output from MAF_collect_unique_entrez_ids.py")
-def tsv_command(input, lengths, symbolcheck, entrez, manual, name_to_entrez):
-	#TODO validate option validity
-	return
-
-
-@cli.command(name="TSV-ENTREZ")
-@click.option('--input', type=(click.File('r'), int, int), required=True, help="path to file containing names and entrez ids, symbol column, entrez column")
-@click.option('--lengths', type=(click.File('r'), int), help="path to lengths file, name column")
-@click.option('--symbolcheck', type=(click.File('r'), int, int, int), help="path to symbolcheck file, input column, match type column, approved symbol column")
-@click.option('--entrez', type=(click.File('r'), int, int), help="path to entrez file, hugo symbol column, entrez id column")
-@click.option('--manual', type=(click.File('r'), int, int), help="path to file containing manually curated names, oldname column, newname column")
-def tsv_with_entrez_command(input, lengths, symbolcheck, entrez, manual):
-	#TODO validate option validity
-	return
-
-
-@cli.command(name="util")
-@click.option('--input', type=click.File('r'), required=True, help="path to maf file")
-@click.option('--lengths', type=(click.File('r'), int), help="path to lengths file, name column")
-@click.option('--symbolcheck', type=(click.File('r'), int, int, int), help="path to symbolcheck file, input column, match type column, approved symbol column")
-@click.option('--entrez', type=(click.File('r'), int, int), help="path to entrez file, hugo symbol column, entrez id column")
-@click.option('--manual', type=(click.File('r'), int, int), help="path to file containing manually curated names, oldname column, newname column")
-def maf_command(input, lengths, symbolcheck, entrez, manual):
-	#TODO validate option validity
+	#if entry symbol is in lengths, original name is kept
+	#otherwise following priority is used:
+	#entrez_ID
+	#symbolcheck
+	#manual
+	#if none of these were matched, signal this in output
+	#add columns to data: orig_symbol, kept_from, where kept_from is one of original, symbolcheck, entrez, manual, or "unmatched"
+	print("inputfile: %s\noutputfile: %s" % (maf.name, out.name))
+	symbols.update_maf(maf, out)
 	return
 
 

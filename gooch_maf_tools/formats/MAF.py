@@ -3,7 +3,7 @@ import sys
 from io import TextIOBase
 import csv
 import re
-from typing import re
+from typing import re, Dict, List
 __author__ = 'mgooch'
 
 
@@ -12,17 +12,21 @@ class Entry:
 	def __init__(self, dict_from_dict_reader=None, fieldnames=None):
 		self.data = None  # type: dict[str, str]
 		if dict_from_dict_reader is None:
-			self.data = dict()
+			self.data = dict()  # type: Dict[str]
 		else:
 			if fieldnames is None:
 				raise RuntimeError("[Entry::__init__] fieldnames not supplied with dict from dictreader")
-			self.data = dict_from_dict_reader
-			self.fieldnames = fieldnames
+			self.data = dict_from_dict_reader  # type: Dict[str]
+			self.fieldnames = list(fieldnames)  # type: List[str]
 
 	# def determine_mutation(self):
 		# cds_text = self.data['HGVSc']
 	def get_data(self, index: int) -> str:
 		return self.data[self.fieldnames[index]]
+
+	def set_data(self, index: int, content: str):
+		self.data[self.fieldnames[index]] = content
+		return
 
 	def get_heading(self, index: int) -> str:
 		return self.fieldnames[index]

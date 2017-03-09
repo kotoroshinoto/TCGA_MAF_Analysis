@@ -64,7 +64,9 @@ def cli(mafnames, checkcolumn, oldcolumn, genelength, matched, unmatched, keep, 
 				print("%s\t%s" % (MAF_original_names[check_symbol], MAF_names[check_symbol]), file=unmatched)
 			else:
 				print("%s\t" % MAF_original_names[check_symbol], file=unmatched)
+	matched.write("")
 	matched.close()
+	unmatched.write("")
 	unmatched.close()
 
 if __name__ == "__main__":

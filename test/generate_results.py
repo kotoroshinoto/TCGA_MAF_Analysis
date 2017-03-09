@@ -1,17 +1,13 @@
 from pathlib import Path
 from shutil import copyfile
+from \
+	gooch_test_util import *
+
 out_dir = Path(".").joinpath("test_output","lengths","MAF_NAMES")
-out_dir = out_dir
-def cat_files(file_list, target_file):
-	out_handle = open(target_file, "w")
-	for file in file_list:
-		handle = open(file,"r")
-		for line in handle:
-			line = line.rstrip()
-			print(line, file=out_handle)
+
 original = out_dir.joinpath("ORIGINAL","LENGTH_CHECK")
 symbolcheck = out_dir.joinpath("SYMBOLCHECK","LENGTH_CHECK")
-entrez_correction = out_dir.joinpath("ENTREZ_CORRECTION","LENGTH_CHECK")
+entrez_correction = out_dir.joinpath("ENTREZ","LENGTH_CHECK")
 
 original_ok = original.joinpath("names_ok.txt")
 symbolcheck_ok = symbolcheck.joinpath("corrected_names_ok.txt")
@@ -23,7 +19,7 @@ entrez_correction_bad = entrez_correction.joinpath("names_corrected_bad.txt")
 
 symbolcheck_unmatched = out_dir.joinpath("SYMBOLCHECK","unmatched.txt")
 
-result_dir = Path(".").joinpath("RESULTS")
+result_dir = out_dir.joinpath("RESULTS")
 result_dir.mkdir(exist_ok=True)
 approved_in = result_dir.joinpath("approved_symbols_in_UCSC_genes.txt")
 approved_not_in = result_dir.joinpath("approved_symbols_not_in_UCSC_genes.txt")

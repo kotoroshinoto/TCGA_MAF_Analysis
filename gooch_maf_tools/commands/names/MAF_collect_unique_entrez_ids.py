@@ -28,11 +28,15 @@ def cli(maf, out, outnoentrez):
 		if symbol not in Names:
 			Names.append(symbol)
 			#Entrez_IDs.append(line_split[1])
-			if entrez_id != "0":
+			if entrez_id != "0" and entrez_id != "":
 				print("%s\t%s" % (line_split[0], line_split[1]), file=out)
 			else:
 				if outnoentrez is not None:
 					print("%s\t" % line_split[0], file=outnoentrez)
-
+	if outnoentrez is not None:
+		outnoentrez.write("")
+		outnoentrez.close()
+	out.write("")
+	out.close()
 if __name__ == "__main__":
 	cli()

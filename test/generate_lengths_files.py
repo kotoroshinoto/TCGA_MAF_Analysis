@@ -1,7 +1,7 @@
 from pathlib import Path
-import subprocess
-annotation_path = Path("E:\\dissertation\\data\\downloaded_annotations\\TCGA_Name_annotations\\UCSC_table_browser")
+from gooch_test_util import *
 
+annotation_path = Path("E:\\dissertation\\data\\downloaded_annotations\\TCGA_Name_annotations\\UCSC_table_browser")
 refseq_bed_path = "%s" % annotation_path.joinpath("RefSeq_Human.bed").absolute()
 refseq_names_tsv_path = "%s" % annotation_path.joinpath("UCSC_refseq.table.names.tsv").absolute()
 ucsc_bed_path = "%s" % annotation_path.joinpath("UCSC_genes.bed").absolute()
@@ -39,24 +39,10 @@ somatic_colon_mutations = colon_path.joinpath("Somatic_Mutations")
 illumina_path = somatic_colon_mutations.joinpath("BCM__IlluminaGA_DNASeq","Level_2")
 maf_path = illumina_path.joinpath("hgsc.bcm.edu__Illumina_Genome_Analyzer_DNA_Sequencing_level2.maf")
 maf_names_path = length_dir.joinpath("MAF_NAMES")
-entrez_path = maf_names_path.joinpath("ENTREZ_REF")
-entrez_path.mkdir(parents=True,exist_ok=True)
 
-entrez_id_cmd =[
-	"gooch_maf_tools", "names", "MAF_collect_unique_entrez_ids",
-	"--maf", "%s" % maf_path.absolute(),
-	"--outNoEntrez", "%s" % entrez_path.joinpath("MAF_names_lacking_entrez_ids.tsv").absolute(),
-	"--out",  "%s" % entrez_path.joinpath("MAF_names_entrez_ids.tsv").absolute()
-]
+runcmd(ucsc_refseq_merged_cmd)
+runcmd(ucsc_cmd)
+runcmd(refseq_cmd)
 
-
-def exec_command(cmd):
-	print(" ".join(cmd))
-	subprocess.run(cmd)
-
-exec_command(ucsc_refseq_merged_cmd)
-exec_command(ucsc_cmd)
-exec_command(refseq_cmd)
-exec_command(entrez_id_cmd)
 
 

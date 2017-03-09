@@ -1,5 +1,6 @@
 from pathlib import Path
-import subprocess
+from gooch_test_util import *
+
 lengths_dir = Path(".").joinpath("test_output", "lengths")
 maf_names_dir = lengths_dir.joinpath("MAF_NAMES")
 
@@ -19,9 +20,4 @@ symbolcheck_cmd = [
 	"--outCorrected", corrected
 ]
 
-
-def exec_command(cmd):
-	print(" ".join(cmd))
-	subprocess.run(cmd)
-
-exec_command(symbolcheck_cmd)
+runcmd(symbolcheck_cmd)

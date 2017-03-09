@@ -1,11 +1,7 @@
 from pathlib import Path
-import subprocess
-data_directory = Path("E:\\dissertation\\data\\raw_data")
-colon_path = data_directory.joinpath("colon")
-somatic_colon_mutations = colon_path.joinpath("Somatic_Mutations")
-illumina_path = somatic_colon_mutations.joinpath("BCM__IlluminaGA_DNASeq")
-illumina_path = illumina_path.joinpath("Level_2")
-maf_path = illumina_path.joinpath("hgsc.bcm.edu__Illumina_Genome_Analyzer_DNA_Sequencing_level2.maf")
+from gooch_test_util import *
+
+maf_path = Path(".").joinpath("test_output","fixed_symbols","hgsc.bcm.edu__Illumina_Genome_Analyzer_DNA_Sequencing_level2.maf")
 
 output_dir = Path(".")
 output_dir = output_dir.joinpath("test_output")
@@ -59,7 +55,7 @@ count_cmd = ["gooch_maf_tools", "analysis", "MAF_counter",
 count_file = output_dir.joinpath("test_run_count.sample.counts")
 
 split_cmd = ["gooch_maf_tools", "analysis", "MAF_count_split",
-             "--counts","%s" %count_file.absolute(),
+             "--counts","%s" % count_file.absolute(),
              "--maf", "%s" % maf_path.absolute(),
              "--key", "15",
              "--out_prefix", "test_output\\test_split",
@@ -96,41 +92,7 @@ high_count_cmd = ["gooch_maf_tools", "analysis", "MAF_counter",
              "--muttypeatlocation"
              ]
 
-# subprocess.run(count_cmd)
-# subprocess.run(split_cmd)
-# subprocess.run(low_count_cmd)
-# subprocess.run(high_count_cmd)
-
-# Usage: gooch_maf_tools lengths exon_sizer [OPTIONS]
-#
-#   Compute exonic sizes of genes and relate them to HUGO IDs
-#
-# Options:
-#   --ucsc <FILENAME FILENAME INTEGER INTEGER>...
-#                                   first path is to a bed file containing genes
-#                                   & exons from UCSC,
-#                                   2nd path is to path to a
-#                                   file relating BED file names to desired
-#                                   names.
-#                                   Ints are a pair of 0-based index
-#                                   values for parsing the names file, first
-#                                   column's names match those from the BED
-#                                   file, second names match those to use in the
-#                                   output
-#   --refseq <FILENAME FILENAME INTEGER INTEGER>...
-#                                   first path is to a bed file containing genes
-#                                   & exons from REFSEQ,
-#                                   2nd path is to path to
-#                                   a file relating BED file names to desired
-#                                   names.
-#                                   Ints are a pair of 0-based index
-#                                   values for parsing the names file, first
-#                                   column's names match those from the BED
-#                                   file, second names match those to use in the
-#                                   output
-#   --out FILENAME                  output file
-#   --help                          Show this message and exit.
-
-exon_sizer_cmd = ["gooch_maf_tools", "lengths", "exon_sizer",
-                  
-                  ]
+runcmd(count_cmd)
+runcmd(split_cmd)
+runcmd(low_count_cmd)
+runcmd(high_count_cmd)

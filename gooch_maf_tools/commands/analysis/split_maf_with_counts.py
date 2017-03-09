@@ -35,7 +35,7 @@ def generate_file_handles(maf, bounds, prefix=None):
 	return handles
 
 
-@click.command(help="Count # of entries per gene in util file")
+@click.command(help="Split MAF file based on # of counts for categories in a column")
 @click.option('--counts', type=click.File('r'), required=True, help="file containing sample counts")
 @click.option('--maf', type=click.File('r'), required=True, help="maf file to split")
 @click.option('--key', type=int, required=True, help="0-based column number to use as key in maf file")

@@ -112,7 +112,7 @@ def cli():
 @cli.command(name='locations', help='Produce kurtosis calculations from mutation locations file')
 @click.option('--file', nargs=1, type=click.File('r'))
 @click.option('--output', nargs=1, required=False, default=None, type=click.Path(dir_okay=False, writable=True))
-def compute_kurtosis_location(filename, output):
+def compute_kurtosis_location(file, output):
 	check_and_install_R_dependency('e1071')
 	rpackages.importr('e1071')
 	output_file = None
@@ -122,7 +122,7 @@ def compute_kurtosis_location(filename, output):
 	else:
 		output_file = open(output, mode='w', newline='')
 	output_csv_writer = csv.writer(output_file, dialect='excel-tab')
-	csv_reader = csv.reader(filename, dialect='excel-tab')
+	csv_reader = csv.reader(file, dialect='excel-tab')
 	positions, gene_symbol_list, label_list = build_position_dicts_from_location_file(csv_reader)
 	# positions = positions_tuple[0]
 	# gene_symbol_list = positions_tuple[1]
@@ -633,11 +633,12 @@ class GeneNameMap:
 
 	def rev_get_name_for(self, newname:str):
 		if newname not in self.rev_name_map:
-			raise ValueError("UPDATED  symbol: \"%s\" does not have an existing mapping" % nameold)
+			raise ValueError("UPDATED symbol: \"%s\" does not have an existing mapping" % newname)
 		return self.rev_name_map[newname]
 
 	def rev_is_regstered(self, newname):
 		return newname in self.rev_name_map
+
 
 class GeneLinregEntry:
 	def __init__(self, symbol: str):
@@ -650,7 +651,7 @@ class GeneLinregData:
 	def __init__(self):
 		self.data_dict = dict()  # type: Dict[str, GeneLinregEntry]
 		self.symbol_list = list()  #type: List[str]
-		self.name_map = GeneNameMap()  # type: GeneNameMap
+		self.name_map = None  # type: GeneNameMap
 
 	def read_count_file(self, filehandle, name_col: int, count_col: int, has_header: bool):
 		reader = csv.reader(filehandle, dialect='excel-tab')
@@ -658,35 +659,56 @@ class GeneLinregData:
 			next(reader)  # skip first line
 
 		for row in reader:
-			oldsymbol = row[name_col]
-			newsymbol = self.name_map.get_name_for(oldsymbol)
-			if newsymbol not in self.data_dict:
-				entry = GeneLinregEntry(newsymbol)  # type: GeneLinregEntry
-				self.data_dict[newsymbol] = entry
-				self.symbol_list.append(newsymbol)
+			if self.name_map is not None:
+				oldsymbol = row[name_col]
+				newsymbol = self.name_map.get_name_for(oldsymbol)
+				if newsymbol not in self.data_dict:
+					entry = GeneLinregEntry(newsymbol)  # type: GeneLinregEntry
+					self.data_dict[newsymbol] = entry
+					self.symbol_list.append(newsymbol)
+				else:
+					entry = self.data_dict[newsymbol]  # type: GeneLinregEntry
+				entry._count = int(row[count_col])
 			else:
-				entry = self.data_dict[newsymbol]  # type: GeneLinregEntry
-			entry._count = int(row[count_col])
+				symbol = row[name_col]
+				if symbol not in self.data_dict:
+					entry = GeneLinregEntry(symbol)  # type: GeneLinregEntry
+					self.data_dict[symbol] = entry
+					self.symbol_list.append(symbol)
+				else:
+					entry = self.data_dict[symbol]  # type: GeneLinregEntry
+				entry._count = int(row[count_col])
 
 	def read_length_file(self, filehandle, name_col: int, length_col: int, has_header: bool):
 		reader = csv.reader(filehandle, dialect='excel-tab')
 		if has_header:
 			next(reader)  # skip first line
 		for row in reader:
-			oldsymbol = row[name_col]
-			if not self.name_map.is_registered(oldsymbol):
-				continue  # skip missing names, as they are likely not in the data
-			newsymbol = self.name_map.get_name_for(oldsymbol)
-			if newsymbol not in self.data_dict:
-				continue
-				# entry = GeneLinregEntry(newsymbol)  # type: GeneLinregEntry
-				# self.data_dict[newsymbol] = entry
-				# self.symbol_list.append(newsymbol)
+			if self.name_map is not None:
+				oldsymbol = row[name_col]
+				if not self.name_map.is_registered(oldsymbol):
+					continue  # skip missing names, as they are likely not in the data
+				newsymbol = self.name_map.get_name_for(oldsymbol)
+				if newsymbol not in self.data_dict:
+					continue
+					# entry = GeneLinregEntry(newsymbol)  # type: GeneLinregEntry
+					# self.data_dict[newsymbol] = entry
+					# self.symbol_list.append(newsymbol)
+				else:
+					entry = self.data_dict[newsymbol]  # type: GeneLinregEntry
+				entry._length = int(row[length_col])
 			else:
-				entry = self.data_dict[newsymbol]  # type: GeneLinregEntry
-			entry._length = int(row[length_col])
+				symbol = row[name_col]
+				if (symbol not in self.symbol_list) or (symbol not in self.data_dict):
+					continue
+				else:
+					entry = self.data_dict[symbol]
+				entry._length = int(row[length_col])
 
 	def read_name_file(self, filehandle, old_col: int, new_col: int, has_header: bool):
+		if filehandle is None:
+			return
+		self.name_map = GeneNameMap()
 		self.name_map.read_name_file(filehandle, old_col, new_col, has_header)
 
 	def generate_count_vector(self) -> ro.IntVector:
@@ -708,7 +730,7 @@ class GeneLinregData:
 @cli.command(name='Gene_Outliers', help="compute studentized residuals for list of gene counts")
 @click.option('--count_file', type=(click.File('r'), int, int), default=(None, None, None), required=True, help="count file, symbol column, count column")
 @click.option('--length_file', type=(click.File('r'), int, int), default=(None, None, None), required=True, help="length file, symbol column,  length column")
-@click.option('--name_map_file', type=(click.File('r'), int, int), default=(None, None, None), required=True, help="names file, old name column, new name column")
+@click.option('--name_map_file', type=(click.File('r'), int, int), default=(None, None, None), help="names file, old name column, new name column")
 @click.option('--header_count/--noheader_count', default=True)
 @click.option('--header_length/--noheader_length', default=True)
 @click.option('--header_name_map/--noheader_name_map', default=True)
@@ -720,8 +742,8 @@ def compute_studentized_residuals_genes(ctx, count_file, length_file, name_map_f
 		errormsg.append("--count_file is required")
 	if length_file[0] is None:
 		errormsg.append("--length_file is required")
-	if name_map_file[0] is None:
-		errormsg.append("--name_map_file is required")
+	# if name_map_file[0] is None:
+	# 	errormsg.append("--name_map_file is required")
 	if len(errormsg) > 0:
 		print(compute_studentized_residuals_genes.get_help(ctx))
 		raise click.UsageError(', '.join(errormsg))
@@ -755,27 +777,42 @@ def compute_studentized_residuals_genes(ctx, count_file, length_file, name_map_f
 	else:
 		output_file = open(output, newline='', mode='w')
 	fieldnames = list()
-	fieldnames.append('Gene Symbol[MAF]')
-	fieldnames.append('Gene Symbol[UPDATED]')
+	if name_map_file[0] is not None:
+		fieldnames.append('Gene_Symbol[MAF]')
+		fieldnames.append('Gene_Symbol[UPDATED]')
+	else:
+		fieldnames.append('Gene_Symbol')
 	fieldnames.append('Length')
-	fieldnames.append('Mutation Count')
-	fieldnames.append('Studentized Residual')
+	fieldnames.append('Mutation_Count')
+	fieldnames.append('Studentized_Residual')
 	output_writer = csv.writer(output_file, dialect='excel-tab')
 	output_writer.writerow(fieldnames)
 	symbol_list = linreg_data.symbol_list
 	for i in range(0, len(symbol_list)):
-		newsymbol = symbol_list[i]
-		oldsymbol = linreg_data.name_map.rev_get_name_for(newsymbol)
-		if newsymbol not in linreg_data.data_dict:
-			continue
-		dataentry = linreg_data.data_dict[newsymbol]  # type: GeneLinregEntry
-		row = list()
-		row.append(oldsymbol)
-		row.append(newsymbol)
-		row.append(dataentry._length)
-		row.append(dataentry._count)
-		row.append(studres_result[i])
-		output_writer.writerow(row)
+		if name_map_file[0] is not None:
+			newsymbol = symbol_list[i]
+			oldsymbol = linreg_data.name_map.rev_get_name_for(newsymbol)
+			if newsymbol not in linreg_data.data_dict:
+				continue
+			dataentry = linreg_data.data_dict[newsymbol]  # type: GeneLinregEntry
+			row = list()
+			row.append(oldsymbol)
+			row.append(newsymbol)
+			row.append(dataentry._length)
+			row.append(dataentry._count)
+			row.append(studres_result[i])
+			output_writer.writerow(row)
+		else:
+			symbol = symbol_list[i]
+			if (symbol not in linreg_data.symbol_list) or (symbol not in linreg_data.data_dict):
+				continue
+			dataentry = linreg_data.data_dict[symbol]  # type: GeneLinregEntry
+			row = list()
+			row.append(symbol)
+			row.append(dataentry._length)
+			row.append(dataentry._count)
+			row.append(studres_result[i])
+			output_writer.writerow(row)
 
 if __name__ == "__main__":
 	cli()

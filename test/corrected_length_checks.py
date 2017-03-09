@@ -1,5 +1,5 @@
 from pathlib import Path
-import subprocess
+from gooch_test_util import *
 
 annotation_path = Path("E:\\dissertation\\data\\downloaded_annotations\\TCGA_Name_annotations\\UCSC_table_browser")
 
@@ -34,7 +34,7 @@ symbolcheck_cmd =[
 	"--unmatched", symbolcheck_BAD_file
 ]
 
-entrez_dir = maf_names_dir.joinpath("ENTREZ_CORRECTION")
+entrez_dir = maf_names_dir.joinpath("ENTREZ")
 entrez_corrected_file = entrez_dir.joinpath("names_corrected.txt")
 entrez_length_check_dir = entrez_dir.joinpath("LENGTH_CHECK")
 entrez_length_check_dir.mkdir(exist_ok=True)
@@ -59,10 +59,5 @@ ucsc_refseq_check_cmd = [
 	"--unmatched", entrez_BAD_file
 ]
 
-
-def exec_command(cmd):
-	print(" ".join(cmd))
-	subprocess.run(cmd)
-
-exec_command(symbolcheck_cmd)
-exec_command(ucsc_refseq_check_cmd)
+runcmd(symbolcheck_cmd)
+runcmd(ucsc_refseq_check_cmd)
