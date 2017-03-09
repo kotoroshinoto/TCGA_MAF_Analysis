@@ -3,10 +3,10 @@ import sys
 import shutil
 from pathlib import Path
 
-names_to_not_delete = ["MAF_NAMES"] # this file contains some files we don't want to remove and some that we do want to remove
+names_to_not_delete = ["lengths","MAF_NAMES"] # this file contains some files we don't want to remove and some that we do want to remove
 names_to_skip_recursion = ["GENE_NAMES_ORG", "HAND_CURATED"] # these files were produced externally, cannot regenerate
 
-for root, dirs, files in os.walk(Path(".").joinpath("test_output","lengths")):
+for root, dirs, files in os.walk(Path(".").joinpath("test_output")):
 	parentpath = Path(root)
 	# print("BEFORE root: %s; dirs: %s; files:%s" % (root, dirs, files))
 	i =0
