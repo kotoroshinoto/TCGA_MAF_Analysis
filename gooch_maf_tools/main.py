@@ -8,20 +8,6 @@ from .commands.names.main import names
 def gooch_maf_tools():
 	pass
 
-
-# @cli.group(name='names', help="correcting name mismatches")
-# def names():
-# 	pass
-#
-#
-# @cli.group(name='lengths', help='work with gene lengths')
-# def lengths():
-# 	pass
-#
-# @cli.group(name='analysis', help='performing counts and analysis')
-# def analysis():
-# 	pass
-
 gooch_maf_tools.add_command(analysis, "")
 gooch_maf_tools.add_command(lengths, "")
 gooch_maf_tools.add_command(names, "")
