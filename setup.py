@@ -28,7 +28,7 @@ setup(
 	],
 	entry_points={
 		'console_scripts': [
-		'gooch_maf_tools = gooch_maf_tools.main:cli'
+		'gooch_maf_tools = gooch_maf_tools.main:gooch_maf_tools'
 		]
 	}
 )

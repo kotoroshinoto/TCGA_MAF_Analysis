@@ -5,9 +5,10 @@ test_output_dir = Path(".").joinpath("test_output")
 count_analysis_dir = test_output_dir.joinpath("count_analysis")
 lowdir = test_output_dir.joinpath("low_group")
 highdir = test_output_dir.joinpath("high_group")
-length_file = "%s" % test_output_dir.joinpath("lengths", "Gene_Lengths_ucsc_refseq_merged.tsv")
-low_gene_count = "%s" % lowdir.joinpath("low.gene.counts")
-high_gene_count = "%s" % highdir.joinpath("high.gene.counts")
+length_file = "%s" % test_output_dir.joinpath("lengths", "MAF_NAMES", "COMBINED_LENGTHS", "ucsc_refseq_and_manual_lengths_combined.tsv").absolute()
+manual_length_file = "%s" % test_output_dir.joinpath("lengths", "MAF_NAMES", "HAND_CURATED", "lengths.tsv").absolute()
+low_gene_count = "%s" % lowdir.joinpath("low.gene.counts").absolute()
+high_gene_count = "%s" % highdir.joinpath("high.gene.counts").absolute()
 
 # Usage: gooch_maf_tools analysis get_stats Gene_Outliers [OPTIONS]
 #
@@ -33,8 +34,8 @@ high_gene_count = "%s" % highdir.joinpath("high.gene.counts")
 #--length_file test_output\lengths\Gene_Lengths_ucsc_refseq_merged.tsv 0 1
 #--output test_output\gene_linreg.tsv
 
-low_outlier_file = "%s" % count_analysis_dir.joinpath("low.gene_linreg.tsv")
-high_outlier_file = "%s" % count_analysis_dir.joinpath("high.gene_linreg.tsv")
+low_outlier_file = "%s" % count_analysis_dir.joinpath("low.gene_linreg.tsv").absolute()
+high_outlier_file = "%s" % count_analysis_dir.joinpath("high.gene_linreg.tsv").absolute()
 
 low_outlier_cmd = [
 	"gooch_maf_tools", "analysis", "get_stats", "Gene_Outliers",
@@ -49,9 +50,9 @@ high_outlier_cmd = [
 	"--output", high_outlier_file
 ]
 
-low_mut_type_per_sample = "%s" % lowdir.joinpath("low.mutation_type.per_sample.counts")
-high_mut_type_per_sample = "%s" % highdir.joinpath("high.mutation_type.per_sample.counts")
-mut_type_t_test_out = "%s" % count_analysis_dir.joinpath("mutation_type_t_test.tsv")
+low_mut_type_per_sample = "%s" % lowdir.joinpath("low.mutation_type.per_sample.counts").absolute()
+high_mut_type_per_sample = "%s" % highdir.joinpath("high.mutation_type.per_sample.counts").absolute()
+mut_type_t_test_out = "%s" % count_analysis_dir.joinpath("mutation_type_t_test.tsv").absolute()
 
 # Usage: gooch_maf_tools analysis get_stats Mutation_Type_T_Test
 #            [OPTIONS]
@@ -85,10 +86,10 @@ mut_type_t_test_cmd = [
 #   --output PATH
 #   --help           Show this message and exit.
 
-low_location_counts = "%s" % lowdir.joinpath("low.location.counts")
-high_location_counts = "%s" % highdir.joinpath("high.location.counts")
-low_kurt = "%s" % count_analysis_dir.joinpath("low.kurtosis.tsv")
-high_kurt = "%s" % count_analysis_dir.joinpath("high.kurtosis.tsv")
+low_location_counts = "%s" % lowdir.joinpath("low.location.counts").absolute()
+high_location_counts = "%s" % highdir.joinpath("high.location.counts").absolute()
+low_kurt = "%s" % count_analysis_dir.joinpath("low.kurtosis.tsv").absolute()
+high_kurt = "%s" % count_analysis_dir.joinpath("high.kurtosis.tsv").absolute()
 
 #gooch_maf_tools analysis get_stats locations
 #--file test_output\low_group\low.location.counts

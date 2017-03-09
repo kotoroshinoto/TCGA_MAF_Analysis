@@ -747,6 +747,8 @@ def compute_studentized_residuals_genes(ctx, count_file, length_file, name_map_f
 	if len(errormsg) > 0:
 		print(compute_studentized_residuals_genes.get_help(ctx))
 		raise click.UsageError(', '.join(errormsg))
+	print("count_file: %s" % count_file[0].name)
+	exit(0)
 	check_and_install_R_dependency('MASS')
 	rpackages.importr('MASS')
 	linreg_data = GeneLinregData()
